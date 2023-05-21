@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: semsearch-ui
+  name: semsearch-ui
+  namespace: semsearch
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: semsearch-ui
+  type: NodePort
+status:
+  loadBalancer: {}

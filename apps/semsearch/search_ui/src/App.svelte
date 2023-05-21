@@ -19,7 +19,7 @@
     if (!searchText) {
       return [];
     }
-    const response = await fetch("http://localhost:5000/v1/predictions", {
+    const response = await fetch("http://localhost:31212/v1/predictions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
