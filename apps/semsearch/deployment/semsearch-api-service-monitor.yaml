@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  #generation: 1
+  name: semsearch-api-monitor
+  namespace: semsearch
+spec:
+  endpoints:
+    - interval: 30s
+      path: /metrics
+      port: semsearch-api-port
+      scrapeTimeout: 10s
+  namespaceSelector:
+    matchNames:
+      - semsearch
+  selector:
+    matchLabels:
+      app: semsearch-clip-milvus-redis-pg
+      app.kubernetes.io/name: semsearch
