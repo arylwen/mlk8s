@@ -1,21 +1,46 @@
 apiVersion: v1 
 kind: Pod 
 metadata: 
+  labels:
+    app: semsearch-ui
   name: semsearch-ui 
+  namespace: semsearch
 spec: 
+  initContainers:
+    # This container clones the desired git repo to the EmptyDir volume.
+    - name: git-clone
+      image: alpine/git # Any image with git will do
+      args:
+        - clone
+        - --single-branch
+        - --
+        - https://github.com/arylwen/mlk8s.git # Your repo
+        - /repo # Put it in the volume
+      securityContext:
+        runAsUser: 1 # Any non-root user will do. Match to the workload.
+        allowPrivilegeEscalation: false
+        readOnlyRootFilesystem: true
+      volumeMounts:
+        - name: git-repo
+          mountPath: /repo
   containers: 
   - image: nginx:alpine 
     name: web-server 
+    resources: {}
     volumeMounts: 
-    - name: html 
+    - name: git-repo 
       mountPath: /usr/share/nginx/html 
+      subPath: apps/semsearch/search_ui/semsearch_ui_deployment
       readOnly: true 
     ports: 
     - containerPort: 80 
       protocol: TCP 
-  volumes: 
-  - name: html 
-    gitRepo: 
-      repository: https://github.com/arylwen/mlk8s.git 
-      revision: master 
-      directory: apps/semsearch/search_ui/semsearch_ui_deployment
+  #volumes: -- gitRepo is deprecated
+  #- name: html 
+  #  gitRepo: 
+  #    repository: https://github.com/arylwen/mlk8s.git 
+  #    revision: master 
+  #    directory: apps/semsearch/search_ui/semsearch_ui_deployment
+  volumes:
+  - name: git-repo
+    emptyDir: {}

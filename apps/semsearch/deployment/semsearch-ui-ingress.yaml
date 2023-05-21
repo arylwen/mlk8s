@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: semsearch-ui
+  namespace: semsearch
+  
+spec:
+  ingressClassName: public
+  rules:
+    - host: semsearch-ui.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: semsearch-ui
+                port:
+                  number: 80

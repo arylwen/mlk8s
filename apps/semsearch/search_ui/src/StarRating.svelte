@@ -100,7 +100,7 @@
 	}
 
 	const sendFeedback = async (rate_obj) => {
-		const response = await fetch("http://localhost:31212/v1/feedback", {
+		const response = await fetch("http://semsearch-api:31212/v1/feedback", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
