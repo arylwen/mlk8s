@@ -42,7 +42,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: pgsql-password
-                  key: password
+                  key: PGSQL_PASS
             - name: DB_HOST
               value: pgsql14.pgsql.svc.cluster.local
             - name: DB_NAME
