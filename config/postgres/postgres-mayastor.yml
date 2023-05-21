@@ -1,11 +1,4 @@
 apiVersion: v1
-kind: Namespace
-metadata:
-  name: pgsql
-  labels:
-    name: pgsql
----
-apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: pgsql14-volumeclaim

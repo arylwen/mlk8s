@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: semsearch-clip-milvus-redis-pg
+  name: semsearch-clip-milvus-redis-pg
+  namespace: semsearch
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: semsearch-clip-milvus-redis-pg
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: semsearch-clip-milvus-redis-pg
+    spec:
+      containers:
+        - args:
+            - bash
+            - -c
+            - make run-service-development
+          image: arylwen/semsearch-clip-milvus-redis-pg-k8s:latest
+          name: semsearch-clip-milvus-redis-pg-k8s
+          ports:
+            - containerPort: 5000
+          resources: {}
+          env: 
+            - name: REDIS_HOST
+              value: redis.redis.svc.cluster.local
+            - name: REDIS_PORT
+              value: '6379'
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: redis-password
+                  key: REDIS_PASS
+            - name: DB_USER
+              value: pguser
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pgsql-password
+                  key: password
+            - name: DB_HOST
+              value: pgsql14.pgsql.svc.cluster.local
+            - name: DB_NAME
+              value: 'ml_api'
+            - name: MILVUS_HOST
+              value: milvus.milvus.svc.cluster.local
+            - name: MILVUS_PORT
+              value: '19530'
+      restartPolicy: Always
+status: {}

@@ -1,0 +1,103 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-commander
+  namespace: redis
+  labels:
+    app: redis-commander
+    tier: backend
+spec:
+  ports:
+    - port: 8081
+      targetPort: redis-commander
+      name: redis-commander
+  selector:
+    app: redis-commander
+    tier: backend
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations: 
+    nginx.ingress.kubernetes.io/rewrite-target: / 
+  name: redis-commander-ingress
+  namespace: redis
+  labels:
+    app: redis-commander
+spec:
+  ingressClassName: public
+  rules:
+    - host: redis-commander.local
+      http:
+        paths:
+          - path: "/"
+            pathType: Prefix
+            backend:
+              service: 
+                name: redis-commander
+                port: 
+                  number: 8081
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-commander
+  namespace: redis
+  annotations:
+    # Tell Kubernetes to apply the AppArmor or SecComp profile "runtime/default". (whatever is used)
+    # Note that this is ignored if the Kubernetes node is not running version 1.4 or greater.
+    # and fails if AppArmor enabled but profile not found (may happens on borked k8s installs only)
+    # set to "unconfined" to disable AppArmor (first annotation) or SecComp (second annotation)
+    container.apparmor.security.beta.kubernetes.io/redis-commander: runtime/default
+    container.security.alpha.kubernetes.io/redis-commander: runtime/default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-commander
+  template:
+    metadata:
+      labels:
+        app: redis-commander
+        tier: backend
+    spec:
+      automountServiceAccountToken: false
+      containers:
+        - name: redis-commander
+          image: ghcr.io/joeferner/redis-commander
+          imagePullPolicy: Always
+          env:
+            - name: REDIS_HOST
+              value: "redis"
+            #- name: REDIS_PASSWORD
+            #  value: "SECRET"
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: redis-password
+                  key: REDIS_PASS
+            - name: K8S_SIGTERM
+              value: "1"
+          ports:
+            - name: redis-commander
+              containerPort: 8081
+          livenessProbe:
+            httpGet:
+              path: /favicon.png
+              port: 8081
+            initialDelaySeconds: 10
+            timeoutSeconds: 5
+          # adapt to your needs base on data stored inside redis (number of keys and size of biggest keys)
+          # or comment out for less secure installation
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "512M"
+          securityContext:
+            runAsNonRoot: true
+            readOnlyRootFilesystem: false
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
