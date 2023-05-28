@@ -1,0 +1,10 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://10.0.0.27:31112
+functions:
+  hello-model:
+    lang: python3
+    handler: ./hello-model
+    image: registry.local:32000/hello-model:latest
+
