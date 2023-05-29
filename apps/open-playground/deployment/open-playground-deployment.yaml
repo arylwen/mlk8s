@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: open-playground
+  name: open-playground
+  namespace: open-playground
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: open-playground
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: open-playground
+    spec:
+      containers:
+        - image: registry.local:32000/llama-playground:latest
+          name: open-playground-0
+          ports:
+            - containerPort: 5432
+          resources: {}
+          env: 
+            - name: REDIS_HOST
+              value: redis.redis.svc.cluster.local
+            - name: REDIS_PORT
+              value: '6379'
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: redis-password
+                  key: REDIS_PASS
+            - name: DB_USER
+              value: pguser
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pgsql-password
+                  key: PGSQL_PASS
+            - name: DB_HOST
+              value: pgsql14.pgsql.svc.cluster.local
+            - name: DB_NAME
+              value: 'open-playground'
+            - name: MILVUS_HOST
+              value: milvus.milvus.svc.cluster.local
+            - name: MILVUS_PORT
+              value: '19530'
+      restartPolicy: Always
+status: {}

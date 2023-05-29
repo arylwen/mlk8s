@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: open-playground 
+    app.kubernetes.io/name: open-playground 
+  name: open-playground
+  namespace: open-playground
+spec:
+  ports:
+    - port: 5432
+      name: open-playground-port
+      protocol: TCP
+      targetPort: 5432
+  selector:
+    app: open-playground
+  type: NodePort
+status:
+  loadBalancer: {}
