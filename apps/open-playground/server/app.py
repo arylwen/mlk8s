@@ -11,6 +11,9 @@ import threading
 import time
 import re
 
+import datetime
+import memray
+
 from contextlib import contextmanager
 
 from server.lib.entities import Model, Provider
@@ -353,7 +356,9 @@ def run(host, port, debug, env, models, log_level):
     storage = Storage(models, env)
     app.config['GLOBAL_STATE'] = GlobalStateManager(storage)
 
-    app.run(host=host, port=port, debug=debug)
+    dt = datetime.date.today()
+    with memray.Tracker(f"/web/config/memray-{dt}.bin"):
+        app.run(host=host, port=port, debug=debug)
 
 @click.command()
 @click.help_option('-h', '--help')
@@ -398,6 +403,8 @@ cli.add_command(run)
 
 if __name__ == '__main__':
     app.static_folder='../app/dist'
-    run()
+    dtime = datetime.now()
+    with memray.Tracker(f"/web/config/memray-{dtime}.bin"):
+        run()
 else:
     app.static_folder='./static'

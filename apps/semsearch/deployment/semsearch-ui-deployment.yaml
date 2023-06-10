@@ -1,46 +1,56 @@
-apiVersion: v1 
-kind: Pod 
+apiVersion: apps/v1 
+kind: Deployment 
 metadata: 
   labels:
     app: semsearch-ui
   name: semsearch-ui 
   namespace: semsearch
 spec: 
-  initContainers:
-    # This container clones the desired git repo to the EmptyDir volume.
-    - name: git-clone
-      image: alpine/git # Any image with git will do
-      args:
-        - clone
-        - --single-branch
-        - --
-        - https://github.com/arylwen/mlk8s.git # Your repo
-        - /repo # Put it in the volume
-      securityContext:
-        runAsUser: 1 # Any non-root user will do. Match to the workload.
-        allowPrivilegeEscalation: false
-        readOnlyRootFilesystem: true
-      volumeMounts:
+  replicas: 1
+  selector:
+    matchLabels: 
+      app: semsearch-ui
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: semsearch-ui
+    spec:
+      initContainers:
+      # This container clones the desired git repo to the EmptyDir volume.
+        - name: git-clone
+          image: alpine/git # Any image with git will do
+          args:
+            - clone
+            - --single-branch
+            - --
+            - https://github.com/arylwen/mlk8s.git # Your repo
+            - /repo # Put it in the volume
+          securityContext:
+            runAsUser: 1 # Any non-root user will do. Match to the workload.
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+          volumeMounts:
+            - name: git-repo
+              mountPath: /repo
+      containers: 
+        - image: nginx:alpine 
+          name: web-server 
+          resources: 
+            requests:
+              memory: "1024Mi"
+              cpu: "250m"
+            limits:
+              memory: "1024Mi"
+              cpu: "250m"
+          volumeMounts: 
+            - name: git-repo 
+              mountPath: /usr/share/nginx/html 
+              subPath: apps/semsearch/search_ui/semsearch_ui_deployment
+              readOnly: true 
+          ports: 
+            - containerPort: 80 
+              protocol: TCP 
+      volumes:
         - name: git-repo
-          mountPath: /repo
-  containers: 
-  - image: nginx:alpine 
-    name: web-server 
-    resources: {}
-    volumeMounts: 
-    - name: git-repo 
-      mountPath: /usr/share/nginx/html 
-      subPath: apps/semsearch/search_ui/semsearch_ui_deployment
-      readOnly: true 
-    ports: 
-    - containerPort: 80 
-      protocol: TCP 
-  #volumes: -- gitRepo is deprecated
-  #- name: html 
-  #  gitRepo: 
-  #    repository: https://github.com/arylwen/mlk8s.git 
-  #    revision: master 
-  #    directory: apps/semsearch/search_ui/semsearch_ui_deployment
-  volumes:
-  - name: git-repo
-    emptyDir: {}
+          emptyDir: {}

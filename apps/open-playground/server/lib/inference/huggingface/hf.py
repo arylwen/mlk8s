@@ -38,7 +38,9 @@ class HFInference:
         logger.info(f'Destructor called for:{self.model_name}')
         if self.model:
             self.model.cpu()
-            del self.model, self.tokenizer
+            del self.model
+        if self.tokenizer:    
+            del self.tokenizer
         gc.collect()
         torch.cuda.empty_cache()
 
@@ -87,7 +89,10 @@ class HFInference:
             else:
                 raise Exception('Model size is too large for host to run inference on')
 
-        model.to(self.device) # gpu inference if possible
+        if self.device == 'cuda':
+            logger.info(f'Loading model {self.model_name} to the GPU.')
+            model.to(self.device) # gpu inference if possible
+        
         return model, tokenizer
 
     def generate(self, 

@@ -43,5 +43,8 @@ RUN poetry install --without=dev --no-interaction --no-ansi
 RUN pip install accelerate
 RUN pip install sentencepiece==0.1.97
 RUN pip install protobuf==3.20.2
+RUN pip install transformers==4.29
+RUN pip install tokenizers==0.13.3
+RUN pip install memray
 
 ENTRYPOINT ["openplayground", "run", "--host", "0.0.0.0", "--env", "/web/config/.env"]
