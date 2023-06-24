@@ -1,0 +1,144 @@
+apiVersion: ray.io/v1alpha1
+kind: RayCluster
+metadata:
+  annotations:
+    meta.helm.sh/release-name: raycluster
+    meta.helm.sh/release-namespace: kuberay
+  creationTimestamp: '2023-06-10T22:24:15Z'
+  generation: 119
+  labels:
+    app.kubernetes.io/instance: raycluster
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: kuberay
+    helm.sh/chart: ray-cluster-0.5.0
+    k8slens-edit-resource-version: v1alpha1
+  name: raycluster-kuberay-gpu
+  namespace: kuberay
+  resourceVersion: '57509462'
+status:
+  availableWorkerReplicas: 1
+  desiredWorkerReplicas: 1
+  endpoints:
+    client: '31114'
+    dashboard: '31715'
+    metrics: '30884'
+    redis: '32648'
+    serve: '32211'
+  head:
+    podIP: 10.1.232.13
+    serviceIP: 10.152.183.142
+  lastUpdateTime: '2023-06-18T12:38:51Z'
+  maxWorkerReplicas: 2147483647
+  minWorkerReplicas: 1
+  observedGeneration: 119
+  state: ready
+spec:
+  autoscalerOptions:
+    idleTimeoutSeconds: 600
+    upscalingMode: Default
+  enableInTreeAutoscaling: true
+  headGroupSpec:
+    rayStartParams:
+      block: 'true'
+      dashboard-host: 0.0.0.0
+      no-monitor: 'true'
+    serviceType: NodePort
+    template:
+      metadata:
+        annotations: {}
+        labels:
+          app.kubernetes.io/instance: raycluster
+          app.kubernetes.io/managed-by: Helm
+          app.kubernetes.io/name: kuberay
+          helm.sh/chart: ray-cluster-0.5.0
+      spec:
+        affinity: 
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+              - matchExpressions:
+                - key: nvidia.com/gpu.present
+                  operator: In
+                  values:
+                  - "true"        
+        containers:
+          - env: []
+            image: registry.local:32000/ray-llama-cuda-118
+            imagePullPolicy: IfNotPresent
+            name: ray-head
+            resources:
+              limits:
+                cpu: '1'
+                memory: 4G
+              requests:
+                cpu: '1'
+                memory: 4G
+            securityContext: {}
+            volumeMounts:
+              - mountPath: /tmp/ray
+                name: log-volume
+        imagePullSecrets: []
+        nodeSelector: {}
+        tolerations: []
+        volumes:
+          - emptyDir: {}
+            name: log-volume
+  workerGroupSpecs:
+    - groupName: workergroup
+      maxReplicas: 2147483647
+      minReplicas: 1
+      rayStartParams:
+        block: 'true'
+      replicas: 1
+      scaleStrategy:
+        workersToDelete: []
+      template:
+        metadata:
+          annotations: {}
+          labels:
+            app.kubernetes.io/instance: raycluster
+            app.kubernetes.io/managed-by: Helm
+            app.kubernetes.io/name: kuberay
+            helm.sh/chart: ray-cluster-0.5.0
+        spec:
+          affinity: 
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                - matchExpressions:
+                  - key: nvidia.com/gpu.present
+                    operator: In
+                    values:
+                    - "true"        
+          containers:
+            - env: []
+              image: registry.local:32000/ray-llama-cuda-118
+              imagePullPolicy: IfNotPresent
+              name: ray-worker
+              resources:
+                limits:
+                  cpu: '1'
+                  memory: 4G
+                requests:
+                  cpu: '1'
+                  memory: 4G
+              securityContext: {}
+              volumeMounts:
+                - mountPath: /tmp/ray
+                  name: log-volume
+          imagePullSecrets: []
+          initContainers:
+            - command:
+                - sh
+                - '-c'
+                - >-
+                  until nslookup $FQ_RAY_IP; do echo waiting for K8s Service
+                  $FQ_RAY_IP; sleep 2; done
+              image: busybox:1.28
+              name: init
+              securityContext: {}
+          nodeSelector: {}
+          tolerations: []
+          volumes:
+            - emptyDir: {}
+              name: log-volume

@@ -1,0 +1,99 @@
+apiVersion: ray.io/v1alpha1
+kind: RayCluster
+metadata:
+  labels:
+    app.kubernetes.io/instance: raycluster
+    app.kubernetes.io/name: kuberay
+  name: raycluster-kuberay
+  namespace: kuberay
+spec:
+  headGroupSpec:
+    rayStartParams:
+      block: 'true'
+      dashboard-host: 0.0.0.0
+    serviceType: NodePort
+    template:
+      metadata:
+        annotations: {}
+        labels:
+          app.kubernetes.io/instance: raycluster
+          app.kubernetes.io/name: kuberay
+      spec:
+        affinity: {}
+        containers:
+          - env:
+              - name: RAY_DATA_STRICT_MODE
+                value: '0'
+              - name: RAY_BACKEND_LOG_LEVEL
+                value: debug
+            image: rayproject/ray:2.5.0.142b46-py39-cu116
+            imagePullPolicy: IfNotPresent
+            name: ray-head
+            resources:
+              limits:
+                cpu: '14'
+                memory: 96G
+              requests:
+                cpu: '1'
+                memory: 4G
+            securityContext: {}
+            volumeMounts:
+              - mountPath: /tmp/ray
+                name: log-volume
+        imagePullSecrets: []
+        nodeSelector: {}
+        tolerations: []
+        volumes:
+          - emptyDir: {}
+            name: log-volume
+  workerGroupSpecs:
+    - groupName: workergroup
+      maxReplicas: 2147483647
+      minReplicas: 4
+      rayStartParams:
+        block: 'true'
+      replicas: 1
+      template:
+        metadata:
+          annotations: {}
+          labels:
+            app.kubernetes.io/instance: raycluster
+            app.kubernetes.io/name: kuberay
+        spec:
+          affinity: {}
+          containers:
+            - env:
+                - name: RAY_DATA_STRICT_MODE
+                  value: '0'
+                - name: RAY_BACKEND_LOG_LEVEL
+                  value: debug
+              image: rayproject/ray:2.5.0.142b46-py39-cu116
+              imagePullPolicy: IfNotPresent
+              name: ray-worker
+              resources:
+                limits:
+                  cpu: '30'
+                  memory: 180G
+                requests:
+                  cpu: '20'
+                  memory: 96G
+              securityContext: {}
+              volumeMounts:
+                - mountPath: /tmp/ray
+                  name: log-volume
+          imagePullSecrets: []
+          initContainers:
+            - command:
+                - sh
+                - '-c'
+                - >-
+                  until nslookup $FQ_RAY_IP; do echo waiting for K8s Service
+                  $FQ_RAY_IP; sleep 2; done
+              image: busybox:1.28
+              name: init
+              securityContext: {}
+          nodeSelector: {}
+          tolerations: []
+          volumes:
+            - emptyDir: {}
+              name: log-volume

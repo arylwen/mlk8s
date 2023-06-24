@@ -15,6 +15,7 @@ COPY app/* ./
 RUN npx parcel build src/index.html --no-cache --no-source-maps
 
 # ==== BACKEND ====
+# python 3.10.9
 FROM pytorch/pytorch:2.0.0-cuda11.7-cudnn8-runtime
 
 WORKDIR /web/
