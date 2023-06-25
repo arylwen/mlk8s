@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: llama-api 
+    app.kubernetes.io/name: llama-api 
+  name: llama-api
+  namespace: llama-api
+spec:
+  ports:
+    - port: 8080
+      name: llama-api-port
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: llama-api
+  type: NodePort
+status:
+  loadBalancer: {}

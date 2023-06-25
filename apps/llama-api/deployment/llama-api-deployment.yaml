@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: llama-api
+  name: llama-api
+  namespace: llama-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: llama-api
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: llama-api
+    spec:
+      containers:
+        - image: registry.local:32000/llama-api:latest
+          name: llama-api-0
+          ports:
+            - containerPort: 8080
+          resources: {}
+          env: 
+            - name: REDIS_HOST
+              value: redis.redis.svc.cluster.local
+            - name: REDIS_PORT
+              value: '6379'
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: redis-password
+                  key: REDIS_PASS
+            - name: DB_USER
+              value: pguser
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pgsql-password
+                  key: PGSQL_PASS
+            - name: DB_HOST
+              value: pgsql14.pgsql.svc.cluster.local
+            - name: DB_NAME
+              value: 'llama-api'
+            - name: MILVUS_HOST
+              value: milvus.milvus.svc.cluster.local
+            - name: MILVUS_PORT
+              value: '19530'
+            - name: RAY_CLIENT_URL
+              value: 'ray://raycluster-kuberay-head-svc.kuberay.svc.cluster.local:10001'
+      restartPolicy: Always
+status: {}
