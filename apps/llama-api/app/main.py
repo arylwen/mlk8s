@@ -111,7 +111,11 @@ class PredictCallable:
         end = time.time()
         print(f'model loaded successfully in: {end-start}s')
 
-    def __call__(self, batch: pd.DataFrame) -> pd.DataFrame:
+    '''
+        echo: True = returns the prompt with the completion
+        echo: False = returns only the completion
+    '''
+    def __call__(self, batch: pd.DataFrame, echo=False) -> pd.DataFrame:
         print('__call__')        
 
         tokenized = self.tokenizer(
@@ -126,12 +130,25 @@ class PredictCallable:
             attention_mask=attention_mask,
             do_sample=True,
             temperature=0.9,
-            max_length=100,
+            max_length=2000,
             pad_token_id=self.tokenizer.eos_token_id,
         )
+
+        if echo:
+            result =  self.tokenizer.batch_decode(gen_tokens)
+        else:
+            result = self.tokenizer.batch_decode(gen_tokens[:, input_ids.shape[1]:])
+
         return pd.DataFrame(
-            self.tokenizer.batch_decode(gen_tokens), columns=["responses"]
+             result , columns=["responses"]
         )
+
+'''
+    actor cache: when a model is requested, add a list of actors
+
+'''
+__IDLE_ACTOR_DICT__ = {}
+__BUSY_ACTOR_DICT__ = {}
 
 '''
     Does not support int values or list of lists
@@ -160,17 +177,32 @@ async def predict(request: CompletionRequest):
 
     #request.prompt becomes a list
     request.prompt = process_input(request.model, request.prompt)
-    print(request.prompt)
+    #print(request.prompt)
+    print(request)
 
-    actor = PredictCallable.remote(model_id=request.model, 
+    #use an actor from the model queue if available, otherwise create the actor (load the model)
+    if __IDLE_ACTOR_DICT__.get(request.model):
+        actor = __IDLE_ACTOR_DICT__[request.model].pop()
+    else:
+        actor = PredictCallable.remote(model_id=request.model, 
                                    revision = "float16") 
-    
-    future = actor.__call__.remote(pd.DataFrame(request.prompt, columns=["prompt"]))
+        __IDLE_ACTOR_DICT__[request.model]=[]
+        
+
+    future = actor.__call__.remote(pd.DataFrame(request.prompt, columns=["prompt"]), echo=request.echo)
+ 
+    if __BUSY_ACTOR_DICT__.get(request.model):
+        __BUSY_ACTOR_DICT__[request.model][future] = actor
+    else:
+        __BUSY_ACTOR_DICT__[request.model]={}
+        __BUSY_ACTOR_DICT__[request.model][future] = actor
+         
+
     start = time.time()
     gen = ray.get(future)
     end = time.time()
     print(f'inference time: {end-start}s')
-
+    print(gen)
 
     prediction = gen.iloc[0]
 
@@ -183,6 +215,10 @@ async def predict(request: CompletionRequest):
                     finish_reason="stop",
                 )
     )
+
+    #move actor from the busy queue to the idle queue
+    actor = __BUSY_ACTOR_DICT__[request.model].pop(future)
+    __IDLE_ACTOR_DICT__[request.model].append(actor)
 
     return CompletionResponse(
             model=request.model, choices=choices, usage=UsageInfo()
