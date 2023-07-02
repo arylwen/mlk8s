@@ -12,7 +12,7 @@ import time
 import re
 
 import datetime
-import memray
+#import memray
 
 from contextlib import contextmanager
 
@@ -296,10 +296,13 @@ class GlobalStateManager:
 
         provider_details = ProviderDetails(
             api_key=provider.api_key ,
+            api_base=provider.api_base ,
             version_key=None
         )
         logger.info(f"Received inference request {inference_request.model_provider}")
 
+        if inference_request.model_provider == "openai.local":
+            return self.inference_manager.openai_local_text_generation(provider_details, inference_request)
         if inference_request.model_provider == "openai":
             return self.inference_manager.openai_text_generation(provider_details, inference_request)
         elif inference_request.model_provider == "cohere":
@@ -357,8 +360,8 @@ def run(host, port, debug, env, models, log_level):
     app.config['GLOBAL_STATE'] = GlobalStateManager(storage)
 
     dt = datetime.date.today()
-    with memray.Tracker(f"/web/config/memray-{dt}.bin"):
-        app.run(host=host, port=port, debug=debug)
+#    with memray.Tracker(f"/web/config/memray-{dt}.bin"):
+    app.run(host=host, port=port, debug=debug)
 
 @click.command()
 @click.help_option('-h', '--help')
@@ -403,8 +406,8 @@ cli.add_command(run)
 
 if __name__ == '__main__':
     app.static_folder='../app/dist'
-    dtime = datetime.now()
-    with memray.Tracker(f"/web/config/memray-{dtime}.bin"):
-        run()
+    dtime = datetime.date.today()
+#    with memray.Tracker(f"/web/config/memray-{dtime}.bin"):
+    run()
 else:
     app.static_folder='./static'

@@ -24,10 +24,12 @@ class ProviderDetails:
     '''
     Args:
         api_key (str): API key for provider
+        api_base (str): API base URL for provider
         version_key (str): version key for provider
     '''
-    api_key: str
-    version_key: str
+    api_key: str  = "EMPTY" 
+    api_base: str = None
+    version_key: str = None
 
 @dataclass
 class InferenceRequest:
@@ -200,6 +202,8 @@ class InferenceManager:
     
     def __openai_chat_generation__(self, provider_details: ProviderDetails, inference_request: InferenceRequest):
         openai.api_key = provider_details.api_key
+        if provider_details.api_base:
+            openai.api_base = provider_details.api_base
 
         current_date = datetime.now().strftime("%Y-%m-%d")
 
@@ -254,6 +258,91 @@ class InferenceManager:
             if not self.announcer.announce(infer_response, event="infer"):
                 cancelled = True
                 logger.info(f"Cancelled inference for {inference_request.uuid} - {inference_request.model_name}")
+
+    def __openai_local_text_generation__(self, provider_details: ProviderDetails, inference_request: InferenceRequest):
+        openai.api_key = provider_details.api_key
+        if provider_details.api_base:
+            openai.api_base = provider_details.api_base
+
+        response = openai.Completion.create(
+            model=inference_request.model_name,
+            prompt=inference_request.prompt,
+            temperature=inference_request.model_parameters['temperature'],
+            max_tokens=inference_request.model_parameters['maximumLength'],
+            top_p=inference_request.model_parameters['topP'],
+            stop=None if len(inference_request.model_parameters['stopSequences']) == 0 else inference_request.model_parameters['stopSequences'],
+            frequency_penalty=inference_request.model_parameters['frequencyPenalty'],
+            presence_penalty=inference_request.model_parameters['presencePenalty'],
+            logprobs=5,
+            stream=False
+        )
+        cancelled = False
+
+        response = [response]
+        for event in response:
+            generated_token = event['choices'][0]['text']
+            infer_response = None
+            try:
+                chosen_log_prob = 0
+
+                if event['choices'][0].get("logprobs"):
+                    likelihood = event['choices'][0]["logprobs"]['top_logprobs'][0]
+                else:
+                    likelihood = {}
+
+                prob_dist = ProablityDistribution(
+                    log_prob_sum=0, simple_prob_sum=0, tokens={},
+                )
+
+                for token, log_prob in likelihood.items():
+                    simple_prob = round(math.exp(log_prob) * 100, 2)
+                    prob_dist.tokens[token] = [log_prob, simple_prob]
+
+                    if token == generated_token:
+                        chosen_log_prob = round(log_prob, 2)
+  
+                    prob_dist.simple_prob_sum += simple_prob
+                
+                prob_dist.tokens = dict(
+                    sorted(prob_dist.tokens.items(), key=lambda item: item[1][0], reverse=True)
+                )
+                prob_dist.log_prob_sum = chosen_log_prob
+                prob_dist.simple_prob_sum = round(prob_dist.simple_prob_sum, 2)
+
+                infer_response = InferenceResult(
+                    uuid=inference_request.uuid,
+                    model_name=inference_request.model_name,
+                    model_tag=inference_request.model_tag,
+                    model_provider=inference_request.model_provider,
+                    token=generated_token,
+                    probability=0, #event['choices'][0]['logprobs']['token_logprobs'][0],
+                    top_n_distribution=prob_dist
+                )
+            except IndexError:
+                infer_response = InferenceResult(
+                    uuid=inference_request.uuid,
+                    model_name=inference_request.model_name,
+                    model_tag=inference_request.model_tag,
+                    model_provider=inference_request.model_provider,
+                    token=generated_token,
+                    probability=-1,
+                    top_n_distribution=None
+                )
+
+            if cancelled: continue
+
+            if not self.announcer.announce(infer_response, event="infer"):
+                cancelled = True
+                logger.info(f"Cancelled inference for {inference_request.uuid} - {inference_request.model_name}")
+
+    '''
+        local openai compatible server only supports batch interface and a limited set of params for now;
+        too many differences to be accounted for would make the code messy
+    '''
+    def openai_local_text_generation(self, provider_details: ProviderDetails, inference_request: InferenceRequest):
+        # TODO: Add a meta field to the inference so we know when a model is chat vs batch
+        self.__error_handler__(self.__openai_local_text_generation__, provider_details, inference_request)
+
 
     def __openai_text_generation__(self, provider_details: ProviderDetails, inference_request: InferenceRequest):
         openai.api_key = provider_details.api_key
@@ -323,6 +412,7 @@ class InferenceManager:
             if not self.announcer.announce(infer_response, event="infer"):
                 cancelled = True
                 logger.info(f"Cancelled inference for {inference_request.uuid} - {inference_request.model_name}")
+
 
     def openai_text_generation(self, provider_details: ProviderDetails, inference_request: InferenceRequest):
         # TODO: Add a meta field to the inference so we know when a model is chat vs text

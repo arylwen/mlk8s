@@ -8,6 +8,7 @@ class EVENTS(Enum):
     MODEL_UPDATED = 'update_model'
     MODEL_DOWNLOAD_UPDATE = 'update_model_download'
     PROVIDER_API_KEY_UPDATE = 'update_provider_api_key'
+    PROVIDER_API_BASE_UPDATE = 'update_provider_api_base'
     SAVED_TO_DISK = 'saved_to_disk'
 
 class Singleton(type):

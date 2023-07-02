@@ -138,3 +138,23 @@ def provider_update_api_key(provider_name):
     response = jsonify({'status': 'success'})
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
+
+@provider_bp.route('/<string:provider_name>/api-base', methods=['PUT'])
+def provider_update_api_base(provider_name):
+    '''
+    Routes to update the API key for a given provider
+    '''
+    logger.info(f"Storing API base for {provider_name}")
+
+    data = request.get_json(force=True)
+    storage = g.get('storage')
+
+    api_base = data['apiBase']
+    #if api_key is None:
+    #    return create_response_message("Invalid API base", 400)
+
+    storage.update_provider_api_base(provider_name, api_base)
+
+    response = jsonify({'status': 'success'})
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response

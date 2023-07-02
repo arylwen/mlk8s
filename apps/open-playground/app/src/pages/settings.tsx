@@ -14,6 +14,7 @@ interface Provider {
   remoteInference: boolean;
   requiresApiKey: boolean;
   apiKey: string;
+  apiBase: string
   models: Model[];
   searchUrl: string | null;
 }
@@ -32,8 +33,10 @@ interface ProviderProps {
   providerRequiresAPIKey: boolean;
   providerRemoteInference: boolean;
   apiKey: string;
+  apiBase: string;
   searchProviderModels: (provider: string, query: string) => void;
   setAPIKey: (key: string) => void;
+  setAPIBase: (base: string) => void;
   toggleModel: (provider: string, model: string) => void;
 }
 
@@ -42,6 +45,7 @@ const ProviderSearchModels = ({
   providerModels,
   providerRequiresAPIKey,
   apiKey,
+  apiBase,
   providerSearchURL,
   providerSearchResults,
   searchProviderModels,
@@ -115,15 +119,20 @@ const ProviderSearchModels = ({
   )
 }
 
-const ProviderCredentials = ({provider, providerRequiresAPIKey, apiKey, setAPIKey}: ProviderProps) => {
+const ProviderCredentials = ({provider, providerRequiresAPIKey, apiKey, setAPIKey, apiBase, setAPIBase}: ProviderProps) => {
   if (!providerRequiresAPIKey) return null;
 
   const [revealAPIKey, setRevealAPIKey] = useState<boolean>(false)
   const [apiKeyCopy, setAPIKeyCopy] = React.useState<string>(apiKey)
+  const [apiBaseCopy, setAPIBaseCopy] = React.useState<string>(apiBase)
 
   useEffect(() => {
     setAPIKeyCopy(apiKey)
   }, [apiKey])
+
+  useEffect(() => {
+    setAPIBaseCopy(apiBase)
+  }, [apiBase])
 
   
   const apiKeyDescription = () => {
@@ -145,12 +154,13 @@ const ProviderCredentials = ({provider, providerRequiresAPIKey, apiKey, setAPIKe
   const handleAPIKeySubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setAPIKey(apiKeyCopy)
+    setAPIBase(apiBaseCopy)
   }
 
   return (
     <div>
       <h3 className="scroll-m-20 text-xl font-extrabold tracking-tight mt-2">
-        API Key
+        API Key and API Base
       </h3>
       {apiKeyDescription()}
       <form onSubmit={handleAPIKeySubmit}>
@@ -170,7 +180,17 @@ const ProviderCredentials = ({provider, providerRequiresAPIKey, apiKey, setAPIKe
             {
               revealAPIKey ? <EyeIcon className="h-5 w-5 align-middle" /> : <EyeOffIcon className="h-5 w-5 align-middle" />
             }
-          </div>
+          </div>          
+        </div>
+        <div className="flex w-full max-w-lg items-center space-x-2 mt-2">
+          <Input
+            type={"text"}
+            placeholder={`Enter your ${provider} API Base URL`}
+            value={apiBaseCopy || ""}
+            onChange={(e) => setAPIBaseCopy(e.target.value)}
+            className="flex text-left placeholder:text-left h-8 w-full rounded-md border border-slate-300 bg-transparent py-2 px-3 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:text-slate-50 dark:focus:ring-slate-400 dark:focus:ring-offset-slate-900"
+          />
+                  
           <Button type="submit">Save</Button>
         </div>
       </form>
@@ -181,6 +201,7 @@ const ProviderCredentials = ({provider, providerRequiresAPIKey, apiKey, setAPIKe
 const ProviderModelSelection = ({
   provider,
   apiKey,
+  apiBase,
   providerRequiresAPIKey,
   providerModels, toggleModel
 }: ProviderProps) => {
@@ -309,6 +330,7 @@ export default function Settings() {
   const [providerName, setProviderName] = React.useState<string>("openai")
   const [providerSearchURL, setProviderSearchURL] = React.useState<any>(null)
   const [providerAPIKey, setProviderAPIKey] = React.useState<string>("")
+  const [providerAPIBase, setProviderAPIBase] = React.useState<string>("")
   const [providerRequiresAPIKey, setProviderRequiresAPIKey] = React.useState<boolean>(true)
   const [providerRemoteInference, setProviderRemoteInference] = React.useState<boolean>(true)
   const [providerModels, setProviderModels] = React.useState<any[]>([])
@@ -371,6 +393,7 @@ export default function Settings() {
 
     setProvider(currentProvider)
     setProviderAPIKey(currentProvider.apiKey)
+    setProviderAPIBase(currentProvider.apiBase)
     setProviderModels(currentProvider.models)
     setProviderRequiresAPIKey(currentProvider.requiresApiKey)
     setProviderRemoteInference(currentProvider.remoteInference)
@@ -398,6 +421,30 @@ export default function Settings() {
       toast({
         title: "API Key Error",
         description: `There was an error saving your ${provider} API key. ${error}}`,
+      })
+    }
+  }
+
+  const setAPIBase = async (apiBase: string ) => { 
+    try {
+      await apiContext.Provider.setAPIBase(providerName, apiBase);
+
+      toast({
+        title: "API Base Saved",
+        description: `${providerName} API base is saved and ready for generations!`,
+      })
+      
+      setProviders({
+        ...providers,
+        [providerName]: {
+          ...providers[providerName],
+          apiBase
+        }
+      })   
+    } catch (error) {
+      toast({
+        title: "API Base Error",
+        description: `There was an error saving your ${provider} API base. ${error}}`,
       })
     }
   }
@@ -481,6 +528,7 @@ export default function Settings() {
 
           <ProviderView
             apiKey={providerAPIKey}
+            apiBase={providerAPIBase}
             provider={providerName}
             providerRequiresAPIKey={providerRequiresAPIKey}
             providerRemoteInference={providerRemoteInference}
@@ -490,6 +538,7 @@ export default function Settings() {
 
             searchProviderModels={searchProviderModels}
             setAPIKey = {setAPIKey}
+            setAPIBase = {setAPIBase}
             toggleModel = {toggleModel}
           />
 

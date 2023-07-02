@@ -1,4 +1,106 @@
 {
+  "openai.local": {
+    "requiresAPIKey": true,
+    "remoteInference": true,
+    "models": {
+      "Writer/camel-5b-hf": {
+        "enabled": false,
+        "status": "ready",
+        "capabilities": [
+          "logprobs"
+        ],
+        "parameters": {
+          "temperature": {
+            "value": 0.5,
+            "range": [
+              0.1,
+              1
+            ]
+          },
+          "maximumLength": {
+            "value": 200,
+            "range": [
+              50,
+              2048
+            ]
+          },
+          "topP": {
+            "value": 1,
+            "range": [
+              0.1,
+              1
+            ]
+          },
+          "presencePenalty": {
+            "value": 0,
+            "range": [
+              0,
+              1
+            ]
+          },
+          "frequencyPenalty": {
+            "value": 0,
+            "range": [
+              0,
+              1
+            ]
+          },
+          "stopSequences": {
+            "value": [],
+            "range": []
+          }
+        }
+      },
+      "tiiuae/falcon-7b-instruct": {
+        "enabled": false,
+        "status": "ready",
+        "capabilities": [
+          "logprobs"
+        ],
+        "parameters": {
+          "temperature": {
+            "value": 0.5,
+            "range": [
+              0.1,
+              1
+            ]
+          },
+          "maximumLength": {
+            "value": 200,
+            "range": [
+              50,
+              2048
+            ]
+          },
+          "topP": {
+            "value": 1,
+            "range": [
+              0.1,
+              1
+            ]
+          },
+          "presencePenalty": {
+            "value": 0,
+            "range": [
+              0,
+              1
+            ]
+          },
+          "frequencyPenalty": {
+            "value": 0,
+            "range": [
+              0,
+              1
+            ]
+          },
+          "stopSequences": {
+            "value": [],
+            "range": []
+          }
+        }
+      }
+    }
+  },
   "openai": {
     "requiresAPIKey": true,
     "remoteInference": true,
@@ -449,50 +551,6 @@
       "stopSequences": {
         "value": [],
         "range": []
-      }
-    },
-    "models": {}
-  },
-  "huggingface-local": {
-    "requiresAPIKey": false,
-    "remoteInference": false,
-    "searchURL": "https://huggingface.co/api/quicksearch?q={searchQuery}&type=model",
-    "defaultCapabilities": [],
-    "defaultParameters": {
-      "temperature": {
-        "value": 1,
-        "range": [
-          0.1,
-          1
-        ]
-      },
-      "maximumLength": {
-        "value": 200,
-        "range": [
-          50,
-          1024
-        ]
-      },
-      "topP": {
-        "value": 0.99,
-        "range": [
-          0.1,
-          0.99
-        ]
-      },
-      "topK": {
-        "value": 1,
-        "range": [
-          1,
-          500
-        ]
-      },
-      "repetitionPenalty": {
-        "value": 1,
-        "range": [
-          0.1,
-          2
-        ]
       }
     },
     "models": {}

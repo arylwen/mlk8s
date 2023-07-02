@@ -47,7 +47,7 @@ class Provider:
     def __init__(
         self, name: str, models: List[Model], remote_inference: bool = False,
         default_capabilities: List[str] = None, default_parameters: dict = None,
-        api_key: str = None, requires_api_key: bool = False,
+        api_key: str = None, api_base: str = None, requires_api_key: bool = False,
         search_url: str = None
     ):
         self.event_emitter = EventEmitter()
@@ -57,6 +57,7 @@ class Provider:
         self.default_capabilities = default_capabilities
         self.default_parameters = default_parameters
         self.api_key = api_key
+        self.api_base = api_base
         self.requires_api_key = requires_api_key
         self.search_url = search_url
     
@@ -95,12 +96,13 @@ class Provider:
             default_capabilities=self.default_capabilities.copy() if self.default_capabilities else None,
             default_parameters=self.default_parameters.copy() if self.default_parameters else None,
             api_key=self.api_key,
+            api_base=self.api_base,
             requires_api_key=self.requires_api_key,
             search_url=self.search_url
         )
     
     def __repr__(self):
-        return f'Provider({self.name}, {self.models}, {self.remote_inference}, {self.default_parameters}, {self.api_key}, {self.requires_api_key}, {self.search_url})'
+        return f'Provider({self.name}, {self.models}, {self.remote_inference}, {self.default_parameters}, {self.api_key}, {self.api_base}, {self.requires_api_key}, {self.search_url})'
 
 class ProviderEncoder(json.JSONEncoder):
     def __init__(self, *args, serialize_models_as_list=True, **kwargs):

@@ -54,6 +54,7 @@ class Storage:
                     default_capabilities=provider.get('defaultCapabilities', []),
                     default_parameters=provider.get('defaultParameters', None),
                     api_key=os.environ.get(f'{provider_name.upper()}_API_KEY'),
+                    api_base=os.environ.get(f'{provider_name.upper()}_API_BASE'),
                     requires_api_key=provider.get("requiresAPIKey", False),
                     search_url=provider.get('searchURL', None),
                 )
@@ -67,6 +68,7 @@ class Storage:
             EVENTS.MODEL_STATUS_UPDATE,
             EVENTS.MODEL_UPDATED,
             EVENTS.PROVIDER_API_KEY_UPDATE,
+            EVENTS.PROVIDER_API_BASE_UPDATE,
         ]:
             EventEmitter().on(event, self.__update___)
 
@@ -181,7 +183,22 @@ class Storage:
         load_dotenv(self.env_file_path)
 
         self.event_emitter.emit(EVENTS.PROVIDER_API_KEY_UPDATE, provider_name)
+
+    def update_provider_api_base(self, provider_name: str, api_base: str):
+        provider = self.get_provider(provider_name)
+        if provider is None:
+            raise ValueError(f'Provider {provider_name} not found')
+        provider.api_base = api_base
+
+        if not os.path.exists(self.env_file_path):
+            open(self.env_file_path, 'a').close()
+
+        set_key(self.env_file_path, f'{provider_name.upper()}_API_BASE', api_base)
+        load_dotenv(self.env_file_path)
+
+        self.event_emitter.emit(EVENTS.PROVIDER_API_BASE_UPDATE, provider_name)
     
+
     def __update___(self, event: str, *args, **kwargs):
         if event == EVENTS.MODEL_ADDED:
             model = args[0]

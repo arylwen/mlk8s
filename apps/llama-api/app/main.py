@@ -89,7 +89,11 @@ print(f'RAY at: {RAY_CLIENT_URL} initialized.')
 
 ray.data.context.DatasetContext.get_current().use_streaming_executor = False
 
-@ray.remote(num_cpus=10)
+'''
+    max_restarts=1 - restart the actor if it dies unexpectedly 
+    TODO build a LRU scheme where actors are removed if not used for a long period of time
+'''
+@ray.remote(num_cpus=10, max_restarts=1)
 class PredictCallable:
 
     def __init__(self, model_id: str, revision: str = None):
@@ -184,19 +188,24 @@ async def predict(request: CompletionRequest):
     if __IDLE_ACTOR_DICT__.get(request.model):
         actor = __IDLE_ACTOR_DICT__[request.model].pop()
     else:
-        actor = PredictCallable.remote(model_id=request.model, 
+        try:
+            actor = PredictCallable.remote(model_id=request.model, 
                                    revision = "float16") 
-        __IDLE_ACTOR_DICT__[request.model]=[]
+            __IDLE_ACTOR_DICT__[request.model]=[]
+        except Exception as e:
+            print(f"Exception occured in __init__: {e}")
         
-
-    future = actor.__call__.remote(pd.DataFrame(request.prompt, columns=["prompt"]), echo=request.echo)
+    try:
+        future = actor.__call__.remote(pd.DataFrame(request.prompt, columns=["prompt"]), echo=request.echo)
  
-    if __BUSY_ACTOR_DICT__.get(request.model):
-        __BUSY_ACTOR_DICT__[request.model][future] = actor
-    else:
-        __BUSY_ACTOR_DICT__[request.model]={}
-        __BUSY_ACTOR_DICT__[request.model][future] = actor
-         
+        if __BUSY_ACTOR_DICT__.get(request.model):
+            __BUSY_ACTOR_DICT__[request.model][future] = actor
+        else:
+            __BUSY_ACTOR_DICT__[request.model]={}
+            __BUSY_ACTOR_DICT__[request.model][future] = actor
+    except Exception as e:
+            print(f"Exception occured in __call__: {e}")
+
 
     start = time.time()
     gen = ray.get(future)
@@ -211,7 +220,7 @@ async def predict(request: CompletionRequest):
                 CompletionResponseChoice(
                     index=0,
                     text=prediction[0],
-                    logprobs=0,
+    #                logprobs={"tokens": [], 'top_logprobs':[]},
                     finish_reason="stop",
                 )
     )
