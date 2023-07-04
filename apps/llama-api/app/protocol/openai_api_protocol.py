@@ -1,4 +1,4 @@
-#based on https://github.com/lm-sys/FastChat/blob/7b078a0ed25d39577081c0e27c0b960fcaaad707/fastchat/protocol/openai_api_protocol.py
+#based on https://github.com/lm-sys/FastChat/blob/main/fastchat/protocol/openai_api_protocol.py
 from typing import Literal, Optional, List, Dict, Any, Union
 
 import time
