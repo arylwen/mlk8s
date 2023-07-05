@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+import json
 
 import asyncio
 
@@ -21,6 +22,11 @@ from pydantic import BaseSettings
 import shortuuid
 #import tiktoken
 import uvicorn
+
+from app.persistence.core import init_database
+from app.persistence.core import LlmInferenceRecord
+from app.persistence.data_access import LlmInferencePersistence
+#from app.persistence.core import SQLALCHEMY_DATABASE_URI
 
 from app.protocol.openai_api_protocol import (
 #    ChatCompletionRequest,
@@ -64,6 +70,14 @@ app.add_middleware(
 
 load_dotenv()
 
+DB_USER = os.getenv("DB_USER","postgres")
+DB_PASSWORD = os.getenv("DB_PASSWORD","")
+DB_HOST = os.getenv("DB_HOST","0.0.0.0")
+DB_NAME = os.getenv("DB_NAME","llama-api")
+SQLALCHEMY_DATABASE_URI = (
+        f"postgresql+psycopg2://{DB_USER}:"
+        f"{DB_PASSWORD}@{DB_HOST}/{DB_NAME}"
+    )
 
 RAY_CLIENT_URL = os.getenv('RAY_CLIENT_URL')
 print(f'Using RAY at: {RAY_CLIENT_URL}')
@@ -71,7 +85,7 @@ print(f'Using RAY at: {RAY_CLIENT_URL}')
 #TODO add thread safety
 __IDLE_ACTOR_DICT__ = {}
 __BUSY_ACTOR_DICT__ = {}
-__GPU_MODEL_LIST__ = ["tiiuae/falcon-7b-instruct", "Writer/camel-5b-hf", "mosaicml/mpt-7b-instruct"]
+__GPU_MODEL_LIST__ = ["tiiuae/falcon-7b-instruct", "Writer/camel-5b-hf", "mosaicml/mpt-7b-instruct", "mosaicml/mpt-30b-instruct"]
 
 def ray_init():
     #python versions must match on client and server: 3.9.15
@@ -106,6 +120,10 @@ def ray_init():
     print(f'RAY at: {RAY_CLIENT_URL} initialized.')
 
 ray_init()
+
+print(f'Using pgsql at: {SQLALCHEMY_DATABASE_URI}')
+dbsession = init_database(SQLALCHEMY_DATABASE_URI)
+print(f'dbsession at: {SQLALCHEMY_DATABASE_URI} started.')
 
 '''
     max_restarts=1 - restart the actor if it dies unexpectedly 
@@ -142,7 +160,7 @@ class PredictCallable:
                     model_id, 
                     revision=revision,
                     config=config, 
-                    low_cpu_mem_usage=True,
+#                    low_cpu_mem_usage=True,
                     trust_remote_code=True,
                 ) # dynamically load right model class for text generation
             except Exception as e:
@@ -150,8 +168,8 @@ class PredictCallable:
                 self.model = AutoModelForCausalLM.from_pretrained(
                     model_id,
                     revision=revision,
-                    torch_dtype=config.torch_dtype, #torch.bfloat16,
-                    low_cpu_mem_usage=True,
+#                    torch_dtype=config.torch_dtype, #torch.bfloat16,
+#                    low_cpu_mem_usage=True,
                     device_map="auto",  # automatically makes use of all GPUs available to the Actor
                     trust_remote_code=True,
                 )
@@ -159,7 +177,7 @@ class PredictCallable:
             self.model = AutoModelForCausalLM.from_pretrained(
                 model_id,
                 revision=revision,
-                low_cpu_mem_usage=True,
+#                low_cpu_mem_usage=True,
                 device_map="auto",  # automatically makes use of all GPUs available to the Actor
                 trust_remote_code=True,
             )
@@ -313,13 +331,32 @@ async def index():
 #batch inference endpoint
 @app.post('/v1/completions')
 async def predict(request: CompletionRequest):
+    #TODO extract methos and put the database log in a try catch
     try: 
+        start = time.time()
         response = await dispatch_request_to_model(request)
+        end = time.time()
+        persistence = LlmInferencePersistence(db_session=dbsession, user_id=request.user)
+        persistence.save_predictions(
+            model_id=request.model,
+            request=json.dumps(str(request)),
+            response=json.dumps(str(response)),
+            inference_time=end-start,
+        )
         return response
     except ray.exceptions.RayActorError as rae:
         # reinit RAY and retry; most probably stale connection
         ray_init()
+        start = time.time()
         response = await dispatch_request_to_model(request)
+        end = time.time()
+        persistence = LlmInferencePersistence(db_session=dbsession, user_id=request.user)
+        persistence.save_predictions(
+            model_id=request.model,
+            request=json.dumps(request),
+            response=json.dumps(response),
+            inference_time=end-start,
+        )        
         return response
 '''
     temporary way to dispatch model to GPU; 
@@ -405,8 +442,10 @@ async def predict_gpu(request: CompletionRequest):
             #must kill any other actors on the GPU to switch models
             models = __IDLE_ACTOR_DICT__.keys()
             for m in models:
-                __IDLE_ACTOR_DICT__[m] = []
-                __BUSY_ACTOR_DICT__[m]  = []
+                #only kill the actors on the GPU, don't affect CPU jobs
+                if request.model in __GPU_MODEL_LIST__:
+                    __IDLE_ACTOR_DICT__[m] = []
+                    __BUSY_ACTOR_DICT__[m]  = []
             actor = PredictCallableGPU.remote(model_id=request.model) 
             __IDLE_ACTOR_DICT__[request.model]=[]
         except Exception as e:
