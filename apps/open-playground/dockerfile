@@ -12,7 +12,8 @@ COPY app/src ./src/
 COPY app/* ./
 
 # Build the project
-RUN npx parcel build src/index.html --no-cache --no-source-maps
+#RUN npx parcel build src/index.html --no-cache --no-source-maps
+RUN npx parcel build src/index.html --no-cache --no-optimize --no-scope-hoist
 
 # ==== BACKEND ====
 # python 3.10.9

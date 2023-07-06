@@ -212,7 +212,7 @@ class DownloadManager:
 
         # TODO: In the future it might make sense to have local provider specific instances
         cache_info = scan_cache_dir()
-        hugging_face_local = self.storage.get_provider("huggingface-local")
+        hugging_face_local = self.storage.get_provider("openai.local")
  
         for repo_info in cache_info.repos:
             repo_id = repo_info.repo_id
@@ -224,7 +224,7 @@ class DownloadManager:
                     model = Model(
                         name=repo_id,
                         capabilities=hugging_face_local.default_capabilities,
-                        provider="huggingface-local",
+                        provider="openai.local",
                         status="ready",
                         enabled=False,
                         parameters=hugging_face_local.default_parameters

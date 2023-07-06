@@ -16,6 +16,15 @@ spec:
       labels:
         app: llama-api
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - rigr720xd
       containers:
         - image: registry.local:32000/llama-api:latest
           name: llama-api-0

@@ -9,7 +9,8 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 500Gi
+#we don't store models locally in open-playground    
+      storage: 5Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -29,6 +30,15 @@ spec:
       labels:
         app: open-playground
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - rigr720xd
       containers:
         - image: registry.local:32000/llama-playground:latest
           name: open-playground-0

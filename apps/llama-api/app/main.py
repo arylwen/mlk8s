@@ -450,6 +450,11 @@ async def predict_gpu(request: CompletionRequest):
             __IDLE_ACTOR_DICT__[request.model]=[]
         except Exception as e:
             print(f"****************Exception occured in __init__: {e}")
+            template = "*******************An exception of type {0} occurred. Arguments:\n{1!r}"
+            message = template.format(type(ex).__name__, ex.args)
+            print(message)
+            #this will bubble up and reinit ray
+            raise e
         
     try:
         future = actor.__call__.remote(pd.DataFrame(request.prompt, 
