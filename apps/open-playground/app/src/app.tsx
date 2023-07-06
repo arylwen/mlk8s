@@ -363,7 +363,7 @@ const PlaygroundContextWrapper = ({page, children}) => {
       modelsStateContext = modelsStateContext.filter(({name: _name}) => _name !== name)
     }
   }
-  
+
   const editorContextRef = React.useRef(editorContext);
   const historyContextRef = React.useRef(historyContext);
 

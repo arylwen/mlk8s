@@ -936,7 +936,7 @@ export default function Playground() {
   })
 
   const historySidebar = (<HistorySidePanel />)
-  const parameterSidebar = (<ParameterSidePanel showModelDropdown={true} showModelList ={false} />)
+  const parameterSidebar = (<ParameterSidePanel showModelDropdown={false} showModelList ={true} />)
 
 
   useMetaKeyPress(["h"], (event: any) => {

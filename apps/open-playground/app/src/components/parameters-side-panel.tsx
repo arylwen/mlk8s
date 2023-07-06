@@ -38,6 +38,8 @@ const ParametersSidePanel = ({ showModelDropdown, showModelList }) => {
   const { modelsContext, setModelsContext } = useContext(ModelsContext)
   const { modelsStateContext, setModelsStateContext } = useContext(ModelsStateContext)
 
+  //console.log(modelsStateContext)
+
   const [modelSearchValue, setModelSearchValue] = React.useState<string>("")
  
   const number_of_models_selected = modelsStateContext.filter(
@@ -334,6 +336,7 @@ const ParametersSidePanel = ({ showModelDropdown, showModelList }) => {
   }
 
   const generate_list = () => {
+    //console.log('show model list '+showModelList)
     if (!showModelList) return null
 
     return (
@@ -399,6 +402,7 @@ const ParametersSidePanel = ({ showModelDropdown, showModelList }) => {
   }
 
   const generate_header = () => {
+    //console.log(showModelDropdown)
     if (!showModelDropdown)
       return (
         <div className="flex mb-2">
