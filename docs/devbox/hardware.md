@@ -1,5 +1,7 @@
 # Hardware queries
 
+#### <div style="text-align: left"> <a href="../os.md"><b>back to operating system</b></a> <br/></div>
+
 TLDR; - ROCm is not supported on Topaz XT.
 
 ## Graphics capabilities

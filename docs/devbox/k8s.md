@@ -14,3 +14,38 @@ sudo apt-get install -y kubectl
 ```
 
 You can find more details [here](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management).
+
+## kubeconfig
+
+kubeconfig allows the connection to your k8s cluster
+
+```
+cd ~
+mkdir .kube
+```
+Copy cluster's config file in ~/.kube. Verify cluster configuation:
+
+```
+kubectl config view 
+```
+        
+<pre>
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: DATA+OMITTED
+    server: https://10.0.0.xx:16443
+  name: microk8s-cluster
+contexts:
+- context:
+    cluster: microk8s-cluster
+    user: admin
+  name: microk8s
+current-context: microk8s
+kind: Config
+preferences: {}
+users:
+- name: admin
+  user:
+    token: REDACTED
+</pre>
