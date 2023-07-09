@@ -1,6 +1,5 @@
-# mlk8s
-You can do this at home - personal ml cluster
-
+# mlk8s - personal ml cluster
+You could do this at home, [get started here](/docs/devbox/devbox.md).
 ## Why mlk8s
 1. I wanted to make sense of my collection of articles: perhaps extract some triples, build a knowledge graph. I used ChatGPT and racked $10 between jesus h roosevelt christ and CTRL-C. 
 
