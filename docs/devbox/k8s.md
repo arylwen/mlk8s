@@ -1,0 +1,51 @@
+# k8s
+
+## install kubectl
+
+```
+sudo mkdir /etc/apt/keyrings
+sudo apt-get update
+sudo apt-get install -y ca-certificates curl
+curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-archive-keyring.gpg
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+sudo apt-get update
+sudo apt-get install -y kubectl
+
+```
+
+You can find more details [here](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management).
+
+## kubeconfig
+
+kubeconfig allows the connection to your k8s cluster
+
+```
+cd ~
+mkdir .kube
+```
+Copy cluster's config file in ~/.kube. Verify cluster configuation:
+
+```
+kubectl config view 
+```
+        
+<pre>
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: DATA+OMITTED
+    server: https://10.0.0.xx:16443
+  name: microk8s-cluster
+contexts:
+- context:
+    cluster: microk8s-cluster
+    user: admin
+  name: microk8s
+current-context: microk8s
+kind: Config
+preferences: {}
+users:
+- name: admin
+  user:
+    token: REDACTED
+</pre>
