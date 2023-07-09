@@ -1,15 +1,15 @@
 # Hardware queries
 
-#### <div style="text-align: left"> <a href="../os.md"><b>back to operating system</b></a> <br/></div>
+#### <p style="text-align: left"> <a href="os.md"><b>back to operating system</b></a> <br/></p>
 
 TLDR; - ROCm is not supported on Topaz XT.
 
-## Graphics capabilities
+## graphics capabilities
 
     sudo apt install mesa-utils 
     glxinfo | grep -i vendor 
 
-## Graphics hardware capabilities
+## graphics hardware capabilities
 
     sudo lshw -C display 
     lspci -nnk | grep VGA -A 12 
@@ -17,7 +17,7 @@ TLDR; - ROCm is not supported on Topaz XT.
     lspci -v 
     lspci -k | grep -iEA5 'vga|3d|display' 
 
-## List OS and kernel info
+## list OS and kernel info
 ```
 uname -srmv
 ``` 

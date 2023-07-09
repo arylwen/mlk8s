@@ -1,7 +1,6 @@
 # devbox 
-#### <div style="text-align: right"> <a href="../node-setup/node-setup.md"><b>skip to k8s node setup</b></a> <br/></div>
-
-#### <div style="text-align: right"> <a href="../apps/apps.md"><b>skip to apps</b></a> <br/></div>
+<p style="text-align: right"> <a href="../apps/apps.md"><b>skip to apps</b></a> </p>
+<p style="text-align: right"> <a href="../node-setup/node-setup.md"><b>skip to k8s node setup</b></a></p>
 
 ## [operating system](/docs/devbox/os.md)
 This repo was built from an Ubuntu 20.4 Linux box. Folow these instructions to install Linux on you computer.
