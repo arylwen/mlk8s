@@ -9,3 +9,10 @@ Verify:
 
     git config --get user.name
     git config --get user.email 
+
+## vscode
+```
+sudo snap install --classic code
+```
+On the dock, "show applicaitons" and search for VS Code. Once it starts, right click and 'add to favorites'.
+

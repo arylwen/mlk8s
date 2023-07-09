@@ -1,6 +1,6 @@
 # operating system
 
-#### <div style="text-align: left"> <a href="../devbox.md"><b>back to devbox</b></a> <br/></div>
+#### <div style="text-align: left"> <a href="devbox.md"><b>back to devbox</b></a> <br/></div>
 
 
 ## Hardware queries
