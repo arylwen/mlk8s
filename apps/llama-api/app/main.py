@@ -358,6 +358,21 @@ async def predict(request: CompletionRequest):
             inference_time=end-start,
         )        
         return response
+    except ConnectionError as ce:
+        # reinit RAY and retry; most probably stale connection
+        ray_init()
+        start = time.time()
+        response = await dispatch_request_to_model(request)
+        end = time.time()
+        persistence = LlmInferencePersistence(db_session=dbsession, user_id=request.user)
+        persistence.save_predictions(
+            model_id=request.model,
+            request=json.dumps(request),
+            response=json.dumps(response),
+            inference_time=end-start,
+        )        
+        return response
+    
 '''
     temporary way to dispatch model to GPU; 
     TODO: calculate model size and decide
@@ -449,9 +464,9 @@ async def predict_gpu(request: CompletionRequest):
             actor = PredictCallableGPU.remote(model_id=request.model) 
             __IDLE_ACTOR_DICT__[request.model]=[]
         except Exception as e:
-            print(f"****************Exception occured in __init__: {e}")
-            template = "*******************An exception of type {0} occurred. Arguments:\n{1!r}"
-            message = template.format(type(ex).__name__, ex.args)
+#            print(f"****************Exception occured in __init__: {e}")
+            template = "*******************An exception of type {0} occurred in __init__. Arguments:\n{1!r}"
+            message = template.format(type(e).__name__, e.args)
             print(message)
             #this will bubble up and reinit ray
             raise e
@@ -468,8 +483,11 @@ async def predict_gpu(request: CompletionRequest):
             __BUSY_ACTOR_DICT__[request.model]={}
             __BUSY_ACTOR_DICT__[request.model][future] = actor
     except Exception as e:
-            print(f"****************Exception occured in __call__: {e}")
-
+ #           print(f"****************Exception occured in __call__: {e}")
+            template = "*******************An exception of type {0} occurred in __call__. Arguments:\n{1!r}"
+            message = template.format(type(e).__name__, e.args)
+            print(message)
+            raise e
 
     start = time.time()
     gen = ray.get(future, timeout=1800)
