@@ -1,0 +1,7 @@
+RAY_CLIENT_URL=ray://10.0.0.xx:xxxxx
+DB_USER=pguser
+DB_PASSWORD=notth3pa55word
+DB_HOST=10.0.0.xx:xxxxx
+DB_NAME=llama-api
+
+

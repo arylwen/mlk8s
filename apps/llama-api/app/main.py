@@ -20,7 +20,7 @@ from fastapi.security.http import HTTPAuthorizationCredentials, HTTPBearer
 #import httpx
 from pydantic import BaseSettings
 import shortuuid
-#import tiktoken
+import tiktoken
 import uvicorn
 
 from app.persistence.core import init_database
@@ -53,6 +53,7 @@ from app.protocol.openai_api_protocol import (
 import ray
 import ray.data
 import pandas as pd
+import numpy as np
 
 import os
 import time
@@ -190,7 +191,11 @@ class PredictCallable:
         echo: True = returns the prompt with the completion
         echo: False = returns only the completion
     '''
-    def __call__(self, batch: pd.DataFrame, echo=False, max_tokens=512) -> pd.DataFrame:
+    def __call__(self, 
+                 batch: pd.DataFrame, 
+                 echo=False, 
+                 max_tokens=512,
+                 temperature=0.9) -> pd.DataFrame:
         print('__call__')        
 
         tokenized = self.tokenizer(
@@ -204,10 +209,15 @@ class PredictCallable:
             input_ids=input_ids,
             attention_mask=attention_mask,
             do_sample=True,
-            temperature=0.9,
+            temperature=temperature,
             max_length=max_tokens,
             pad_token_id=self.tokenizer.eos_token_id,
         )
+
+        #token accounting
+        prompt_tokens = [len(x) for x in input_ids]
+        total_tokens = [len(x) for x in gen_tokens]
+        completion_tokens = [x-y for (x,y) in zip(total_tokens, prompt_tokens)]            
 
         if echo:
             result =  self.tokenizer.batch_decode(gen_tokens)
@@ -215,7 +225,8 @@ class PredictCallable:
             result = self.tokenizer.batch_decode(gen_tokens[:, input_ids.shape[1]:])
 
         return pd.DataFrame(
-             result , columns=["responses"]
+            np.transpose([result, prompt_tokens, completion_tokens, total_tokens]) , 
+                        columns=["responses", 'prompt_tokens', "completion_tokens", "total_tokens"] 
         )
 
 @ray.remote(num_cpus=5, num_gpus=1, max_restarts=1)
@@ -277,7 +288,10 @@ class PredictCallableGPU:
         echo: True = returns the prompt with the completion
         echo: False = returns only the completion
     '''
-    def __call__(self, batch: pd.DataFrame, echo=False, max_tokens=512) -> pd.DataFrame:
+    def __call__(self, batch: pd.DataFrame, 
+                 echo=False, 
+                 max_tokens=512, 
+                 temperature=0.9) -> pd.DataFrame:
         print('__call__')        
 
         tokenized = self.tokenizer(
@@ -291,10 +305,15 @@ class PredictCallableGPU:
             input_ids=input_ids,
             attention_mask=attention_mask,
             do_sample=True,
-            temperature=0.9,
+            temperature=temperature,
             max_length=max_tokens,
             pad_token_id=self.tokenizer.eos_token_id,
         )
+
+        #token accounting
+        prompt_tokens = [len(x) for x in input_ids]
+        total_tokens = [len(x) for x in gen_tokens]
+        completion_tokens = [x-y for (x,y) in zip(total_tokens, prompt_tokens)]            
 
         if echo:
             result =  self.tokenizer.batch_decode(gen_tokens)
@@ -302,7 +321,8 @@ class PredictCallableGPU:
             result = self.tokenizer.batch_decode(gen_tokens[:, input_ids.shape[1]:])
 
         return pd.DataFrame(
-             result , columns=["responses"]
+             np.transpose([result, prompt_tokens, completion_tokens, total_tokens]) , 
+                        columns=["responses", 'prompt_tokens', "completion_tokens", "total_tokens"]
         )
     
 
@@ -314,13 +334,13 @@ class PredictCallableGPU:
 def process_input(model_name, input):
     if isinstance(input, str):
         input = [input]
-#    elif isinstance(input, list):
-#        if isinstance(input[0], int):
-#            decoding = tiktoken.model.encoding_for_model(model_name)
-#            input = [decoding.decode(input)]
-#        elif isinstance(input[0], list):
-#            decoding = tiktoken.model.encoding_for_model(model_name)
-#            input = [decoding.decode(text) for text in input]
+    elif isinstance(input, list):
+        if isinstance(input[0], int):
+            decoding = tiktoken.model.encoding_for_model(model_name)
+            input = [decoding.decode(input)]
+        elif isinstance(input[0], list):
+            decoding = tiktoken.model.encoding_for_model(model_name)
+            input = [decoding.decode(text) for text in input]
 
     return input
 
@@ -399,11 +419,15 @@ async def predict_cpu(request: CompletionRequest):
             actor = PredictCallable.remote(model_id=request.model) 
             __IDLE_ACTOR_DICT__[request.model]=[]
         except Exception as e:
-            print(f"****************Exception occured in __init__: {e}")
+            template = "*******************An exception of type {0} occurred in __call__. Arguments:\n{1!r}"
+            message = template.format(type(e).__name__, e.args)
+            print(message)
+            raise e
         
     try:
         future = actor.__call__.remote(pd.DataFrame(request.prompt, 
                                                     columns=["prompt"]), 
+                                                    temperature = request.temperature,
                                                     echo=request.echo, 
                                                     max_tokens=request.max_tokens)
   
@@ -413,7 +437,10 @@ async def predict_cpu(request: CompletionRequest):
             __BUSY_ACTOR_DICT__[request.model]={}
             __BUSY_ACTOR_DICT__[request.model][future] = actor
     except Exception as e:
-            print(f"****************Exception occured in __call__: {e}")
+        template = "*******************An exception of type {0} occurred in __call__. Arguments:\n{1!r}"
+        message = template.format(type(e).__name__, e.args)
+        print(message)
+        raise e
 
 
     start = time.time()
@@ -446,7 +473,6 @@ async def predict_gpu(request: CompletionRequest):
 
     #request.prompt becomes a list
     request.prompt = process_input(request.model, request.prompt)
-    #print(request.prompt)
     print(request)
 
     #use an actor from the model queue if available, otherwise create the actor (load the model)
@@ -464,7 +490,6 @@ async def predict_gpu(request: CompletionRequest):
             actor = PredictCallableGPU.remote(model_id=request.model) 
             __IDLE_ACTOR_DICT__[request.model]=[]
         except Exception as e:
-#            print(f"****************Exception occured in __init__: {e}")
             template = "*******************An exception of type {0} occurred in __init__. Arguments:\n{1!r}"
             message = template.format(type(e).__name__, e.args)
             print(message)
@@ -474,6 +499,7 @@ async def predict_gpu(request: CompletionRequest):
     try:
         future = actor.__call__.remote(pd.DataFrame(request.prompt, 
                                                     columns=["prompt"]), 
+                                                    temperature = request.temperature,
                                                     echo=request.echo, 
                                                     max_tokens=request.max_tokens)
  
@@ -483,7 +509,6 @@ async def predict_gpu(request: CompletionRequest):
             __BUSY_ACTOR_DICT__[request.model]={}
             __BUSY_ACTOR_DICT__[request.model][future] = actor
     except Exception as e:
- #           print(f"****************Exception occured in __call__: {e}")
             template = "*******************An exception of type {0} occurred in __call__. Arguments:\n{1!r}"
             message = template.format(type(e).__name__, e.args)
             print(message)
@@ -495,23 +520,29 @@ async def predict_gpu(request: CompletionRequest):
     print(f'inference time: {end-start}s')
     print(gen.iloc[0])
 
+    #TODO - support a return list
     prediction = gen.iloc[0]
 
     choices = []
     choices.append(
                 CompletionResponseChoice(
                     index=0,
-                    text=prediction[0],
+                    text=prediction["responses"],
     #                logprobs={"tokens": [], 'top_logprobs':[]},
                     finish_reason="stop",
                 )
     )
+
+    usageInfo = UsageInfo()
+    usageInfo.completion_tokens = prediction["completion_tokens"]
+    usageInfo.prompt_tokens = prediction["prompt_tokens"]
+    usageInfo.total_tokens = prediction["total_tokens"]
 
     #move actor from the busy queue to the idle queue
     actor = __BUSY_ACTOR_DICT__[request.model].pop(future)
     __IDLE_ACTOR_DICT__[request.model].append(actor)
 
     return CompletionResponse(
-            model=request.model, choices=choices, usage=UsageInfo()
+            model=request.model, choices=choices, usage=usageInfo
         )
 
