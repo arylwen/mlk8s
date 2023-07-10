@@ -1,4 +1,5 @@
 # Hardware setup
+#### <div style="text-align: left"> <a href="node-setup.md"><b>back to k8s cluster setup</b></a> <br/></div>
 
 Install Ubuntu 20.4 on each node.
 

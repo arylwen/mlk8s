@@ -1,12 +1,17 @@
 # devbox 
 <p style="text-align: right"> <a href="../apps/apps.md"><b>skip to apps</b></a> </p>
-<p style="text-align: right"> <a href="../node-setup/node-setup.md"><b>skip to k8s node setup</b></a></p>
+<p style="text-align: right"> <a href="../node-setup/node-setup.md"><b>skip to k8s cluster setup</b></a></p>
 
 ## [operating system](/docs/devbox/os.md)
-This repo was built from an Ubuntu 20.4 Linux box. Folow these instructions to install Linux on you computer.
+This repo was built from an Ubuntu 20.4 Linux box. Folow these instructions to install Linux on your computer.
 
-## [dev tools](/docs/devtools/git.md)
+## [dev tools](/docs/devbox/git.md)
 github and VS Code
+
+### clone mlks and start coding
+```
+git clone https://github.com/arylwen/mlk8s.git 
+```
 
 ## [docker](/docs/devbox/docker.md)
 
