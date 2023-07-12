@@ -1,5 +1,6 @@
 LOCAL_MODELS = {
     "Writer/camel-5b-hf": 2048,
+    "mosaicml/mpt-7b-instruct": 2048,
     "mosaicml/mpt-30b-instruct": 2048,
 }
 
