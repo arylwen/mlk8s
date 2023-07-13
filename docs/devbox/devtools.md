@@ -16,3 +16,8 @@ sudo snap install --classic code
 ```
 On the dock, "show applicaitons" and search for VS Code. Once it starts, right click and 'add to favorites'.
 
+### vs code extensions
+
+1. python
+2. jupyter
+

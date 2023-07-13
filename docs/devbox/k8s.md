@@ -49,3 +49,34 @@ users:
   user:
     token: REDACTED
 </pre>
+
+## open lens
+
+### download
+https://github.com/MuhammedKalkan/OpenLens/releases
+
+## move to applications 
+```
+cd  ~/Downloads
+mv OpenLens-6.5.2-366.x86_64.AppImage ~/.local/share/applications/
+```
+
+## create desktop shortcut
+
+## node and pod menu
+
+Navigate to hamburger menu->extensions. In the extensions box enter:
+```
+@alebcay/openlens-node-pod-menu
+```
+
+https://github.com/alebcay/openlens-node-pod-menu
+
+## lens resource mape
+
+Navigate to hamburger menu->extensions. In the extensions box enter:
+```
+@nevalla/kube-resource-map
+```
+
+https://github.com/nevalla/lens-resource-map-extension
