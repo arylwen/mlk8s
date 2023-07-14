@@ -27,3 +27,18 @@ uvicorn app.main:app --reload
 
 Access the service at:
 http://localhost:8000/docs  
+
+## build docker image
+```
+set-title LA-BUILD 
+docker build -t registry.local:32000/llama-api:latest . 
+```
+
+## push image
+```
+set-title LA-PUSH 
+docker push registry.local:32000/llama-api:latest 
+```
+
+
+ 

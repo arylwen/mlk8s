@@ -3,6 +3,7 @@ import sys
 import json
 import time
 import logging
+import grpc
 
 from pydantic import BaseModel
 from pydantic import BaseSettings
@@ -378,10 +379,11 @@ async def predict(request: CompletionRequest):
             model_id=request.model,
             request=toJSON(request),
             response=toJSON(response),
-            inference_time=end-start,
+            inference_time=end-start, 
         )        
         return response
-    except ConnectionError as ce:
+    #todo 
+    except [ConnectionError, grpc.RpcError] as ce:
         # reinit RAY and retry; most probably stale connection
         ray_init()
         start = time.time()
