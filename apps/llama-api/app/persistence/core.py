@@ -1,4 +1,4 @@
-import os
+import json
 import logging
 
 from sqlalchemy import create_engine
@@ -7,20 +7,10 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker
 
 from sqlalchemy import Column, String, DateTime, Integer
-from sqlalchemy.dialects.postgresql import JSONB
+from sqlalchemy.dialects.postgresql import JSON
 from sqlalchemy.sql import func
 
 _logger = logging.getLogger(__name__)
-
-#DB_USER = os.getenv("DB_USER","postgres")
-#DB_PASSWORD = os.getenv("DB_PASSWORD","")
-#DB_HOST = os.getenv("DB_HOST","0.0.0.0")
-#DB_NAME = os.getenv("DB_NAME","llama-api")
-
-#SQLALCHEMY_DATABASE_URI = (
-#        f"postgresql+psycopg2://{DB_USER}:"
-#        f"{DB_PASSWORD}@{DB_HOST}/{DB_NAME}"
-#    )
 
 # Base class for SQLAlchemy models
 Base = declarative_base()
@@ -40,18 +30,20 @@ class LlmInferenceRecord(Base):
         DateTime(timezone=True), server_default=func.now(), index=True
     )
     model_id = Column(String(36), nullable=False)
-    request = Column(JSONB)
-    response = Column(JSONB)
+    request = Column(JSON)
+    response = Column(JSON)
     inference_time = Column(Integer)
-    entities = Column(JSONB)
+    entities = Column(JSON)
     score = Column(Integer)
 
+    def as_dict(self):
+       return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
 def create_db_engine_from_config(db_uri) -> Engine:
     """The Engine is the starting point for any SQLAlchemy application.
     """
 
-    engine = create_engine(db_uri)
+    engine = create_engine(db_uri, json_serializer=lambda x: x)
 
     _logger.info(f"creating DB conn with URI: {db_uri}")
     return engine

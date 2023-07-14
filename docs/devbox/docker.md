@@ -1,5 +1,5 @@
 # docker
-Docker is needed to build container images. Snap install ismore secure, can only run in $HOME. 
+Docker is needed to build container images. Snap install is more secure, can only run in $HOME. 
 
 ```
 sudo snap install docker 

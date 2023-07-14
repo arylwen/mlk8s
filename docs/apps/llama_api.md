@@ -14,3 +14,16 @@ conda actvate ray39
 ```
 pip install -r requirements-dev.txt 
 ```
+
+## run locally
+Start a new console tab.
+```
+cd mlk8s/apps/llama-api 
+conda activate ray39
+
+set-title LA-RUN 
+uvicorn app.main:app --reload 
+```
+
+Access the service at:
+http://localhost:8000/docs  

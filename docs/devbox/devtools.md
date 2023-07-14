@@ -21,3 +21,12 @@ On the dock, "show applicaitons" and search for VS Code. Once it starts, right c
 1. python
 2. jupyter
 
+## dbeaver
+Download community edition at:
+https://dbeaver.io/download/
+
+```
+sudo snap install dbeaver-ce
+```
+
+Create a new connection and download the driver when prompted. On the postgresSQl tab check "show all databases".

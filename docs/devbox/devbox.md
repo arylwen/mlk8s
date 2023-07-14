@@ -8,7 +8,7 @@ This repo was built from an Ubuntu 20.4 Linux box. Folow these instructions to i
 ## [dev tools](/docs/devbox/git.md)
 github and VS Code
 
-### clone mlks and start coding
+### clone mlk8s and start coding
 ```
 git clone https://github.com/arylwen/mlk8s.git 
 ```

@@ -1,30 +1,33 @@
-from fastapi import FastAPI
-from pydantic import BaseModel
+import os
+import sys
 import json
-
-import asyncio
-
-import argparse
-import asyncio
-import json
+import time
 import logging
 
-import os
+from pydantic import BaseModel
+from pydantic import BaseSettings
 from typing import Generator, Optional, Union, Dict, List, Any
 
-import fastapi
+from fastapi import FastAPI
 from fastapi import Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse, JSONResponse
 from fastapi.security.http import HTTPAuthorizationCredentials, HTTPBearer
 #import httpx
-from pydantic import BaseSettings
+
 import shortuuid
 import tiktoken
 import uvicorn
 
+import ray
+import ray.data
+import pandas as pd
+import numpy as np
+
+from dotenv import load_dotenv
+
 from app.persistence.core import init_database
-from app.persistence.core import LlmInferenceRecord
+#from app.persistence.core import LlmInferenceRecord
 from app.persistence.data_access import LlmInferencePersistence
 #from app.persistence.core import SQLALCHEMY_DATABASE_URI
 
@@ -50,14 +53,7 @@ from app.protocol.openai_api_protocol import (
     UsageInfo,
 )
 
-import ray
-import ray.data
-import pandas as pd
-import numpy as np
 
-import os
-import time
-from dotenv import load_dotenv
 
 app = FastAPI()
 
@@ -81,6 +77,9 @@ SQLALCHEMY_DATABASE_URI = (
     )
 
 RAY_CLIENT_URL = os.getenv('RAY_CLIENT_URL')
+if(RAY_CLIENT_URL is None):
+    sys.exit('RAY_CLIENT_URL environement variable is not sert. Exiting.')
+
 print(f'Using RAY at: {RAY_CLIENT_URL}')
 
 #TODO add thread safety
@@ -348,6 +347,10 @@ def process_input(model_name, input):
 async def index():
     return {"Message": "This is Index"}
 
+def toJSON(obj):
+    return json.dumps(obj, default=lambda o: o.__dict__, 
+            sort_keys=True, indent=4)
+
 #batch inference endpoint
 @app.post('/v1/completions')
 async def predict(request: CompletionRequest):
@@ -359,8 +362,8 @@ async def predict(request: CompletionRequest):
         persistence = LlmInferencePersistence(db_session=dbsession, user_id=request.user)
         persistence.save_predictions(
             model_id=request.model,
-            request=json.dumps(str(request)),
-            response=json.dumps(str(response)),
+            request=toJSON(request),
+            response=toJSON(response),
             inference_time=end-start,
         )
         return response
@@ -373,8 +376,8 @@ async def predict(request: CompletionRequest):
         persistence = LlmInferencePersistence(db_session=dbsession, user_id=request.user)
         persistence.save_predictions(
             model_id=request.model,
-            request=json.dumps(request),
-            response=json.dumps(response),
+            request=toJSON(request),
+            response=toJSON(response),
             inference_time=end-start,
         )        
         return response
@@ -387,8 +390,8 @@ async def predict(request: CompletionRequest):
         persistence = LlmInferencePersistence(db_session=dbsession, user_id=request.user)
         persistence.save_predictions(
             model_id=request.model,
-            request=json.dumps(request),
-            response=json.dumps(response),
+            request=toJSON(request),
+            response=toJSON(response),
             inference_time=end-start,
         )        
         return response
