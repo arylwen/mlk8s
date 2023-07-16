@@ -9,6 +9,7 @@ notebook==6.5.4
 openai==0.27.8
 pydantic==1.10.9
 nltk==3.8.1
+pymupdf==1.22.5
 llama_index
-pyvis
+pyvis==0.3.2
 
