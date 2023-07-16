@@ -1,0 +1,91 @@
+digraph G {
+	rankdir=TD;
+	0->1[ style=invis ];
+	1->2[ style=invis ];
+	2->3[ style=invis ];
+	3->4[ style=invis ];
+	4->5[ style=invis ];
+	5->6[ style=invis ];
+	rs_kubecost_grafana_867bbf59c7->pod_kubecost_grafana_867bbf59c7_8mxbf[ style=dashed ];
+	rs_kubecost_prometheus_server_77bd8b8d6f->pod_kubecost_prometheus_server_77bd8b8d6f_86qzr[ style=dashed ];
+	rs_kubecost_cost_analyzer_5bd5b566bd->pod_kubecost_cost_analyzer_5bd5b566bd_jkh8j[ style=dashed ];
+	deploy_kubecost_grafana->rs_kubecost_grafana_867bbf59c7[ style=dashed ];
+	deploy_kubecost_prometheus_server->rs_kubecost_prometheus_server_77bd8b8d6f[ style=dashed ];
+	deploy_kubecost_cost_analyzer->rs_kubecost_cost_analyzer_5bd5b566bd[ style=dashed ];
+	pod_kubecost_prometheus_server_77bd8b8d6f_86qzr->pvc_kubecost_prometheus_server[ dir=none ];
+	pod_kubecost_cost_analyzer_5bd5b566bd_jkh8j->pvc_kubecost_cost_analyzer[ dir=none ];
+	pod_kubecost_grafana_867bbf59c7_8mxbf->svc_kubecost_grafana[ dir=back ];
+	pod_kubecost_prometheus_server_77bd8b8d6f_86qzr->svc_kubecost_prometheus_server[ dir=back ];
+	pod_kubecost_cost_analyzer_5bd5b566bd_jkh8j->svc_kubecost_cost_analyzer[ dir=back ];
+	subgraph cluster_kubecost {
+	label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/ns-128.png" /></TD></TR><TR><TD>kubecost</TD></TR></TABLE>>;
+	labeljust=l;
+	style=dotted;
+	subgraph rank_0 {
+	rank=same;
+	style=invis;
+	0 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_1 {
+	rank=same;
+	style=invis;
+	1 [ height=0, margin=0, style=invis, width=0 ];
+	deploy_kubecost_cost_analyzer [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>kubecost-cost-analyzer</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_kubecost_grafana [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>kubecost-grafana</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_kubecost_prometheus_server [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>kubecost-prometheus-server</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_2 {
+	rank=same;
+	style=invis;
+	2 [ height=0, margin=0, style=invis, width=0 ];
+	rs_kubecost_cost_analyzer_5bd5b566bd [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>kubecost-cost-analyzer-5bd5b566bd</TD></TR></TABLE>>, penwidth=0 ];
+	rs_kubecost_grafana_867bbf59c7 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>kubecost-grafana-867bbf59c7</TD></TR></TABLE>>, penwidth=0 ];
+	rs_kubecost_prometheus_server_77bd8b8d6f [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>kubecost-prometheus-server-77bd8b8d6f</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_3 {
+	rank=same;
+	style=invis;
+	3 [ height=0, margin=0, style=invis, width=0 ];
+	pod_kubecost_cost_analyzer_5bd5b566bd_jkh8j [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>kubecost-cost-analyzer-5bd5b566bd-jkh8j</TD></TR></TABLE>>, penwidth=0 ];
+	pod_kubecost_grafana_867bbf59c7_8mxbf [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>kubecost-grafana-867bbf59c7-8mxbf</TD></TR></TABLE>>, penwidth=0 ];
+	pod_kubecost_prometheus_server_77bd8b8d6f_86qzr [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>kubecost-prometheus-server-77bd8b8d6f-86qzr</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_4 {
+	rank=same;
+	style=invis;
+	4 [ height=0, margin=0, style=invis, width=0 ];
+	pvc_kubecost_cost_analyzer [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pvc-128.png" /></TD></TR><TR><TD>kubecost-cost-analyzer</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_kubecost_prometheus_server [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pvc-128.png" /></TD></TR><TR><TD>kubecost-prometheus-server</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_5 {
+	rank=same;
+	style=invis;
+	5 [ height=0, margin=0, style=invis, width=0 ];
+	svc_kubecost_cost_analyzer [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>kubecost-cost-analyzer</TD></TR></TABLE>>, penwidth=0 ];
+	svc_kubecost_grafana [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>kubecost-grafana</TD></TR></TABLE>>, penwidth=0 ];
+	svc_kubecost_prometheus_server [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>kubecost-prometheus-server</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_6 {
+	rank=same;
+	style=invis;
+	6 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+
+}
+;
+
+}

@@ -1,0 +1,86 @@
+digraph G {
+	rankdir=TD;
+	0->1[ style=invis ];
+	1->2[ style=invis ];
+	2->3[ style=invis ];
+	3->4[ style=invis ];
+	4->5[ style=invis ];
+	5->6[ style=invis ];
+	ds_speaker->pod_speaker_5hjh6[ style=dashed ];
+	ds_speaker->pod_speaker_xwh2g[ style=dashed ];
+	ds_speaker->pod_speaker_mzgrp[ style=dashed ];
+	ds_speaker->pod_speaker_d6s2w[ style=dashed ];
+	ds_speaker->pod_speaker_rchrh[ style=dashed ];
+	rs_controller_5d468955f->pod_controller_5d468955f_45pkf[ style=dashed ];
+	ds_speaker->pod_speaker_d589j[ style=dashed ];
+	ds_speaker->pod_speaker_xzndq[ style=dashed ];
+	deploy_controller->rs_controller_5d468955f[ style=dashed ];
+	subgraph cluster_metallb_system {
+	label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/ns-128.png" /></TD></TR><TR><TD>metallb-system</TD></TR></TABLE>>;
+	labeljust=l;
+	style=dotted;
+	subgraph rank_0 {
+	rank=same;
+	style=invis;
+	0 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_1 {
+	rank=same;
+	style=invis;
+	1 [ height=0, margin=0, style=invis, width=0 ];
+	deploy_controller [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>controller</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_2 {
+	rank=same;
+	style=invis;
+	2 [ height=0, margin=0, style=invis, width=0 ];
+	ds_speaker [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/ds-128.png" /></TD></TR><TR><TD>speaker</TD></TR></TABLE>>, penwidth=0 ];
+	rs_controller_5d468955f [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>controller-5d468955f</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_3 {
+	rank=same;
+	style=invis;
+	3 [ height=0, margin=0, style=invis, width=0 ];
+	pod_controller_5d468955f_45pkf [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>controller-5d468955f-45pkf</TD></TR></TABLE>>, penwidth=0 ];
+	pod_speaker_5hjh6 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>speaker-5hjh6</TD></TR></TABLE>>, penwidth=0 ];
+	pod_speaker_d589j [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>speaker-d589j</TD></TR></TABLE>>, penwidth=0 ];
+	pod_speaker_d6s2w [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>speaker-d6s2w</TD></TR></TABLE>>, penwidth=0 ];
+	pod_speaker_mzgrp [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>speaker-mzgrp</TD></TR></TABLE>>, penwidth=0 ];
+	pod_speaker_rchrh [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>speaker-rchrh</TD></TR></TABLE>>, penwidth=0 ];
+	pod_speaker_xwh2g [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>speaker-xwh2g</TD></TR></TABLE>>, penwidth=0 ];
+	pod_speaker_xzndq [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>speaker-xzndq</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_4 {
+	rank=same;
+	style=invis;
+	4 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_5 {
+	rank=same;
+	style=invis;
+	5 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_6 {
+	rank=same;
+	style=invis;
+	6 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+
+}
+;
+
+}

@@ -1,0 +1,134 @@
+digraph G {
+	rankdir=TD;
+	0->1[ style=invis ];
+	1->2[ style=invis ];
+	2->3[ style=invis ];
+	3->4[ style=invis ];
+	4->5[ style=invis ];
+	5->6[ style=invis ];
+	ds_mayastor_csi->pod_mayastor_csi_2qgjm[ style=dashed ];
+	ds_mayastor->pod_mayastor_4w5cx[ style=dashed ];
+	rs_core_agents_c9b664764->pod_core_agents_c9b664764_hgps6[ style=dashed ];
+	rs_msp_operator_6b67c55f48->pod_msp_operator_6b67c55f48_psgzc[ style=dashed ];
+	rs_csi_controller_b5b975dc8->pod_csi_controller_b5b975dc8_gk7zd[ style=dashed ];
+	rs_rest_75c66999bd->pod_rest_75c66999bd_l58kt[ style=dashed ];
+	ds_mayastor_csi->pod_mayastor_csi_mw955[ style=dashed ];
+	ds_mayastor_csi->pod_mayastor_csi_7ztrr[ style=dashed ];
+	ds_mayastor->pod_mayastor_f7md4[ style=dashed ];
+	ds_mayastor_csi->pod_mayastor_csi_nmbmv[ style=dashed ];
+	ds_mayastor->pod_mayastor_7cz27[ style=dashed ];
+	ds_mayastor_csi->pod_mayastor_csi_m2n6q[ style=dashed ];
+	ds_mayastor->pod_mayastor_gs6fm[ style=dashed ];
+	ds_mayastor->pod_mayastor_zlhf5[ style=dashed ];
+	ds_mayastor_csi->pod_mayastor_csi_dcdnt[ style=dashed ];
+	ds_mayastor_csi->pod_mayastor_csi_hns62[ style=dashed ];
+	ds_mayastor->pod_mayastor_t2qf8[ style=dashed ];
+	rs_etcd_operator_mayastor_869bd676c6->pod_etcd_operator_mayastor_869bd676c6_m8lvr[ style=dashed ];
+	deploy_core_agents->rs_core_agents_c9b664764[ style=dashed ];
+	deploy_msp_operator->rs_msp_operator_6b67c55f48[ style=dashed ];
+	deploy_csi_controller->rs_csi_controller_b5b975dc8[ style=dashed ];
+	deploy_rest->rs_rest_75c66999bd[ style=dashed ];
+	deploy_etcd_operator_mayastor->rs_etcd_operator_mayastor_869bd676c6[ style=dashed ];
+	pod_core_agents_c9b664764_hgps6->svc_core[ dir=back ];
+	pod_rest_75c66999bd_l58kt->svc_rest[ dir=back ];
+	pod_etcd_kqmzzfp2cc->svc_etcd_client[ dir=back ];
+	pod_etcd_88cz22nc28->svc_etcd_client[ dir=back ];
+	pod_etcd_wkv5zfqmhk->svc_etcd_client[ dir=back ];
+	pod_etcd_kqmzzfp2cc->svc_etcd[ dir=back ];
+	pod_etcd_88cz22nc28->svc_etcd[ dir=back ];
+	pod_etcd_wkv5zfqmhk->svc_etcd[ dir=back ];
+	subgraph cluster_mayastor {
+	label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/ns-128.png" /></TD></TR><TR><TD>mayastor</TD></TR></TABLE>>;
+	labeljust=l;
+	style=dotted;
+	subgraph rank_0 {
+	rank=same;
+	style=invis;
+	0 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_1 {
+	rank=same;
+	style=invis;
+	1 [ height=0, margin=0, style=invis, width=0 ];
+	deploy_core_agents [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>core-agents</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_csi_controller [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>csi-controller</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_etcd_operator_mayastor [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>etcd-operator-mayastor</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_msp_operator [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>msp-operator</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_rest [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>rest</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_2 {
+	rank=same;
+	style=invis;
+	2 [ height=0, margin=0, style=invis, width=0 ];
+	ds_mayastor [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/ds-128.png" /></TD></TR><TR><TD>mayastor</TD></TR></TABLE>>, penwidth=0 ];
+	ds_mayastor_csi [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/ds-128.png" /></TD></TR><TR><TD>mayastor-csi</TD></TR></TABLE>>, penwidth=0 ];
+	rs_core_agents_c9b664764 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>core-agents-c9b664764</TD></TR></TABLE>>, penwidth=0 ];
+	rs_csi_controller_b5b975dc8 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>csi-controller-b5b975dc8</TD></TR></TABLE>>, penwidth=0 ];
+	rs_etcd_operator_mayastor_869bd676c6 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>etcd-operator-mayastor-869bd676c6</TD></TR></TABLE>>, penwidth=0 ];
+	rs_msp_operator_6b67c55f48 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>msp-operator-6b67c55f48</TD></TR></TABLE>>, penwidth=0 ];
+	rs_rest_75c66999bd [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>rest-75c66999bd</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_3 {
+	rank=same;
+	style=invis;
+	3 [ height=0, margin=0, style=invis, width=0 ];
+	pod_core_agents_c9b664764_hgps6 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>core-agents-c9b664764-hgps6</TD></TR></TABLE>>, penwidth=0 ];
+	pod_csi_controller_b5b975dc8_gk7zd [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>csi-controller-b5b975dc8-gk7zd</TD></TR></TABLE>>, penwidth=0 ];
+	pod_etcd_88cz22nc28 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>etcd-88cz22nc28</TD></TR></TABLE>>, penwidth=0 ];
+	pod_etcd_kqmzzfp2cc [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>etcd-kqmzzfp2cc</TD></TR></TABLE>>, penwidth=0 ];
+	pod_etcd_operator_mayastor_869bd676c6_m8lvr [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>etcd-operator-mayastor-869bd676c6-m8lvr</TD></TR></TABLE>>, penwidth=0 ];
+	pod_etcd_wkv5zfqmhk [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>etcd-wkv5zfqmhk</TD></TR></TABLE>>, penwidth=0 ];
+	pod_mayastor_4w5cx [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>mayastor-4w5cx</TD></TR></TABLE>>, penwidth=0 ];
+	pod_mayastor_7cz27 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>mayastor-7cz27</TD></TR></TABLE>>, penwidth=0 ];
+	pod_mayastor_csi_2qgjm [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>mayastor-csi-2qgjm</TD></TR></TABLE>>, penwidth=0 ];
+	pod_mayastor_csi_7ztrr [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>mayastor-csi-7ztrr</TD></TR></TABLE>>, penwidth=0 ];
+	pod_mayastor_csi_dcdnt [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>mayastor-csi-dcdnt</TD></TR></TABLE>>, penwidth=0 ];
+	pod_mayastor_csi_hns62 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>mayastor-csi-hns62</TD></TR></TABLE>>, penwidth=0 ];
+	pod_mayastor_csi_m2n6q [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>mayastor-csi-m2n6q</TD></TR></TABLE>>, penwidth=0 ];
+	pod_mayastor_csi_mw955 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>mayastor-csi-mw955</TD></TR></TABLE>>, penwidth=0 ];
+	pod_mayastor_csi_nmbmv [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>mayastor-csi-nmbmv</TD></TR></TABLE>>, penwidth=0 ];
+	pod_mayastor_f7md4 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>mayastor-f7md4</TD></TR></TABLE>>, penwidth=0 ];
+	pod_mayastor_gs6fm [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>mayastor-gs6fm</TD></TR></TABLE>>, penwidth=0 ];
+	pod_mayastor_t2qf8 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>mayastor-t2qf8</TD></TR></TABLE>>, penwidth=0 ];
+	pod_mayastor_zlhf5 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>mayastor-zlhf5</TD></TR></TABLE>>, penwidth=0 ];
+	pod_msp_operator_6b67c55f48_psgzc [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>msp-operator-6b67c55f48-psgzc</TD></TR></TABLE>>, penwidth=0 ];
+	pod_rest_75c66999bd_l58kt [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>rest-75c66999bd-l58kt</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_4 {
+	rank=same;
+	style=invis;
+	4 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_5 {
+	rank=same;
+	style=invis;
+	5 [ height=0, margin=0, style=invis, width=0 ];
+	svc_core [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>core</TD></TR></TABLE>>, penwidth=0 ];
+	svc_etcd [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>etcd</TD></TR></TABLE>>, penwidth=0 ];
+	svc_etcd_client [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>etcd-client</TD></TR></TABLE>>, penwidth=0 ];
+	svc_rest [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>rest</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_6 {
+	rank=same;
+	style=invis;
+	6 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+
+}
+;
+
+}

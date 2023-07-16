@@ -1,0 +1,136 @@
+digraph G {
+	rankdir=TD;
+	0->1[ style=invis ];
+	1->2[ style=invis ];
+	2->3[ style=invis ];
+	3->4[ style=invis ];
+	4->5[ style=invis ];
+	5->6[ style=invis ];
+	ds_gpu_operator_node_feature_discovery_worker->pod_gpu_operator_node_feature_discovery_worker_bkksj[ style=dashed ];
+	ds_gpu_operator_node_feature_discovery_worker->pod_gpu_operator_node_feature_discovery_worker_l2572[ style=dashed ];
+	ds_gpu_operator_node_feature_discovery_worker->pod_gpu_operator_node_feature_discovery_worker_sksxx[ style=dashed ];
+	ds_nvidia_device_plugin_daemonset->pod_nvidia_device_plugin_daemonset_pkmnh[ style=dashed ];
+	ds_nvidia_container_toolkit_daemonset->pod_nvidia_container_toolkit_daemonset_wz8z5[ style=dashed ];
+	ds_nvidia_operator_validator->pod_nvidia_operator_validator_975s8[ style=dashed ];
+	ds_gpu_feature_discovery->pod_gpu_feature_discovery_85s7t[ style=dashed ];
+	ds_nvidia_dcgm_exporter->pod_nvidia_dcgm_exporter_m4z2z[ style=dashed ];
+	ds_gpu_operator_node_feature_discovery_worker->pod_gpu_operator_node_feature_discovery_worker_57l4w[ style=dashed ];
+	ds_gpu_operator_node_feature_discovery_worker->pod_gpu_operator_node_feature_discovery_worker_lkntx[ style=dashed ];
+	ds_gpu_feature_discovery->pod_gpu_feature_discovery_287fc[ style=dashed ];
+	ds_nvidia_device_plugin_daemonset->pod_nvidia_device_plugin_daemonset_lvgn8[ style=dashed ];
+	ds_nvidia_container_toolkit_daemonset->pod_nvidia_container_toolkit_daemonset_lzfxj[ style=dashed ];
+	ds_nvidia_dcgm_exporter->pod_nvidia_dcgm_exporter_rwxpt[ style=dashed ];
+	ds_nvidia_operator_validator->pod_nvidia_operator_validator_p5qnk[ style=dashed ];
+	rs_gpu_operator_node_feature_discovery_master_84c7c7c6cf->pod_gpu_operator_node_feature_discovery_master_84c7c7c6cf_d28cj[ style=dashed ];
+	ds_gpu_operator_node_feature_discovery_worker->pod_gpu_operator_node_feature_discovery_worker_svffc[ style=dashed ];
+	ds_gpu_operator_node_feature_discovery_worker->pod_gpu_operator_node_feature_discovery_worker_nzd95[ style=dashed ];
+	rs_gpu_operator_6d7dc7cfc->pod_gpu_operator_6d7dc7cfc_nnbxn[ style=dashed ];
+	deploy_gpu_operator_node_feature_discovery_master->rs_gpu_operator_node_feature_discovery_master_84c7c7c6cf[ style=dashed ];
+	deploy_gpu_operator->rs_gpu_operator_6d7dc7cfc[ style=dashed ];
+	pod_gpu_operator_node_feature_discovery_worker_bkksj->svc_gpu_operator_node_feature_discovery_master[ dir=back ];
+	pod_gpu_operator_node_feature_discovery_worker_l2572->svc_gpu_operator_node_feature_discovery_master[ dir=back ];
+	pod_gpu_operator_node_feature_discovery_worker_sksxx->svc_gpu_operator_node_feature_discovery_master[ dir=back ];
+	pod_gpu_operator_node_feature_discovery_worker_57l4w->svc_gpu_operator_node_feature_discovery_master[ dir=back ];
+	pod_gpu_operator_node_feature_discovery_worker_lkntx->svc_gpu_operator_node_feature_discovery_master[ dir=back ];
+	pod_gpu_operator_node_feature_discovery_master_84c7c7c6cf_d28cj->svc_gpu_operator_node_feature_discovery_master[ dir=back ];
+	pod_gpu_operator_node_feature_discovery_worker_svffc->svc_gpu_operator_node_feature_discovery_master[ dir=back ];
+	pod_gpu_operator_node_feature_discovery_worker_nzd95->svc_gpu_operator_node_feature_discovery_master[ dir=back ];
+	pod_gpu_operator_6d7dc7cfc_nnbxn->svc_gpu_operator[ dir=back ];
+	pod_nvidia_dcgm_exporter_m4z2z->svc_nvidia_dcgm_exporter[ dir=back ];
+	pod_nvidia_dcgm_exporter_rwxpt->svc_nvidia_dcgm_exporter[ dir=back ];
+	subgraph cluster_gpu_operator_resources {
+	label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/ns-128.png" /></TD></TR><TR><TD>gpu-operator-resources</TD></TR></TABLE>>;
+	labeljust=l;
+	style=dotted;
+	subgraph rank_0 {
+	rank=same;
+	style=invis;
+	0 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_1 {
+	rank=same;
+	style=invis;
+	1 [ height=0, margin=0, style=invis, width=0 ];
+	deploy_gpu_operator [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>gpu-operator</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_gpu_operator_node_feature_discovery_master [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>gpu-operator-node-feature-discovery-master</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_2 {
+	rank=same;
+	style=invis;
+	2 [ height=0, margin=0, style=invis, width=0 ];
+	ds_gpu_feature_discovery [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/ds-128.png" /></TD></TR><TR><TD>gpu-feature-discovery</TD></TR></TABLE>>, penwidth=0 ];
+	ds_gpu_operator_node_feature_discovery_worker [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/ds-128.png" /></TD></TR><TR><TD>gpu-operator-node-feature-discovery-worker</TD></TR></TABLE>>, penwidth=0 ];
+	ds_nvidia_container_toolkit_daemonset [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/ds-128.png" /></TD></TR><TR><TD>nvidia-container-toolkit-daemonset</TD></TR></TABLE>>, penwidth=0 ];
+	ds_nvidia_dcgm_exporter [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/ds-128.png" /></TD></TR><TR><TD>nvidia-dcgm-exporter</TD></TR></TABLE>>, penwidth=0 ];
+	ds_nvidia_device_plugin_daemonset [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/ds-128.png" /></TD></TR><TR><TD>nvidia-device-plugin-daemonset</TD></TR></TABLE>>, penwidth=0 ];
+	ds_nvidia_driver_daemonset [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/ds-128.png" /></TD></TR><TR><TD>nvidia-driver-daemonset</TD></TR></TABLE>>, penwidth=0 ];
+	ds_nvidia_mig_manager [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/ds-128.png" /></TD></TR><TR><TD>nvidia-mig-manager</TD></TR></TABLE>>, penwidth=0 ];
+	ds_nvidia_operator_validator [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/ds-128.png" /></TD></TR><TR><TD>nvidia-operator-validator</TD></TR></TABLE>>, penwidth=0 ];
+	rs_gpu_operator_6d7dc7cfc [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>gpu-operator-6d7dc7cfc</TD></TR></TABLE>>, penwidth=0 ];
+	rs_gpu_operator_node_feature_discovery_master_84c7c7c6cf [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>gpu-operator-node-feature-discovery-master-84c7c7c6cf</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_3 {
+	rank=same;
+	style=invis;
+	3 [ height=0, margin=0, style=invis, width=0 ];
+	pod_gpu_feature_discovery_287fc [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>gpu-feature-discovery-287fc</TD></TR></TABLE>>, penwidth=0 ];
+	pod_gpu_feature_discovery_85s7t [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>gpu-feature-discovery-85s7t</TD></TR></TABLE>>, penwidth=0 ];
+	pod_gpu_operator_6d7dc7cfc_nnbxn [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>gpu-operator-6d7dc7cfc-nnbxn</TD></TR></TABLE>>, penwidth=0 ];
+	pod_gpu_operator_node_feature_discovery_master_84c7c7c6cf_d28cj [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>gpu-operator-node-feature-discovery-master-84c7c7c6cf-d28cj</TD></TR></TABLE>>, penwidth=0 ];
+	pod_gpu_operator_node_feature_discovery_worker_57l4w [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>gpu-operator-node-feature-discovery-worker-57l4w</TD></TR></TABLE>>, penwidth=0 ];
+	pod_gpu_operator_node_feature_discovery_worker_bkksj [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>gpu-operator-node-feature-discovery-worker-bkksj</TD></TR></TABLE>>, penwidth=0 ];
+	pod_gpu_operator_node_feature_discovery_worker_l2572 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>gpu-operator-node-feature-discovery-worker-l2572</TD></TR></TABLE>>, penwidth=0 ];
+	pod_gpu_operator_node_feature_discovery_worker_lkntx [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>gpu-operator-node-feature-discovery-worker-lkntx</TD></TR></TABLE>>, penwidth=0 ];
+	pod_gpu_operator_node_feature_discovery_worker_nzd95 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>gpu-operator-node-feature-discovery-worker-nzd95</TD></TR></TABLE>>, penwidth=0 ];
+	pod_gpu_operator_node_feature_discovery_worker_sksxx [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>gpu-operator-node-feature-discovery-worker-sksxx</TD></TR></TABLE>>, penwidth=0 ];
+	pod_gpu_operator_node_feature_discovery_worker_svffc [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>gpu-operator-node-feature-discovery-worker-svffc</TD></TR></TABLE>>, penwidth=0 ];
+	pod_nvidia_container_toolkit_daemonset_lzfxj [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>nvidia-container-toolkit-daemonset-lzfxj</TD></TR></TABLE>>, penwidth=0 ];
+	pod_nvidia_container_toolkit_daemonset_wz8z5 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>nvidia-container-toolkit-daemonset-wz8z5</TD></TR></TABLE>>, penwidth=0 ];
+	pod_nvidia_cuda_validator_k4gtm [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>nvidia-cuda-validator-k4gtm</TD></TR></TABLE>>, penwidth=0 ];
+	pod_nvidia_cuda_validator_twk6n [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>nvidia-cuda-validator-twk6n</TD></TR></TABLE>>, penwidth=0 ];
+	pod_nvidia_dcgm_exporter_m4z2z [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>nvidia-dcgm-exporter-m4z2z</TD></TR></TABLE>>, penwidth=0 ];
+	pod_nvidia_dcgm_exporter_rwxpt [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>nvidia-dcgm-exporter-rwxpt</TD></TR></TABLE>>, penwidth=0 ];
+	pod_nvidia_device_plugin_daemonset_lvgn8 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>nvidia-device-plugin-daemonset-lvgn8</TD></TR></TABLE>>, penwidth=0 ];
+	pod_nvidia_device_plugin_daemonset_pkmnh [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>nvidia-device-plugin-daemonset-pkmnh</TD></TR></TABLE>>, penwidth=0 ];
+	pod_nvidia_device_plugin_validator_rdrrf [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>nvidia-device-plugin-validator-rdrrf</TD></TR></TABLE>>, penwidth=0 ];
+	pod_nvidia_device_plugin_validator_s4pq7 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>nvidia-device-plugin-validator-s4pq7</TD></TR></TABLE>>, penwidth=0 ];
+	pod_nvidia_operator_validator_975s8 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>nvidia-operator-validator-975s8</TD></TR></TABLE>>, penwidth=0 ];
+	pod_nvidia_operator_validator_p5qnk [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>nvidia-operator-validator-p5qnk</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_4 {
+	rank=same;
+	style=invis;
+	4 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_5 {
+	rank=same;
+	style=invis;
+	5 [ height=0, margin=0, style=invis, width=0 ];
+	svc_gpu_operator [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>gpu-operator</TD></TR></TABLE>>, penwidth=0 ];
+	svc_gpu_operator_node_feature_discovery_master [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>gpu-operator-node-feature-discovery-master</TD></TR></TABLE>>, penwidth=0 ];
+	svc_nvidia_dcgm_exporter [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>nvidia-dcgm-exporter</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_6 {
+	rank=same;
+	style=invis;
+	6 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+
+}
+;
+
+}

@@ -1,0 +1,130 @@
+digraph G {
+	rankdir=TD;
+	0->1[ style=invis ];
+	1->2[ style=invis ];
+	2->3[ style=invis ];
+	3->4[ style=invis ];
+	4->5[ style=invis ];
+	5->6[ style=invis ];
+	rs_controller_687d88ff56->pod_controller_687d88ff56_xhj6c[ style=dashed ];
+	rs_net_istio_webhook_6c5b7cbdd5->pod_net_istio_webhook_6c5b7cbdd5_hhzlh[ style=dashed ];
+	rs_net_istio_controller_5fc4cc65f7->pod_net_istio_controller_5fc4cc65f7_dgbff[ style=dashed ];
+	rs_webhook_587cdd8dd7->pod_webhook_587cdd8dd7_7bzm2[ style=dashed ];
+	rs_autoscaler_bc7d6c9c9->pod_autoscaler_bc7d6c9c9_94kcw[ style=dashed ];
+	rs_domainmapping_webhook_65dfdd9b96->pod_domainmapping_webhook_65dfdd9b96_b67q7[ style=dashed ];
+	rs_domain_mapping_69cc86d8d5->pod_domain_mapping_69cc86d8d5_wznbj[ style=dashed ];
+	rs_activator_5f6b4bf5c8->pod_activator_5f6b4bf5c8_2j6q9[ style=dashed ];
+	rs_autoscaler_hpa_6469fbb6cd->pod_autoscaler_hpa_6469fbb6cd_c2qzd[ style=dashed ];
+	deploy_controller->rs_controller_687d88ff56[ style=dashed ];
+	deploy_net_istio_webhook->rs_net_istio_webhook_6c5b7cbdd5[ style=dashed ];
+	deploy_net_istio_controller->rs_net_istio_controller_5fc4cc65f7[ style=dashed ];
+	deploy_autoscaler->rs_autoscaler_bc7d6c9c9[ style=dashed ];
+	deploy_webhook->rs_webhook_587cdd8dd7[ style=dashed ];
+	deploy_domainmapping_webhook->rs_domainmapping_webhook_65dfdd9b96[ style=dashed ];
+	deploy_domain_mapping->rs_domain_mapping_69cc86d8d5[ style=dashed ];
+	deploy_activator->rs_activator_5f6b4bf5c8[ style=dashed ];
+	deploy_autoscaler_hpa->rs_autoscaler_hpa_6469fbb6cd[ style=dashed ];
+	hpa_webhook->deploy_webhook[ style=dashed ];
+	hpa_activator->deploy_activator[ style=dashed ];
+	pod_activator_5f6b4bf5c8_2j6q9->svc_activator_service[ dir=back ];
+	pod_autoscaler_bc7d6c9c9_94kcw->svc_autoscaler[ dir=back ];
+	pod_controller_687d88ff56_xhj6c->svc_controller[ dir=back ];
+	pod_domainmapping_webhook_65dfdd9b96_b67q7->svc_domainmapping_webhook[ dir=back ];
+	pod_webhook_587cdd8dd7_7bzm2->svc_webhook[ dir=back ];
+	pod_autoscaler_hpa_6469fbb6cd_c2qzd->svc_autoscaler_hpa[ dir=back ];
+	pod_net_istio_webhook_6c5b7cbdd5_hhzlh->svc_net_istio_webhook[ dir=back ];
+	subgraph cluster_knative_serving {
+	label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/ns-128.png" /></TD></TR><TR><TD>knative-serving</TD></TR></TABLE>>;
+	labeljust=l;
+	style=dotted;
+	subgraph rank_0 {
+	rank=same;
+	style=invis;
+	0 [ height=0, margin=0, style=invis, width=0 ];
+	hpa_activator [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/hpa-128.png" /></TD></TR><TR><TD>activator</TD></TR></TABLE>>, penwidth=0 ];
+	hpa_webhook [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/hpa-128.png" /></TD></TR><TR><TD>webhook</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_1 {
+	rank=same;
+	style=invis;
+	1 [ height=0, margin=0, style=invis, width=0 ];
+	deploy_activator [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>activator</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_autoscaler [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>autoscaler</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_autoscaler_hpa [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>autoscaler-hpa</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_controller [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>controller</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_domain_mapping [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>domain-mapping</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_domainmapping_webhook [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>domainmapping-webhook</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_net_istio_controller [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>net-istio-controller</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_net_istio_webhook [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>net-istio-webhook</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_webhook [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>webhook</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_2 {
+	rank=same;
+	style=invis;
+	2 [ height=0, margin=0, style=invis, width=0 ];
+	rs_activator_5f6b4bf5c8 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>activator-5f6b4bf5c8</TD></TR></TABLE>>, penwidth=0 ];
+	rs_autoscaler_bc7d6c9c9 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>autoscaler-bc7d6c9c9</TD></TR></TABLE>>, penwidth=0 ];
+	rs_autoscaler_hpa_6469fbb6cd [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>autoscaler-hpa-6469fbb6cd</TD></TR></TABLE>>, penwidth=0 ];
+	rs_controller_687d88ff56 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>controller-687d88ff56</TD></TR></TABLE>>, penwidth=0 ];
+	rs_domain_mapping_69cc86d8d5 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>domain-mapping-69cc86d8d5</TD></TR></TABLE>>, penwidth=0 ];
+	rs_domainmapping_webhook_65dfdd9b96 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>domainmapping-webhook-65dfdd9b96</TD></TR></TABLE>>, penwidth=0 ];
+	rs_net_istio_controller_5fc4cc65f7 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>net-istio-controller-5fc4cc65f7</TD></TR></TABLE>>, penwidth=0 ];
+	rs_net_istio_webhook_6c5b7cbdd5 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>net-istio-webhook-6c5b7cbdd5</TD></TR></TABLE>>, penwidth=0 ];
+	rs_webhook_587cdd8dd7 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>webhook-587cdd8dd7</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_3 {
+	rank=same;
+	style=invis;
+	3 [ height=0, margin=0, style=invis, width=0 ];
+	pod_activator_5f6b4bf5c8_2j6q9 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>activator-5f6b4bf5c8-2j6q9</TD></TR></TABLE>>, penwidth=0 ];
+	pod_autoscaler_bc7d6c9c9_94kcw [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>autoscaler-bc7d6c9c9-94kcw</TD></TR></TABLE>>, penwidth=0 ];
+	pod_autoscaler_hpa_6469fbb6cd_c2qzd [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>autoscaler-hpa-6469fbb6cd-c2qzd</TD></TR></TABLE>>, penwidth=0 ];
+	pod_controller_687d88ff56_xhj6c [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>controller-687d88ff56-xhj6c</TD></TR></TABLE>>, penwidth=0 ];
+	pod_domain_mapping_69cc86d8d5_wznbj [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>domain-mapping-69cc86d8d5-wznbj</TD></TR></TABLE>>, penwidth=0 ];
+	pod_domainmapping_webhook_65dfdd9b96_b67q7 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>domainmapping-webhook-65dfdd9b96-b67q7</TD></TR></TABLE>>, penwidth=0 ];
+	pod_net_istio_controller_5fc4cc65f7_dgbff [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>net-istio-controller-5fc4cc65f7-dgbff</TD></TR></TABLE>>, penwidth=0 ];
+	pod_net_istio_webhook_6c5b7cbdd5_hhzlh [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>net-istio-webhook-6c5b7cbdd5-hhzlh</TD></TR></TABLE>>, penwidth=0 ];
+	pod_webhook_587cdd8dd7_7bzm2 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>webhook-587cdd8dd7-7bzm2</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_4 {
+	rank=same;
+	style=invis;
+	4 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_5 {
+	rank=same;
+	style=invis;
+	5 [ height=0, margin=0, style=invis, width=0 ];
+	svc_activator_service [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>activator-service</TD></TR></TABLE>>, penwidth=0 ];
+	svc_autoscaler [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>autoscaler</TD></TR></TABLE>>, penwidth=0 ];
+	svc_autoscaler_bucket_00_of_01 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>autoscaler-bucket-00-of-01</TD></TR></TABLE>>, penwidth=0 ];
+	svc_autoscaler_hpa [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>autoscaler-hpa</TD></TR></TABLE>>, penwidth=0 ];
+	svc_controller [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>controller</TD></TR></TABLE>>, penwidth=0 ];
+	svc_domainmapping_webhook [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>domainmapping-webhook</TD></TR></TABLE>>, penwidth=0 ];
+	svc_net_istio_webhook [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>net-istio-webhook</TD></TR></TABLE>>, penwidth=0 ];
+	svc_webhook [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>webhook</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_6 {
+	rank=same;
+	style=invis;
+	6 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+
+}
+;
+
+}

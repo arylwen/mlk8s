@@ -1,0 +1,81 @@
+digraph G {
+	rankdir=TD;
+	0->1[ style=invis ];
+	1->2[ style=invis ];
+	2->3[ style=invis ];
+	3->4[ style=invis ];
+	4->5[ style=invis ];
+	5->6[ style=invis ];
+	ds_nginx_ingress_microk8s_controller->pod_nginx_ingress_microk8s_controller_8j84b[ style=dashed ];
+	ds_nginx_ingress_microk8s_controller->pod_nginx_ingress_microk8s_controller_h6r72[ style=dashed ];
+	ds_nginx_ingress_microk8s_controller->pod_nginx_ingress_microk8s_controller_zjpqd[ style=dashed ];
+	ds_nginx_ingress_microk8s_controller->pod_nginx_ingress_microk8s_controller_8gl2m[ style=dashed ];
+	ds_nginx_ingress_microk8s_controller->pod_nginx_ingress_microk8s_controller_9dsgr[ style=dashed ];
+	ds_nginx_ingress_microk8s_controller->pod_nginx_ingress_microk8s_controller_ht5bk[ style=dashed ];
+	ds_nginx_ingress_microk8s_controller->pod_nginx_ingress_microk8s_controller_svvsg[ style=dashed ];
+	subgraph cluster_ingress {
+	label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/ns-128.png" /></TD></TR><TR><TD>ingress</TD></TR></TABLE>>;
+	labeljust=l;
+	style=dotted;
+	subgraph rank_0 {
+	rank=same;
+	style=invis;
+	0 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_1 {
+	rank=same;
+	style=invis;
+	1 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_2 {
+	rank=same;
+	style=invis;
+	2 [ height=0, margin=0, style=invis, width=0 ];
+	ds_nginx_ingress_microk8s_controller [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/ds-128.png" /></TD></TR><TR><TD>nginx-ingress-microk8s-controller</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_3 {
+	rank=same;
+	style=invis;
+	3 [ height=0, margin=0, style=invis, width=0 ];
+	pod_nginx_ingress_microk8s_controller_8gl2m [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/pod-128.png" /></TD></TR><TR><TD>nginx-ingress-microk8s-controller-8gl2m</TD></TR></TABLE>>, penwidth=0 ];
+	pod_nginx_ingress_microk8s_controller_8j84b [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/pod-128.png" /></TD></TR><TR><TD>nginx-ingress-microk8s-controller-8j84b</TD></TR></TABLE>>, penwidth=0 ];
+	pod_nginx_ingress_microk8s_controller_9dsgr [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/pod-128.png" /></TD></TR><TR><TD>nginx-ingress-microk8s-controller-9dsgr</TD></TR></TABLE>>, penwidth=0 ];
+	pod_nginx_ingress_microk8s_controller_h6r72 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/pod-128.png" /></TD></TR><TR><TD>nginx-ingress-microk8s-controller-h6r72</TD></TR></TABLE>>, penwidth=0 ];
+	pod_nginx_ingress_microk8s_controller_ht5bk [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/pod-128.png" /></TD></TR><TR><TD>nginx-ingress-microk8s-controller-ht5bk</TD></TR></TABLE>>, penwidth=0 ];
+	pod_nginx_ingress_microk8s_controller_svvsg [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/pod-128.png" /></TD></TR><TR><TD>nginx-ingress-microk8s-controller-svvsg</TD></TR></TABLE>>, penwidth=0 ];
+	pod_nginx_ingress_microk8s_controller_zjpqd [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/pod-128.png" /></TD></TR><TR><TD>nginx-ingress-microk8s-controller-zjpqd</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_4 {
+	rank=same;
+	style=invis;
+	4 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_5 {
+	rank=same;
+	style=invis;
+	5 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_6 {
+	rank=same;
+	style=invis;
+	6 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+
+}
+;
+
+}

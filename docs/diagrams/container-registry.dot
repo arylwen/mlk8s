@@ -1,0 +1,75 @@
+digraph G {
+	rankdir=TD;
+	0->1[ style=invis ];
+	1->2[ style=invis ];
+	2->3[ style=invis ];
+	3->4[ style=invis ];
+	4->5[ style=invis ];
+	5->6[ style=invis ];
+	rs_registry_f69889b8c->pod_registry_f69889b8c_pb9qh[ style=dashed ];
+	deploy_registry->rs_registry_f69889b8c[ style=dashed ];
+	pod_registry_f69889b8c_pb9qh->pvc_registry_claim[ dir=none ];
+	pod_registry_f69889b8c_pb9qh->svc_registry[ dir=back ];
+	subgraph cluster_container_registry {
+	label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/ns-128.png" /></TD></TR><TR><TD>container-registry</TD></TR></TABLE>>;
+	labeljust=l;
+	style=dotted;
+	subgraph rank_0 {
+	rank=same;
+	style=invis;
+	0 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_1 {
+	rank=same;
+	style=invis;
+	1 [ height=0, margin=0, style=invis, width=0 ];
+	deploy_registry [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/deploy-128.png" /></TD></TR><TR><TD>registry</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_2 {
+	rank=same;
+	style=invis;
+	2 [ height=0, margin=0, style=invis, width=0 ];
+	rs_registry_f69889b8c [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/rs-128.png" /></TD></TR><TR><TD>registry-f69889b8c</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_3 {
+	rank=same;
+	style=invis;
+	3 [ height=0, margin=0, style=invis, width=0 ];
+	pod_registry_f69889b8c_pb9qh [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/pod-128.png" /></TD></TR><TR><TD>registry-f69889b8c-pb9qh</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_4 {
+	rank=same;
+	style=invis;
+	4 [ height=0, margin=0, style=invis, width=0 ];
+	pvc_registry_claim [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/pvc-128.png" /></TD></TR><TR><TD>registry-claim</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_5 {
+	rank=same;
+	style=invis;
+	5 [ height=0, margin=0, style=invis, width=0 ];
+	svc_registry [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/svc-128.png" /></TD></TR><TR><TD>registry</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_6 {
+	rank=same;
+	style=invis;
+	6 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+
+}
+;
+
+}

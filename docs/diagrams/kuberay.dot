@@ -1,0 +1,81 @@
+digraph G {
+	rankdir=TD;
+	0->1[ style=invis ];
+	1->2[ style=invis ];
+	2->3[ style=invis ];
+	3->4[ style=invis ];
+	4->5[ style=invis ];
+	5->6[ style=invis ];
+	rs_kuberay_operator_59dbc49587->pod_kuberay_operator_59dbc49587_wcgr2[ style=dashed ];
+	deploy_kuberay_operator->rs_kuberay_operator_59dbc49587[ style=dashed ];
+	pod_raycluster_kuberay_head_ks2zt->pvc_ray_cluster_1000g_volumeclaim_90[ dir=none ];
+	pod_raycluster_kuberay_worker_workergroup_jf9mz->pvc_ray_cluster_1000g_volumeclaim_720[ dir=none ];
+	pod_kuberay_operator_59dbc49587_wcgr2->svc_kuberay_operator[ dir=back ];
+	pod_raycluster_kuberay_head_ks2zt->svc_raycluster_kuberay_head_svc[ dir=back ];
+	subgraph cluster_kuberay {
+	label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/ns-128.png" /></TD></TR><TR><TD>kuberay</TD></TR></TABLE>>;
+	labeljust=l;
+	style=dotted;
+	subgraph rank_0 {
+	rank=same;
+	style=invis;
+	0 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_1 {
+	rank=same;
+	style=invis;
+	1 [ height=0, margin=0, style=invis, width=0 ];
+	deploy_kuberay_operator [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/deploy-128.png" /></TD></TR><TR><TD>kuberay-operator</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_2 {
+	rank=same;
+	style=invis;
+	2 [ height=0, margin=0, style=invis, width=0 ];
+	rs_kuberay_operator_59dbc49587 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/rs-128.png" /></TD></TR><TR><TD>kuberay-operator-59dbc49587</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_3 {
+	rank=same;
+	style=invis;
+	3 [ height=0, margin=0, style=invis, width=0 ];
+	pod_kuberay_operator_59dbc49587_wcgr2 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pod-128.png" /></TD></TR><TR><TD>kuberay-operator-59dbc49587-wcgr2</TD></TR></TABLE>>, penwidth=0 ];
+	pod_raycluster_kuberay_head_ks2zt [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pod-128.png" /></TD></TR><TR><TD>raycluster-kuberay-head-ks2zt</TD></TR></TABLE>>, penwidth=0 ];
+	pod_raycluster_kuberay_worker_workergroup_jf9mz [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pod-128.png" /></TD></TR><TR><TD>raycluster-kuberay-worker-workergroup-jf9mz</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_4 {
+	rank=same;
+	style=invis;
+	4 [ height=0, margin=0, style=invis, width=0 ];
+	pvc_ray_cluster_1000g_volumeclaim_720 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pvc-128.png" /></TD></TR><TR><TD>ray-cluster-1000g-volumeclaim-720</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_ray_cluster_1000g_volumeclaim_90 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pvc-128.png" /></TD></TR><TR><TD>ray-cluster-1000g-volumeclaim-90</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_5 {
+	rank=same;
+	style=invis;
+	5 [ height=0, margin=0, style=invis, width=0 ];
+	svc_kuberay_operator [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/svc-128.png" /></TD></TR><TR><TD>kuberay-operator</TD></TR></TABLE>>, penwidth=0 ];
+	svc_raycluster_kuberay_head_svc [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/svc-128.png" /></TD></TR><TR><TD>raycluster-kuberay-head-svc</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_6 {
+	rank=same;
+	style=invis;
+	6 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+
+}
+;
+
+}

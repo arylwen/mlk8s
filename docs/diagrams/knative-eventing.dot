@@ -1,0 +1,118 @@
+digraph G {
+	rankdir=TD;
+	0->1[ style=invis ];
+	1->2[ style=invis ];
+	2->3[ style=invis ];
+	3->4[ style=invis ];
+	4->5[ style=invis ];
+	5->6[ style=invis ];
+	rs_mt_broker_controller_66b756f8bb->pod_mt_broker_controller_66b756f8bb_rqhls[ style=dashed ];
+	rs_imc_controller_769d8b7f66->pod_imc_controller_769d8b7f66_bhsks[ style=dashed ];
+	rs_eventing_webhook_7d5b577c94->pod_eventing_webhook_7d5b577c94_cxpvm[ style=dashed ];
+	rs_mt_broker_ingress_5c4d45dfd6->pod_mt_broker_ingress_5c4d45dfd6_89vmb[ style=dashed ];
+	rs_imc_dispatcher_55979cf74b->pod_imc_dispatcher_55979cf74b_cnsv6[ style=dashed ];
+	rs_mt_broker_filter_56b5d6d697->pod_mt_broker_filter_56b5d6d697_gwrbm[ style=dashed ];
+	rs_eventing_controller_7f448655c8->pod_eventing_controller_7f448655c8_vxd6c[ style=dashed ];
+	deploy_imc_controller->rs_imc_controller_769d8b7f66[ style=dashed ];
+	deploy_eventing_webhook->rs_eventing_webhook_7d5b577c94[ style=dashed ];
+	deploy_mt_broker_controller->rs_mt_broker_controller_66b756f8bb[ style=dashed ];
+	deploy_mt_broker_ingress->rs_mt_broker_ingress_5c4d45dfd6[ style=dashed ];
+	deploy_imc_dispatcher->rs_imc_dispatcher_55979cf74b[ style=dashed ];
+	deploy_mt_broker_filter->rs_mt_broker_filter_56b5d6d697[ style=dashed ];
+	deploy_eventing_controller->rs_eventing_controller_7f448655c8[ style=dashed ];
+	hpa_broker_ingress_hpa->deploy_mt_broker_ingress[ style=dashed ];
+	hpa_broker_filter_hpa->deploy_mt_broker_filter[ style=dashed ];
+	hpa_eventing_webhook->deploy_eventing_webhook[ style=dashed ];
+	pod_eventing_webhook_7d5b577c94_cxpvm->svc_eventing_webhook[ dir=back ];
+	pod_imc_controller_769d8b7f66_bhsks->svc_inmemorychannel_webhook[ dir=back ];
+	pod_imc_dispatcher_55979cf74b_cnsv6->svc_imc_dispatcher[ dir=back ];
+	pod_mt_broker_filter_56b5d6d697_gwrbm->svc_broker_filter[ dir=back ];
+	pod_mt_broker_ingress_5c4d45dfd6_89vmb->svc_broker_ingress[ dir=back ];
+	subgraph cluster_knative_eventing {
+	label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/ns-128.png" /></TD></TR><TR><TD>knative-eventing</TD></TR></TABLE>>;
+	labeljust=l;
+	style=dotted;
+	subgraph rank_0 {
+	rank=same;
+	style=invis;
+	0 [ height=0, margin=0, style=invis, width=0 ];
+	hpa_broker_filter_hpa [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/hpa-128.png" /></TD></TR><TR><TD>broker-filter-hpa</TD></TR></TABLE>>, penwidth=0 ];
+	hpa_broker_ingress_hpa [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/hpa-128.png" /></TD></TR><TR><TD>broker-ingress-hpa</TD></TR></TABLE>>, penwidth=0 ];
+	hpa_eventing_webhook [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/hpa-128.png" /></TD></TR><TR><TD>eventing-webhook</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_1 {
+	rank=same;
+	style=invis;
+	1 [ height=0, margin=0, style=invis, width=0 ];
+	deploy_eventing_controller [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>eventing-controller</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_eventing_webhook [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>eventing-webhook</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_imc_controller [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>imc-controller</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_imc_dispatcher [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>imc-dispatcher</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_mt_broker_controller [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>mt-broker-controller</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_mt_broker_filter [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>mt-broker-filter</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_mt_broker_ingress [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>mt-broker-ingress</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_pingsource_mt_adapter [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>pingsource-mt-adapter</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_2 {
+	rank=same;
+	style=invis;
+	2 [ height=0, margin=0, style=invis, width=0 ];
+	rs_eventing_controller_7f448655c8 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>eventing-controller-7f448655c8</TD></TR></TABLE>>, penwidth=0 ];
+	rs_eventing_webhook_7d5b577c94 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>eventing-webhook-7d5b577c94</TD></TR></TABLE>>, penwidth=0 ];
+	rs_imc_controller_769d8b7f66 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>imc-controller-769d8b7f66</TD></TR></TABLE>>, penwidth=0 ];
+	rs_imc_dispatcher_55979cf74b [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>imc-dispatcher-55979cf74b</TD></TR></TABLE>>, penwidth=0 ];
+	rs_mt_broker_controller_66b756f8bb [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>mt-broker-controller-66b756f8bb</TD></TR></TABLE>>, penwidth=0 ];
+	rs_mt_broker_filter_56b5d6d697 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>mt-broker-filter-56b5d6d697</TD></TR></TABLE>>, penwidth=0 ];
+	rs_mt_broker_ingress_5c4d45dfd6 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>mt-broker-ingress-5c4d45dfd6</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_3 {
+	rank=same;
+	style=invis;
+	3 [ height=0, margin=0, style=invis, width=0 ];
+	pod_eventing_controller_7f448655c8_vxd6c [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>eventing-controller-7f448655c8-vxd6c</TD></TR></TABLE>>, penwidth=0 ];
+	pod_eventing_webhook_7d5b577c94_cxpvm [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>eventing-webhook-7d5b577c94-cxpvm</TD></TR></TABLE>>, penwidth=0 ];
+	pod_imc_controller_769d8b7f66_bhsks [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>imc-controller-769d8b7f66-bhsks</TD></TR></TABLE>>, penwidth=0 ];
+	pod_imc_dispatcher_55979cf74b_cnsv6 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>imc-dispatcher-55979cf74b-cnsv6</TD></TR></TABLE>>, penwidth=0 ];
+	pod_mt_broker_controller_66b756f8bb_rqhls [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>mt-broker-controller-66b756f8bb-rqhls</TD></TR></TABLE>>, penwidth=0 ];
+	pod_mt_broker_filter_56b5d6d697_gwrbm [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>mt-broker-filter-56b5d6d697-gwrbm</TD></TR></TABLE>>, penwidth=0 ];
+	pod_mt_broker_ingress_5c4d45dfd6_89vmb [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>mt-broker-ingress-5c4d45dfd6-89vmb</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_4 {
+	rank=same;
+	style=invis;
+	4 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_5 {
+	rank=same;
+	style=invis;
+	5 [ height=0, margin=0, style=invis, width=0 ];
+	svc_broker_filter [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>broker-filter</TD></TR></TABLE>>, penwidth=0 ];
+	svc_broker_ingress [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>broker-ingress</TD></TR></TABLE>>, penwidth=0 ];
+	svc_eventing_webhook [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>eventing-webhook</TD></TR></TABLE>>, penwidth=0 ];
+	svc_imc_dispatcher [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>imc-dispatcher</TD></TR></TABLE>>, penwidth=0 ];
+	svc_inmemorychannel_webhook [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>inmemorychannel-webhook</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_6 {
+	rank=same;
+	style=invis;
+	6 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+
+}
+;
+
+}

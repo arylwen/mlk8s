@@ -1,0 +1,234 @@
+digraph G {
+	rankdir=TD;
+	0->1[ style=invis ];
+	1->2[ style=invis ];
+	2->3[ style=invis ];
+	3->4[ style=invis ];
+	4->5[ style=invis ];
+	5->6[ style=invis ];
+	rs_milvus_attu_5bbbbf484c->pod_milvus_attu_5bbbbf484c_hhnr4[ style=dashed ];
+	sts_milvus_minio->pod_milvus_minio_2[ style=dashed ];
+	sts_milvus_pulsar_zookeeper->pod_milvus_pulsar_zookeeper_2[ style=dashed ];
+	sts_milvus_pulsar_zookeeper->pod_milvus_pulsar_zookeeper_1[ style=dashed ];
+	sts_milvus_pulsar_bookie->pod_milvus_pulsar_bookie_0[ style=dashed ];
+	sts_milvus_minio->pod_milvus_minio_1[ style=dashed ];
+	sts_milvus_etcd->pod_milvus_etcd_0[ style=dashed ];
+	rs_milvus_querynode_598cc8698f->pod_milvus_querynode_598cc8698f_xmlpp[ style=dashed ];
+	sts_milvus_pulsar_broker->pod_milvus_pulsar_broker_0[ style=dashed ];
+	rs_milvus_indexnode_55d57dbc87->pod_milvus_indexnode_55d57dbc87_97bmv[ style=dashed ];
+	rs_milvus_rootcoord_548b8bdcf9->pod_milvus_rootcoord_548b8bdcf9_gn678[ style=dashed ];
+	rs_milvus_indexcoord_7fb6c77994->pod_milvus_indexcoord_7fb6c77994_dr9fj[ style=dashed ];
+	rs_milvus_querycoord_78bb7bfc->pod_milvus_querycoord_78bb7bfc_9lr6h[ style=dashed ];
+	rs_milvus_proxy_7d6bc9cc44->pod_milvus_proxy_7d6bc9cc44_d5rx8[ style=dashed ];
+	rs_milvus_datanode_5cc7cdff68->pod_milvus_datanode_5cc7cdff68_2dm7j[ style=dashed ];
+	rs_milvus_datacoord_8597489f78->pod_milvus_datacoord_8597489f78_nf2m4[ style=dashed ];
+	sts_milvus_minio->pod_milvus_minio_0[ style=dashed ];
+	sts_milvus_etcd->pod_milvus_etcd_1[ style=dashed ];
+	sts_milvus_pulsar_zookeeper->pod_milvus_pulsar_zookeeper_0[ style=dashed ];
+	sts_milvus_pulsar_bookie->pod_milvus_pulsar_bookie_1[ style=dashed ];
+	sts_milvus_pulsar_proxy->pod_milvus_pulsar_proxy_0[ style=dashed ];
+	sts_milvus_pulsar_recovery->pod_milvus_pulsar_recovery_0[ style=dashed ];
+	sts_milvus_minio->pod_milvus_minio_3[ style=dashed ];
+	sts_milvus_pulsar_bookie->pod_milvus_pulsar_bookie_2[ style=dashed ];
+	sts_milvus_etcd->pod_milvus_etcd_2[ style=dashed ];
+	deploy_milvus_attu->rs_milvus_attu_5bbbbf484c[ style=dashed ];
+	deploy_milvus_querynode->rs_milvus_querynode_598cc8698f[ style=dashed ];
+	deploy_milvus_indexnode->rs_milvus_indexnode_55d57dbc87[ style=dashed ];
+	deploy_milvus_rootcoord->rs_milvus_rootcoord_548b8bdcf9[ style=dashed ];
+	deploy_milvus_indexcoord->rs_milvus_indexcoord_7fb6c77994[ style=dashed ];
+	deploy_milvus_querycoord->rs_milvus_querycoord_78bb7bfc[ style=dashed ];
+	deploy_milvus_proxy->rs_milvus_proxy_7d6bc9cc44[ style=dashed ];
+	deploy_milvus_datanode->rs_milvus_datanode_5cc7cdff68[ style=dashed ];
+	deploy_milvus_datacoord->rs_milvus_datacoord_8597489f78[ style=dashed ];
+	pod_milvus_minio_2->pvc_export_milvus_minio_2[ dir=none ];
+	pod_milvus_pulsar_zookeeper_2->pvc_milvus_pulsar_zookeeper_data_milvus_pulsar_zookeeper_2[ dir=none ];
+	pod_milvus_pulsar_zookeeper_1->pvc_milvus_pulsar_zookeeper_data_milvus_pulsar_zookeeper_1[ dir=none ];
+	pod_milvus_pulsar_bookie_0->pvc_milvus_pulsar_bookie_ledgers_milvus_pulsar_bookie_0[ dir=none ];
+	pod_milvus_pulsar_bookie_0->pvc_milvus_pulsar_bookie_journal_milvus_pulsar_bookie_0[ dir=none ];
+	pod_milvus_minio_1->pvc_export_milvus_minio_1[ dir=none ];
+	pod_milvus_etcd_0->pvc_data_milvus_etcd_0[ dir=none ];
+	pod_milvus_minio_0->pvc_export_milvus_minio_0[ dir=none ];
+	pod_milvus_etcd_1->pvc_data_milvus_etcd_1[ dir=none ];
+	pod_milvus_pulsar_zookeeper_0->pvc_milvus_pulsar_zookeeper_data_milvus_pulsar_zookeeper_0[ dir=none ];
+	pod_milvus_pulsar_bookie_1->pvc_milvus_pulsar_bookie_journal_milvus_pulsar_bookie_1[ dir=none ];
+	pod_milvus_pulsar_bookie_1->pvc_milvus_pulsar_bookie_ledgers_milvus_pulsar_bookie_1[ dir=none ];
+	pod_milvus_minio_3->pvc_export_milvus_minio_3[ dir=none ];
+	pod_milvus_pulsar_bookie_2->pvc_milvus_pulsar_bookie_journal_milvus_pulsar_bookie_2[ dir=none ];
+	pod_milvus_pulsar_bookie_2->pvc_milvus_pulsar_bookie_ledgers_milvus_pulsar_bookie_2[ dir=none ];
+	pod_milvus_etcd_2->pvc_data_milvus_etcd_2[ dir=none ];
+	pod_milvus_etcd_0->svc_milvus_etcd_headless[ dir=back ];
+	pod_milvus_etcd_1->svc_milvus_etcd_headless[ dir=back ];
+	pod_milvus_etcd_2->svc_milvus_etcd_headless[ dir=back ];
+	pod_milvus_pulsar_broker_0->svc_milvus_pulsar_broker[ dir=back ];
+	pod_milvus_minio_2->svc_milvus_minio_svc[ dir=back ];
+	pod_milvus_minio_1->svc_milvus_minio_svc[ dir=back ];
+	pod_milvus_minio_0->svc_milvus_minio_svc[ dir=back ];
+	pod_milvus_minio_3->svc_milvus_minio_svc[ dir=back ];
+	pod_milvus_indexnode_55d57dbc87_97bmv->svc_milvus_indexnode[ dir=back ];
+	pod_milvus_querynode_598cc8698f_xmlpp->svc_milvus_querynode[ dir=back ];
+	pod_milvus_pulsar_zookeeper_2->svc_milvus_pulsar_zookeeper[ dir=back ];
+	pod_milvus_pulsar_zookeeper_1->svc_milvus_pulsar_zookeeper[ dir=back ];
+	pod_milvus_pulsar_zookeeper_0->svc_milvus_pulsar_zookeeper[ dir=back ];
+	pod_milvus_pulsar_recovery_0->svc_milvus_pulsar_recovery[ dir=back ];
+	pod_milvus_pulsar_bookie_0->svc_milvus_pulsar_bookie[ dir=back ];
+	pod_milvus_pulsar_bookie_1->svc_milvus_pulsar_bookie[ dir=back ];
+	pod_milvus_pulsar_bookie_2->svc_milvus_pulsar_bookie[ dir=back ];
+	pod_milvus_datanode_5cc7cdff68_2dm7j->svc_milvus_datanode[ dir=back ];
+	pod_milvus_minio_2->svc_milvus_minio[ dir=back ];
+	pod_milvus_minio_1->svc_milvus_minio[ dir=back ];
+	pod_milvus_minio_0->svc_milvus_minio[ dir=back ];
+	pod_milvus_minio_3->svc_milvus_minio[ dir=back ];
+	pod_milvus_datacoord_8597489f78_nf2m4->svc_milvus_datacoord[ dir=back ];
+	pod_milvus_querycoord_78bb7bfc_9lr6h->svc_milvus_querycoord[ dir=back ];
+	pod_milvus_rootcoord_548b8bdcf9_gn678->svc_milvus_rootcoord[ dir=back ];
+	pod_milvus_indexcoord_7fb6c77994_dr9fj->svc_milvus_indexcoord[ dir=back ];
+	pod_milvus_pulsar_proxy_0->svc_milvus_pulsar_proxy[ dir=back ];
+	pod_milvus_etcd_0->svc_milvus_etcd[ dir=back ];
+	pod_milvus_etcd_1->svc_milvus_etcd[ dir=back ];
+	pod_milvus_etcd_2->svc_milvus_etcd[ dir=back ];
+	pod_milvus_attu_5bbbbf484c_hhnr4->svc_milvus_attu[ dir=back ];
+	pod_milvus_proxy_7d6bc9cc44_d5rx8->svc_milvus[ dir=back ];
+	svc_milvus_attu->ing_milvus_attu[ dir=back ];
+	subgraph cluster_milvus {
+	label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/ns-128.png" /></TD></TR><TR><TD>milvus</TD></TR></TABLE>>;
+	labeljust=l;
+	style=dotted;
+	subgraph rank_0 {
+	rank=same;
+	style=invis;
+	0 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_1 {
+	rank=same;
+	style=invis;
+	1 [ height=0, margin=0, style=invis, width=0 ];
+	deploy_milvus_attu [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/deploy-128.png" /></TD></TR><TR><TD>milvus-attu</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_milvus_datacoord [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/deploy-128.png" /></TD></TR><TR><TD>milvus-datacoord</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_milvus_datanode [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/deploy-128.png" /></TD></TR><TR><TD>milvus-datanode</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_milvus_indexcoord [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/deploy-128.png" /></TD></TR><TR><TD>milvus-indexcoord</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_milvus_indexnode [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/deploy-128.png" /></TD></TR><TR><TD>milvus-indexnode</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_milvus_proxy [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/deploy-128.png" /></TD></TR><TR><TD>milvus-proxy</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_milvus_querycoord [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/deploy-128.png" /></TD></TR><TR><TD>milvus-querycoord</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_milvus_querynode [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/deploy-128.png" /></TD></TR><TR><TD>milvus-querynode</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_milvus_rootcoord [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/deploy-128.png" /></TD></TR><TR><TD>milvus-rootcoord</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_2 {
+	rank=same;
+	style=invis;
+	2 [ height=0, margin=0, style=invis, width=0 ];
+	rs_milvus_attu_5bbbbf484c [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/rs-128.png" /></TD></TR><TR><TD>milvus-attu-5bbbbf484c</TD></TR></TABLE>>, penwidth=0 ];
+	rs_milvus_datacoord_8597489f78 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/rs-128.png" /></TD></TR><TR><TD>milvus-datacoord-8597489f78</TD></TR></TABLE>>, penwidth=0 ];
+	rs_milvus_datanode_5cc7cdff68 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/rs-128.png" /></TD></TR><TR><TD>milvus-datanode-5cc7cdff68</TD></TR></TABLE>>, penwidth=0 ];
+	rs_milvus_indexcoord_7fb6c77994 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/rs-128.png" /></TD></TR><TR><TD>milvus-indexcoord-7fb6c77994</TD></TR></TABLE>>, penwidth=0 ];
+	rs_milvus_indexnode_55d57dbc87 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/rs-128.png" /></TD></TR><TR><TD>milvus-indexnode-55d57dbc87</TD></TR></TABLE>>, penwidth=0 ];
+	rs_milvus_proxy_7d6bc9cc44 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/rs-128.png" /></TD></TR><TR><TD>milvus-proxy-7d6bc9cc44</TD></TR></TABLE>>, penwidth=0 ];
+	rs_milvus_querycoord_78bb7bfc [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/rs-128.png" /></TD></TR><TR><TD>milvus-querycoord-78bb7bfc</TD></TR></TABLE>>, penwidth=0 ];
+	rs_milvus_querynode_598cc8698f [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/rs-128.png" /></TD></TR><TR><TD>milvus-querynode-598cc8698f</TD></TR></TABLE>>, penwidth=0 ];
+	rs_milvus_rootcoord_548b8bdcf9 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/rs-128.png" /></TD></TR><TR><TD>milvus-rootcoord-548b8bdcf9</TD></TR></TABLE>>, penwidth=0 ];
+	sts_milvus_etcd [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/sts-128.png" /></TD></TR><TR><TD>milvus-etcd</TD></TR></TABLE>>, penwidth=0 ];
+	sts_milvus_minio [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/sts-128.png" /></TD></TR><TR><TD>milvus-minio</TD></TR></TABLE>>, penwidth=0 ];
+	sts_milvus_pulsar_bookie [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/sts-128.png" /></TD></TR><TR><TD>milvus-pulsar-bookie</TD></TR></TABLE>>, penwidth=0 ];
+	sts_milvus_pulsar_broker [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/sts-128.png" /></TD></TR><TR><TD>milvus-pulsar-broker</TD></TR></TABLE>>, penwidth=0 ];
+	sts_milvus_pulsar_proxy [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/sts-128.png" /></TD></TR><TR><TD>milvus-pulsar-proxy</TD></TR></TABLE>>, penwidth=0 ];
+	sts_milvus_pulsar_recovery [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/sts-128.png" /></TD></TR><TR><TD>milvus-pulsar-recovery</TD></TR></TABLE>>, penwidth=0 ];
+	sts_milvus_pulsar_zookeeper [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/sts-128.png" /></TD></TR><TR><TD>milvus-pulsar-zookeeper</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_3 {
+	rank=same;
+	style=invis;
+	3 [ height=0, margin=0, style=invis, width=0 ];
+	pod_milvus_attu_5bbbbf484c_hhnr4 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pod-128.png" /></TD></TR><TR><TD>milvus-attu-5bbbbf484c-hhnr4</TD></TR></TABLE>>, penwidth=0 ];
+	pod_milvus_datacoord_8597489f78_nf2m4 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pod-128.png" /></TD></TR><TR><TD>milvus-datacoord-8597489f78-nf2m4</TD></TR></TABLE>>, penwidth=0 ];
+	pod_milvus_datanode_5cc7cdff68_2dm7j [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pod-128.png" /></TD></TR><TR><TD>milvus-datanode-5cc7cdff68-2dm7j</TD></TR></TABLE>>, penwidth=0 ];
+	pod_milvus_etcd_0 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pod-128.png" /></TD></TR><TR><TD>milvus-etcd-0</TD></TR></TABLE>>, penwidth=0 ];
+	pod_milvus_etcd_1 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pod-128.png" /></TD></TR><TR><TD>milvus-etcd-1</TD></TR></TABLE>>, penwidth=0 ];
+	pod_milvus_etcd_2 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pod-128.png" /></TD></TR><TR><TD>milvus-etcd-2</TD></TR></TABLE>>, penwidth=0 ];
+	pod_milvus_indexcoord_7fb6c77994_dr9fj [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pod-128.png" /></TD></TR><TR><TD>milvus-indexcoord-7fb6c77994-dr9fj</TD></TR></TABLE>>, penwidth=0 ];
+	pod_milvus_indexnode_55d57dbc87_97bmv [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pod-128.png" /></TD></TR><TR><TD>milvus-indexnode-55d57dbc87-97bmv</TD></TR></TABLE>>, penwidth=0 ];
+	pod_milvus_minio_0 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pod-128.png" /></TD></TR><TR><TD>milvus-minio-0</TD></TR></TABLE>>, penwidth=0 ];
+	pod_milvus_minio_1 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pod-128.png" /></TD></TR><TR><TD>milvus-minio-1</TD></TR></TABLE>>, penwidth=0 ];
+	pod_milvus_minio_2 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pod-128.png" /></TD></TR><TR><TD>milvus-minio-2</TD></TR></TABLE>>, penwidth=0 ];
+	pod_milvus_minio_3 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pod-128.png" /></TD></TR><TR><TD>milvus-minio-3</TD></TR></TABLE>>, penwidth=0 ];
+	pod_milvus_proxy_7d6bc9cc44_d5rx8 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pod-128.png" /></TD></TR><TR><TD>milvus-proxy-7d6bc9cc44-d5rx8</TD></TR></TABLE>>, penwidth=0 ];
+	pod_milvus_pulsar_bookie_0 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pod-128.png" /></TD></TR><TR><TD>milvus-pulsar-bookie-0</TD></TR></TABLE>>, penwidth=0 ];
+	pod_milvus_pulsar_bookie_1 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pod-128.png" /></TD></TR><TR><TD>milvus-pulsar-bookie-1</TD></TR></TABLE>>, penwidth=0 ];
+	pod_milvus_pulsar_bookie_2 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pod-128.png" /></TD></TR><TR><TD>milvus-pulsar-bookie-2</TD></TR></TABLE>>, penwidth=0 ];
+	pod_milvus_pulsar_broker_0 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pod-128.png" /></TD></TR><TR><TD>milvus-pulsar-broker-0</TD></TR></TABLE>>, penwidth=0 ];
+	pod_milvus_pulsar_proxy_0 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pod-128.png" /></TD></TR><TR><TD>milvus-pulsar-proxy-0</TD></TR></TABLE>>, penwidth=0 ];
+	pod_milvus_pulsar_recovery_0 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pod-128.png" /></TD></TR><TR><TD>milvus-pulsar-recovery-0</TD></TR></TABLE>>, penwidth=0 ];
+	pod_milvus_pulsar_zookeeper_0 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pod-128.png" /></TD></TR><TR><TD>milvus-pulsar-zookeeper-0</TD></TR></TABLE>>, penwidth=0 ];
+	pod_milvus_pulsar_zookeeper_1 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pod-128.png" /></TD></TR><TR><TD>milvus-pulsar-zookeeper-1</TD></TR></TABLE>>, penwidth=0 ];
+	pod_milvus_pulsar_zookeeper_2 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pod-128.png" /></TD></TR><TR><TD>milvus-pulsar-zookeeper-2</TD></TR></TABLE>>, penwidth=0 ];
+	pod_milvus_querycoord_78bb7bfc_9lr6h [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pod-128.png" /></TD></TR><TR><TD>milvus-querycoord-78bb7bfc-9lr6h</TD></TR></TABLE>>, penwidth=0 ];
+	pod_milvus_querynode_598cc8698f_xmlpp [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pod-128.png" /></TD></TR><TR><TD>milvus-querynode-598cc8698f-xmlpp</TD></TR></TABLE>>, penwidth=0 ];
+	pod_milvus_rootcoord_548b8bdcf9_gn678 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pod-128.png" /></TD></TR><TR><TD>milvus-rootcoord-548b8bdcf9-gn678</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_4 {
+	rank=same;
+	style=invis;
+	4 [ height=0, margin=0, style=invis, width=0 ];
+	pvc_data_milvus_etcd_0 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pvc-128.png" /></TD></TR><TR><TD>data-milvus-etcd-0</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_data_milvus_etcd_1 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pvc-128.png" /></TD></TR><TR><TD>data-milvus-etcd-1</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_data_milvus_etcd_2 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pvc-128.png" /></TD></TR><TR><TD>data-milvus-etcd-2</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_export_milvus_minio_0 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pvc-128.png" /></TD></TR><TR><TD>export-milvus-minio-0</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_export_milvus_minio_1 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pvc-128.png" /></TD></TR><TR><TD>export-milvus-minio-1</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_export_milvus_minio_2 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pvc-128.png" /></TD></TR><TR><TD>export-milvus-minio-2</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_export_milvus_minio_3 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pvc-128.png" /></TD></TR><TR><TD>export-milvus-minio-3</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_milvus_pulsar_bookie_journal_milvus_pulsar_bookie_0 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pvc-128.png" /></TD></TR><TR><TD>milvus-pulsar-bookie-journal-milvus-pulsar-bookie-0</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_milvus_pulsar_bookie_journal_milvus_pulsar_bookie_1 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pvc-128.png" /></TD></TR><TR><TD>milvus-pulsar-bookie-journal-milvus-pulsar-bookie-1</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_milvus_pulsar_bookie_journal_milvus_pulsar_bookie_2 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pvc-128.png" /></TD></TR><TR><TD>milvus-pulsar-bookie-journal-milvus-pulsar-bookie-2</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_milvus_pulsar_bookie_ledgers_milvus_pulsar_bookie_0 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pvc-128.png" /></TD></TR><TR><TD>milvus-pulsar-bookie-ledgers-milvus-pulsar-bookie-0</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_milvus_pulsar_bookie_ledgers_milvus_pulsar_bookie_1 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pvc-128.png" /></TD></TR><TR><TD>milvus-pulsar-bookie-ledgers-milvus-pulsar-bookie-1</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_milvus_pulsar_bookie_ledgers_milvus_pulsar_bookie_2 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pvc-128.png" /></TD></TR><TR><TD>milvus-pulsar-bookie-ledgers-milvus-pulsar-bookie-2</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_milvus_pulsar_zookeeper_data_milvus_pulsar_zookeeper_0 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pvc-128.png" /></TD></TR><TR><TD>milvus-pulsar-zookeeper-data-milvus-pulsar-zookeeper-0</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_milvus_pulsar_zookeeper_data_milvus_pulsar_zookeeper_1 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pvc-128.png" /></TD></TR><TR><TD>milvus-pulsar-zookeeper-data-milvus-pulsar-zookeeper-1</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_milvus_pulsar_zookeeper_data_milvus_pulsar_zookeeper_2 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pvc-128.png" /></TD></TR><TR><TD>milvus-pulsar-zookeeper-data-milvus-pulsar-zookeeper-2</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_5 {
+	rank=same;
+	style=invis;
+	5 [ height=0, margin=0, style=invis, width=0 ];
+	svc_milvus [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/svc-128.png" /></TD></TR><TR><TD>milvus</TD></TR></TABLE>>, penwidth=0 ];
+	svc_milvus_attu [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/svc-128.png" /></TD></TR><TR><TD>milvus-attu</TD></TR></TABLE>>, penwidth=0 ];
+	svc_milvus_datacoord [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/svc-128.png" /></TD></TR><TR><TD>milvus-datacoord</TD></TR></TABLE>>, penwidth=0 ];
+	svc_milvus_datanode [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/svc-128.png" /></TD></TR><TR><TD>milvus-datanode</TD></TR></TABLE>>, penwidth=0 ];
+	svc_milvus_etcd [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/svc-128.png" /></TD></TR><TR><TD>milvus-etcd</TD></TR></TABLE>>, penwidth=0 ];
+	svc_milvus_etcd_headless [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/svc-128.png" /></TD></TR><TR><TD>milvus-etcd-headless</TD></TR></TABLE>>, penwidth=0 ];
+	svc_milvus_indexcoord [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/svc-128.png" /></TD></TR><TR><TD>milvus-indexcoord</TD></TR></TABLE>>, penwidth=0 ];
+	svc_milvus_indexnode [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/svc-128.png" /></TD></TR><TR><TD>milvus-indexnode</TD></TR></TABLE>>, penwidth=0 ];
+	svc_milvus_minio [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/svc-128.png" /></TD></TR><TR><TD>milvus-minio</TD></TR></TABLE>>, penwidth=0 ];
+	svc_milvus_minio_svc [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/svc-128.png" /></TD></TR><TR><TD>milvus-minio-svc</TD></TR></TABLE>>, penwidth=0 ];
+	svc_milvus_pulsar_bookie [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/svc-128.png" /></TD></TR><TR><TD>milvus-pulsar-bookie</TD></TR></TABLE>>, penwidth=0 ];
+	svc_milvus_pulsar_broker [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/svc-128.png" /></TD></TR><TR><TD>milvus-pulsar-broker</TD></TR></TABLE>>, penwidth=0 ];
+	svc_milvus_pulsar_proxy [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/svc-128.png" /></TD></TR><TR><TD>milvus-pulsar-proxy</TD></TR></TABLE>>, penwidth=0 ];
+	svc_milvus_pulsar_recovery [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/svc-128.png" /></TD></TR><TR><TD>milvus-pulsar-recovery</TD></TR></TABLE>>, penwidth=0 ];
+	svc_milvus_pulsar_zookeeper [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/svc-128.png" /></TD></TR><TR><TD>milvus-pulsar-zookeeper</TD></TR></TABLE>>, penwidth=0 ];
+	svc_milvus_querycoord [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/svc-128.png" /></TD></TR><TR><TD>milvus-querycoord</TD></TR></TABLE>>, penwidth=0 ];
+	svc_milvus_querynode [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/svc-128.png" /></TD></TR><TR><TD>milvus-querynode</TD></TR></TABLE>>, penwidth=0 ];
+	svc_milvus_rootcoord [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/svc-128.png" /></TD></TR><TR><TD>milvus-rootcoord</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_6 {
+	rank=same;
+	style=invis;
+	6 [ height=0, margin=0, style=invis, width=0 ];
+	ing_milvus_attu [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/ing-128.png" /></TD></TR><TR><TD>milvus-attu</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+
+}
+;
+
+}

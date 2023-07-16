@@ -1,0 +1,73 @@
+digraph G {
+	rankdir=TD;
+	0->1[ style=invis ];
+	1->2[ style=invis ];
+	2->3[ style=invis ];
+	3->4[ style=invis ];
+	4->5[ style=invis ];
+	5->6[ style=invis ];
+	rs_llama_api_8b9b6c696->pod_llama_api_8b9b6c696_mwnrq[ style=dashed ];
+	deploy_llama_api->rs_llama_api_8b9b6c696[ style=dashed ];
+	pod_llama_api_8b9b6c696_mwnrq->svc_llama_api[ dir=back ];
+	subgraph cluster_llama_api {
+	label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/ns-128.png" /></TD></TR><TR><TD>llama-api</TD></TR></TABLE>>;
+	labeljust=l;
+	style=dotted;
+	subgraph rank_0 {
+	rank=same;
+	style=invis;
+	0 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_1 {
+	rank=same;
+	style=invis;
+	1 [ height=0, margin=0, style=invis, width=0 ];
+	deploy_llama_api [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/deploy-128.png" /></TD></TR><TR><TD>llama-api</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_2 {
+	rank=same;
+	style=invis;
+	2 [ height=0, margin=0, style=invis, width=0 ];
+	rs_llama_api_8b9b6c696 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/rs-128.png" /></TD></TR><TR><TD>llama-api-8b9b6c696</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_3 {
+	rank=same;
+	style=invis;
+	3 [ height=0, margin=0, style=invis, width=0 ];
+	pod_llama_api_8b9b6c696_mwnrq [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pod-128.png" /></TD></TR><TR><TD>llama-api-8b9b6c696-mwnrq</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_4 {
+	rank=same;
+	style=invis;
+	4 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_5 {
+	rank=same;
+	style=invis;
+	5 [ height=0, margin=0, style=invis, width=0 ];
+	svc_llama_api [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/svc-128.png" /></TD></TR><TR><TD>llama-api</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_6 {
+	rank=same;
+	style=invis;
+	6 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+
+}
+;
+
+}

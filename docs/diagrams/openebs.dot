@@ -1,0 +1,151 @@
+digraph G {
+	rankdir=TD;
+	0->1[ style=invis ];
+	1->2[ style=invis ];
+	2->3[ style=invis ];
+	3->4[ style=invis ];
+	4->5[ style=invis ];
+	5->6[ style=invis ];
+	ds_openebs_ndm->pod_openebs_ndm_jcwnp[ style=dashed ];
+	rs_openebs_jiva_operator_7789b57bd9->pod_openebs_jiva_operator_7789b57bd9_2ns8z[ style=dashed ];
+	ds_openebs_jiva_csi_node->pod_openebs_jiva_csi_node_k4m92[ style=dashed ];
+	ds_openebs_cstor_csi_node->pod_openebs_cstor_csi_node_t9bdw[ style=dashed ];
+	ds_openebs_ndm->pod_openebs_ndm_8gnm8[ style=dashed ];
+	ds_openebs_jiva_csi_node->pod_openebs_jiva_csi_node_27k6t[ style=dashed ];
+	ds_openebs_cstor_csi_node->pod_openebs_cstor_csi_node_zvw6b[ style=dashed ];
+	rs_openebs_ndm_operator_fb94d6fb6->pod_openebs_ndm_operator_fb94d6fb6_t2bvl[ style=dashed ];
+	ds_openebs_jiva_csi_node->pod_openebs_jiva_csi_node_fjrct[ style=dashed ];
+	ds_openebs_cstor_csi_node->pod_openebs_cstor_csi_node_jlgfj[ style=dashed ];
+	ds_openebs_ndm->pod_openebs_ndm_q58km[ style=dashed ];
+	ds_openebs_cstor_csi_node->pod_openebs_cstor_csi_node_857v9[ style=dashed ];
+	ds_openebs_ndm->pod_openebs_ndm_tw2nm[ style=dashed ];
+	ds_openebs_jiva_csi_node->pod_openebs_jiva_csi_node_476n2[ style=dashed ];
+	ds_openebs_cstor_csi_node->pod_openebs_cstor_csi_node_v6prt[ style=dashed ];
+	ds_openebs_ndm->pod_openebs_ndm_2k2rl[ style=dashed ];
+	ds_openebs_jiva_csi_node->pod_openebs_jiva_csi_node_88jwv[ style=dashed ];
+	rs_openebs_localpv_provisioner_7b8c84f8df->pod_openebs_localpv_provisioner_7b8c84f8df_mxptr[ style=dashed ];
+	rs_openebs_cstor_admission_server_56bdf9b49b->pod_openebs_cstor_admission_server_56bdf9b49b_bkn6k[ style=dashed ];
+	rs_openebs_cstor_cspc_operator_778ddcb648->pod_openebs_cstor_cspc_operator_778ddcb648_f49js[ style=dashed ];
+	ds_openebs_ndm->pod_openebs_ndm_np8bs[ style=dashed ];
+	ds_openebs_cstor_csi_node->pod_openebs_cstor_csi_node_lph78[ style=dashed ];
+	ds_openebs_jiva_csi_node->pod_openebs_jiva_csi_node_f8mgj[ style=dashed ];
+	sts_openebs_jiva_csi_controller->pod_openebs_jiva_csi_controller_0[ style=dashed ];
+	rs_openebs_cstor_cvc_operator_578f74fd85->pod_openebs_cstor_cvc_operator_578f74fd85_l2d7z[ style=dashed ];
+	ds_openebs_cstor_csi_node->pod_openebs_cstor_csi_node_vkv87[ style=dashed ];
+	ds_openebs_ndm->pod_openebs_ndm_pw6rr[ style=dashed ];
+	ds_openebs_jiva_csi_node->pod_openebs_jiva_csi_node_nzdth[ style=dashed ];
+	sts_openebs_cstor_csi_controller->pod_openebs_cstor_csi_controller_0[ style=dashed ];
+	deploy_openebs_ndm_operator->rs_openebs_ndm_operator_fb94d6fb6[ style=dashed ];
+	deploy_openebs_jiva_operator->rs_openebs_jiva_operator_7789b57bd9[ style=dashed ];
+	deploy_openebs_localpv_provisioner->rs_openebs_localpv_provisioner_7b8c84f8df[ style=dashed ];
+	deploy_openebs_cstor_admission_server->rs_openebs_cstor_admission_server_56bdf9b49b[ style=dashed ];
+	deploy_openebs_cstor_cspc_operator->rs_openebs_cstor_cspc_operator_778ddcb648[ style=dashed ];
+	deploy_openebs_cstor_cvc_operator->rs_openebs_cstor_cvc_operator_578f74fd85[ style=dashed ];
+	pod_openebs_cstor_cvc_operator_578f74fd85_l2d7z->svc_openebs_cstor_cvc_operator_svc[ dir=back ];
+	pod_openebs_cstor_admission_server_56bdf9b49b_bkn6k->svc_openebs_cstor_admission_server[ dir=back ];
+	subgraph cluster_openebs {
+	label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/ns-128.png" /></TD></TR><TR><TD>openebs</TD></TR></TABLE>>;
+	labeljust=l;
+	style=dotted;
+	subgraph rank_0 {
+	rank=same;
+	style=invis;
+	0 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_1 {
+	rank=same;
+	style=invis;
+	1 [ height=0, margin=0, style=invis, width=0 ];
+	deploy_openebs_cstor_admission_server [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>openebs-cstor-admission-server</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_openebs_cstor_cspc_operator [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>openebs-cstor-cspc-operator</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_openebs_cstor_cvc_operator [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>openebs-cstor-cvc-operator</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_openebs_jiva_operator [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>openebs-jiva-operator</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_openebs_localpv_provisioner [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>openebs-localpv-provisioner</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_openebs_ndm_operator [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>openebs-ndm-operator</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_2 {
+	rank=same;
+	style=invis;
+	2 [ height=0, margin=0, style=invis, width=0 ];
+	ds_openebs_cstor_csi_node [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/ds-128.png" /></TD></TR><TR><TD>openebs-cstor-csi-node</TD></TR></TABLE>>, penwidth=0 ];
+	ds_openebs_jiva_csi_node [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/ds-128.png" /></TD></TR><TR><TD>openebs-jiva-csi-node</TD></TR></TABLE>>, penwidth=0 ];
+	ds_openebs_ndm [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/ds-128.png" /></TD></TR><TR><TD>openebs-ndm</TD></TR></TABLE>>, penwidth=0 ];
+	rs_openebs_cstor_admission_server_56bdf9b49b [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>openebs-cstor-admission-server-56bdf9b49b</TD></TR></TABLE>>, penwidth=0 ];
+	rs_openebs_cstor_cspc_operator_778ddcb648 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>openebs-cstor-cspc-operator-778ddcb648</TD></TR></TABLE>>, penwidth=0 ];
+	rs_openebs_cstor_cvc_operator_578f74fd85 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>openebs-cstor-cvc-operator-578f74fd85</TD></TR></TABLE>>, penwidth=0 ];
+	rs_openebs_jiva_operator_7789b57bd9 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>openebs-jiva-operator-7789b57bd9</TD></TR></TABLE>>, penwidth=0 ];
+	rs_openebs_localpv_provisioner_7b8c84f8df [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>openebs-localpv-provisioner-7b8c84f8df</TD></TR></TABLE>>, penwidth=0 ];
+	rs_openebs_ndm_operator_fb94d6fb6 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>openebs-ndm-operator-fb94d6fb6</TD></TR></TABLE>>, penwidth=0 ];
+	sts_openebs_cstor_csi_controller [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/sts-128.png" /></TD></TR><TR><TD>openebs-cstor-csi-controller</TD></TR></TABLE>>, penwidth=0 ];
+	sts_openebs_jiva_csi_controller [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/sts-128.png" /></TD></TR><TR><TD>openebs-jiva-csi-controller</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_3 {
+	rank=same;
+	style=invis;
+	3 [ height=0, margin=0, style=invis, width=0 ];
+	pod_openebs_cstor_admission_server_56bdf9b49b_bkn6k [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>openebs-cstor-admission-server-56bdf9b49b-bkn6k</TD></TR></TABLE>>, penwidth=0 ];
+	pod_openebs_cstor_csi_controller_0 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>openebs-cstor-csi-controller-0</TD></TR></TABLE>>, penwidth=0 ];
+	pod_openebs_cstor_csi_node_857v9 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>openebs-cstor-csi-node-857v9</TD></TR></TABLE>>, penwidth=0 ];
+	pod_openebs_cstor_csi_node_jlgfj [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>openebs-cstor-csi-node-jlgfj</TD></TR></TABLE>>, penwidth=0 ];
+	pod_openebs_cstor_csi_node_lph78 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>openebs-cstor-csi-node-lph78</TD></TR></TABLE>>, penwidth=0 ];
+	pod_openebs_cstor_csi_node_t9bdw [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>openebs-cstor-csi-node-t9bdw</TD></TR></TABLE>>, penwidth=0 ];
+	pod_openebs_cstor_csi_node_v6prt [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>openebs-cstor-csi-node-v6prt</TD></TR></TABLE>>, penwidth=0 ];
+	pod_openebs_cstor_csi_node_vkv87 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>openebs-cstor-csi-node-vkv87</TD></TR></TABLE>>, penwidth=0 ];
+	pod_openebs_cstor_csi_node_zvw6b [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>openebs-cstor-csi-node-zvw6b</TD></TR></TABLE>>, penwidth=0 ];
+	pod_openebs_cstor_cspc_operator_778ddcb648_f49js [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>openebs-cstor-cspc-operator-778ddcb648-f49js</TD></TR></TABLE>>, penwidth=0 ];
+	pod_openebs_cstor_cvc_operator_578f74fd85_l2d7z [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>openebs-cstor-cvc-operator-578f74fd85-l2d7z</TD></TR></TABLE>>, penwidth=0 ];
+	pod_openebs_jiva_csi_controller_0 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>openebs-jiva-csi-controller-0</TD></TR></TABLE>>, penwidth=0 ];
+	pod_openebs_jiva_csi_node_27k6t [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>openebs-jiva-csi-node-27k6t</TD></TR></TABLE>>, penwidth=0 ];
+	pod_openebs_jiva_csi_node_476n2 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>openebs-jiva-csi-node-476n2</TD></TR></TABLE>>, penwidth=0 ];
+	pod_openebs_jiva_csi_node_88jwv [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>openebs-jiva-csi-node-88jwv</TD></TR></TABLE>>, penwidth=0 ];
+	pod_openebs_jiva_csi_node_f8mgj [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>openebs-jiva-csi-node-f8mgj</TD></TR></TABLE>>, penwidth=0 ];
+	pod_openebs_jiva_csi_node_fjrct [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>openebs-jiva-csi-node-fjrct</TD></TR></TABLE>>, penwidth=0 ];
+	pod_openebs_jiva_csi_node_k4m92 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>openebs-jiva-csi-node-k4m92</TD></TR></TABLE>>, penwidth=0 ];
+	pod_openebs_jiva_csi_node_nzdth [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>openebs-jiva-csi-node-nzdth</TD></TR></TABLE>>, penwidth=0 ];
+	pod_openebs_jiva_operator_7789b57bd9_2ns8z [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>openebs-jiva-operator-7789b57bd9-2ns8z</TD></TR></TABLE>>, penwidth=0 ];
+	pod_openebs_localpv_provisioner_7b8c84f8df_mxptr [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>openebs-localpv-provisioner-7b8c84f8df-mxptr</TD></TR></TABLE>>, penwidth=0 ];
+	pod_openebs_ndm_2k2rl [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>openebs-ndm-2k2rl</TD></TR></TABLE>>, penwidth=0 ];
+	pod_openebs_ndm_8gnm8 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>openebs-ndm-8gnm8</TD></TR></TABLE>>, penwidth=0 ];
+	pod_openebs_ndm_jcwnp [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>openebs-ndm-jcwnp</TD></TR></TABLE>>, penwidth=0 ];
+	pod_openebs_ndm_np8bs [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>openebs-ndm-np8bs</TD></TR></TABLE>>, penwidth=0 ];
+	pod_openebs_ndm_operator_fb94d6fb6_t2bvl [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>openebs-ndm-operator-fb94d6fb6-t2bvl</TD></TR></TABLE>>, penwidth=0 ];
+	pod_openebs_ndm_pw6rr [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>openebs-ndm-pw6rr</TD></TR></TABLE>>, penwidth=0 ];
+	pod_openebs_ndm_q58km [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>openebs-ndm-q58km</TD></TR></TABLE>>, penwidth=0 ];
+	pod_openebs_ndm_tw2nm [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>openebs-ndm-tw2nm</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_4 {
+	rank=same;
+	style=invis;
+	4 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_5 {
+	rank=same;
+	style=invis;
+	5 [ height=0, margin=0, style=invis, width=0 ];
+	svc_openebs_cstor_admission_server [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>openebs-cstor-admission-server</TD></TR></TABLE>>, penwidth=0 ];
+	svc_openebs_cstor_cvc_operator_svc [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>openebs-cstor-cvc-operator-svc</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_6 {
+	rank=same;
+	style=invis;
+	6 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+
+}
+;
+
+}

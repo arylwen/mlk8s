@@ -1,0 +1,101 @@
+digraph G {
+	rankdir=TD;
+	0->1[ style=invis ];
+	1->2[ style=invis ];
+	2->3[ style=invis ];
+	3->4[ style=invis ];
+	4->5[ style=invis ];
+	5->6[ style=invis ];
+	rs_queue_worker_7994fb79f->pod_queue_worker_7994fb79f_f6279[ style=dashed ];
+	rs_nats_746947456b->pod_nats_746947456b_t4h8d[ style=dashed ];
+	rs_prometheus_69b4bc74dc->pod_prometheus_69b4bc74dc_7jv8v[ style=dashed ];
+	rs_alertmanager_6b77689495->pod_alertmanager_6b77689495_rrk9t[ style=dashed ];
+	rs_gateway_6dc7599895->pod_gateway_6dc7599895_kztx2[ style=dashed ];
+	deploy_queue_worker->rs_queue_worker_7994fb79f[ style=dashed ];
+	deploy_gateway->rs_gateway_6dc7599895[ style=dashed ];
+	deploy_alertmanager->rs_alertmanager_6b77689495[ style=dashed ];
+	deploy_nats->rs_nats_746947456b[ style=dashed ];
+	deploy_prometheus->rs_prometheus_69b4bc74dc[ style=dashed ];
+	pod_nats_746947456b_t4h8d->svc_nats[ dir=back ];
+	pod_gateway_6dc7599895_kztx2->svc_gateway[ dir=back ];
+	pod_gateway_6dc7599895_kztx2->svc_gateway_external[ dir=back ];
+	pod_prometheus_69b4bc74dc_7jv8v->svc_prometheus[ dir=back ];
+	pod_alertmanager_6b77689495_rrk9t->svc_alertmanager[ dir=back ];
+	subgraph cluster_openfaas {
+	label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/ns-128.png" /></TD></TR><TR><TD>openfaas</TD></TR></TABLE>>;
+	labeljust=l;
+	style=dotted;
+	subgraph rank_0 {
+	rank=same;
+	style=invis;
+	0 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_1 {
+	rank=same;
+	style=invis;
+	1 [ height=0, margin=0, style=invis, width=0 ];
+	deploy_alertmanager [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>alertmanager</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_gateway [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>gateway</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_nats [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>nats</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_prometheus [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>prometheus</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_queue_worker [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>queue-worker</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_2 {
+	rank=same;
+	style=invis;
+	2 [ height=0, margin=0, style=invis, width=0 ];
+	rs_alertmanager_6b77689495 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>alertmanager-6b77689495</TD></TR></TABLE>>, penwidth=0 ];
+	rs_gateway_6dc7599895 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>gateway-6dc7599895</TD></TR></TABLE>>, penwidth=0 ];
+	rs_nats_746947456b [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>nats-746947456b</TD></TR></TABLE>>, penwidth=0 ];
+	rs_prometheus_69b4bc74dc [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>prometheus-69b4bc74dc</TD></TR></TABLE>>, penwidth=0 ];
+	rs_queue_worker_7994fb79f [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>queue-worker-7994fb79f</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_3 {
+	rank=same;
+	style=invis;
+	3 [ height=0, margin=0, style=invis, width=0 ];
+	pod_alertmanager_6b77689495_rrk9t [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>alertmanager-6b77689495-rrk9t</TD></TR></TABLE>>, penwidth=0 ];
+	pod_gateway_6dc7599895_kztx2 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>gateway-6dc7599895-kztx2</TD></TR></TABLE>>, penwidth=0 ];
+	pod_nats_746947456b_t4h8d [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>nats-746947456b-t4h8d</TD></TR></TABLE>>, penwidth=0 ];
+	pod_prometheus_69b4bc74dc_7jv8v [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>prometheus-69b4bc74dc-7jv8v</TD></TR></TABLE>>, penwidth=0 ];
+	pod_queue_worker_7994fb79f_f6279 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>queue-worker-7994fb79f-f6279</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_4 {
+	rank=same;
+	style=invis;
+	4 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_5 {
+	rank=same;
+	style=invis;
+	5 [ height=0, margin=0, style=invis, width=0 ];
+	svc_alertmanager [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>alertmanager</TD></TR></TABLE>>, penwidth=0 ];
+	svc_gateway [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>gateway</TD></TR></TABLE>>, penwidth=0 ];
+	svc_gateway_external [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>gateway-external</TD></TR></TABLE>>, penwidth=0 ];
+	svc_nats [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>nats</TD></TR></TABLE>>, penwidth=0 ];
+	svc_prometheus [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>prometheus</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_6 {
+	rank=same;
+	style=invis;
+	6 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+
+}
+;
+
+}

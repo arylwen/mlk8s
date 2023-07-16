@@ -1,0 +1,83 @@
+digraph G {
+	rankdir=TD;
+	0->1[ style=invis ];
+	1->2[ style=invis ];
+	2->3[ style=invis ];
+	3->4[ style=invis ];
+	4->5[ style=invis ];
+	5->6[ style=invis ];
+	subgraph cluster_default {
+	label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/ns-128.png" /></TD></TR><TR><TD>default</TD></TR></TABLE>>;
+	labeljust=l;
+	style=dotted;
+	subgraph rank_0 {
+	rank=same;
+	style=invis;
+	0 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_1 {
+	rank=same;
+	style=invis;
+	1 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_2 {
+	rank=same;
+	style=invis;
+	2 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_3 {
+	rank=same;
+	style=invis;
+	3 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_4 {
+	rank=same;
+	style=invis;
+	4 [ height=0, margin=0, style=invis, width=0 ];
+	pvc_data_milvus_etcd_0 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pvc-128.png" /></TD></TR><TR><TD>data-milvus-etcd-0</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_data_milvus_etcd_1 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pvc-128.png" /></TD></TR><TR><TD>data-milvus-etcd-1</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_data_milvus_etcd_2 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pvc-128.png" /></TD></TR><TR><TD>data-milvus-etcd-2</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_export_milvus_minio_0 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pvc-128.png" /></TD></TR><TR><TD>export-milvus-minio-0</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_export_milvus_minio_1 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pvc-128.png" /></TD></TR><TR><TD>export-milvus-minio-1</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_export_milvus_minio_2 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pvc-128.png" /></TD></TR><TR><TD>export-milvus-minio-2</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_export_milvus_minio_3 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pvc-128.png" /></TD></TR><TR><TD>export-milvus-minio-3</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_milvus_pulsar_bookie_journal_milvus_pulsar_bookie_0 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pvc-128.png" /></TD></TR><TR><TD>milvus-pulsar-bookie-journal-milvus-pulsar-bookie-0</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_milvus_pulsar_bookie_journal_milvus_pulsar_bookie_1 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pvc-128.png" /></TD></TR><TR><TD>milvus-pulsar-bookie-journal-milvus-pulsar-bookie-1</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_milvus_pulsar_bookie_journal_milvus_pulsar_bookie_2 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pvc-128.png" /></TD></TR><TR><TD>milvus-pulsar-bookie-journal-milvus-pulsar-bookie-2</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_milvus_pulsar_bookie_ledgers_milvus_pulsar_bookie_0 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pvc-128.png" /></TD></TR><TR><TD>milvus-pulsar-bookie-ledgers-milvus-pulsar-bookie-0</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_milvus_pulsar_bookie_ledgers_milvus_pulsar_bookie_1 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pvc-128.png" /></TD></TR><TR><TD>milvus-pulsar-bookie-ledgers-milvus-pulsar-bookie-1</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_milvus_pulsar_bookie_ledgers_milvus_pulsar_bookie_2 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pvc-128.png" /></TD></TR><TR><TD>milvus-pulsar-bookie-ledgers-milvus-pulsar-bookie-2</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_milvus_pulsar_zookeeper_data_milvus_pulsar_zookeeper_0 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pvc-128.png" /></TD></TR><TR><TD>milvus-pulsar-zookeeper-data-milvus-pulsar-zookeeper-0</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_milvus_pulsar_zookeeper_data_milvus_pulsar_zookeeper_1 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pvc-128.png" /></TD></TR><TR><TD>milvus-pulsar-zookeeper-data-milvus-pulsar-zookeeper-1</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_milvus_pulsar_zookeeper_data_milvus_pulsar_zookeeper_2 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pvc-128.png" /></TD></TR><TR><TD>milvus-pulsar-zookeeper-data-milvus-pulsar-zookeeper-2</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_5 {
+	rank=same;
+	style=invis;
+	5 [ height=0, margin=0, style=invis, width=0 ];
+	svc_kubernetes [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>kubernetes</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_6 {
+	rank=same;
+	style=invis;
+	6 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+
+}
+;
+
+}

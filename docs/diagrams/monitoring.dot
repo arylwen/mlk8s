@@ -1,0 +1,145 @@
+digraph G {
+	rankdir=TD;
+	0->1[ style=invis ];
+	1->2[ style=invis ];
+	2->3[ style=invis ];
+	3->4[ style=invis ];
+	4->5[ style=invis ];
+	5->6[ style=invis ];
+	ds_node_exporter->pod_node_exporter_h5rq5[ style=dashed ];
+	rs_prometheus_adapter_85455b9f55->pod_prometheus_adapter_85455b9f55_mqldb[ style=dashed ];
+	ds_node_exporter->pod_node_exporter_77qs8[ style=dashed ];
+	rs_blackbox_exporter_84c68b59b8->pod_blackbox_exporter_84c68b59b8_tnw8s[ style=dashed ];
+	ds_node_exporter->pod_node_exporter_bmchf[ style=dashed ];
+	ds_node_exporter->pod_node_exporter_99fqm[ style=dashed ];
+	sts_prometheus_k8s->pod_prometheus_k8s_0[ style=dashed ];
+	ds_node_exporter->pod_node_exporter_rlhg7[ style=dashed ];
+	rs_kube_state_metrics_55b87f58f6->pod_kube_state_metrics_55b87f58f6_m42dz[ style=dashed ];
+	rs_prometheus_adapter_85455b9f55->pod_prometheus_adapter_85455b9f55_cnhhc[ style=dashed ];
+	rs_grafana_789464df6b->pod_grafana_789464df6b_sc86q[ style=dashed ];
+	ds_node_exporter->pod_node_exporter_nlsxx[ style=dashed ];
+	sts_alertmanager_main->pod_alertmanager_main_0[ style=dashed ];
+	rs_prometheus_operator_65cdb77c59->pod_prometheus_operator_65cdb77c59_mxnnj[ style=dashed ];
+	ds_node_exporter->pod_node_exporter_ffcwn[ style=dashed ];
+	deploy_blackbox_exporter->rs_blackbox_exporter_84c68b59b8[ style=dashed ];
+	deploy_kube_state_metrics->rs_kube_state_metrics_55b87f58f6[ style=dashed ];
+	deploy_prometheus_adapter->rs_prometheus_adapter_85455b9f55[ style=dashed ];
+	deploy_grafana->rs_grafana_789464df6b[ style=dashed ];
+	deploy_prometheus_operator->rs_prometheus_operator_65cdb77c59[ style=dashed ];
+	pod_prometheus_operator_65cdb77c59_mxnnj->svc_prometheus_operator[ dir=back ];
+	pod_alertmanager_main_0->svc_alertmanager_main[ dir=back ];
+	pod_blackbox_exporter_84c68b59b8_tnw8s->svc_blackbox_exporter[ dir=back ];
+	pod_grafana_789464df6b_sc86q->svc_grafana[ dir=back ];
+	pod_kube_state_metrics_55b87f58f6_m42dz->svc_kube_state_metrics[ dir=back ];
+	pod_node_exporter_h5rq5->svc_node_exporter[ dir=back ];
+	pod_node_exporter_77qs8->svc_node_exporter[ dir=back ];
+	pod_node_exporter_bmchf->svc_node_exporter[ dir=back ];
+	pod_node_exporter_99fqm->svc_node_exporter[ dir=back ];
+	pod_node_exporter_rlhg7->svc_node_exporter[ dir=back ];
+	pod_node_exporter_nlsxx->svc_node_exporter[ dir=back ];
+	pod_node_exporter_ffcwn->svc_node_exporter[ dir=back ];
+	pod_prometheus_adapter_85455b9f55_mqldb->svc_prometheus_adapter[ dir=back ];
+	pod_prometheus_adapter_85455b9f55_cnhhc->svc_prometheus_adapter[ dir=back ];
+	pod_prometheus_k8s_0->svc_prometheus_k8s[ dir=back ];
+	pod_alertmanager_main_0->svc_alertmanager_operated[ dir=back ];
+	pod_prometheus_k8s_0->svc_prometheus_operated[ dir=back ];
+	svc_prometheus_k8s->ing_prometheus_ui[ dir=back ];
+	svc_grafana->ing_grafana_ui[ dir=back ];
+	subgraph cluster_monitoring {
+	label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/ns-128.png" /></TD></TR><TR><TD>monitoring</TD></TR></TABLE>>;
+	labeljust=l;
+	style=dotted;
+	subgraph rank_0 {
+	rank=same;
+	style=invis;
+	0 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_1 {
+	rank=same;
+	style=invis;
+	1 [ height=0, margin=0, style=invis, width=0 ];
+	deploy_blackbox_exporter [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>blackbox-exporter</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_grafana [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>grafana</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_kube_state_metrics [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>kube-state-metrics</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_prometheus_adapter [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>prometheus-adapter</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_prometheus_operator [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>prometheus-operator</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_2 {
+	rank=same;
+	style=invis;
+	2 [ height=0, margin=0, style=invis, width=0 ];
+	ds_node_exporter [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/ds-128.png" /></TD></TR><TR><TD>node-exporter</TD></TR></TABLE>>, penwidth=0 ];
+	rs_blackbox_exporter_84c68b59b8 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>blackbox-exporter-84c68b59b8</TD></TR></TABLE>>, penwidth=0 ];
+	rs_grafana_789464df6b [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>grafana-789464df6b</TD></TR></TABLE>>, penwidth=0 ];
+	rs_kube_state_metrics_55b87f58f6 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>kube-state-metrics-55b87f58f6</TD></TR></TABLE>>, penwidth=0 ];
+	rs_prometheus_adapter_85455b9f55 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>prometheus-adapter-85455b9f55</TD></TR></TABLE>>, penwidth=0 ];
+	rs_prometheus_operator_65cdb77c59 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>prometheus-operator-65cdb77c59</TD></TR></TABLE>>, penwidth=0 ];
+	sts_alertmanager_main [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/sts-128.png" /></TD></TR><TR><TD>alertmanager-main</TD></TR></TABLE>>, penwidth=0 ];
+	sts_prometheus_k8s [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/sts-128.png" /></TD></TR><TR><TD>prometheus-k8s</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_3 {
+	rank=same;
+	style=invis;
+	3 [ height=0, margin=0, style=invis, width=0 ];
+	pod_alertmanager_main_0 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>alertmanager-main-0</TD></TR></TABLE>>, penwidth=0 ];
+	pod_blackbox_exporter_84c68b59b8_tnw8s [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>blackbox-exporter-84c68b59b8-tnw8s</TD></TR></TABLE>>, penwidth=0 ];
+	pod_grafana_789464df6b_sc86q [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>grafana-789464df6b-sc86q</TD></TR></TABLE>>, penwidth=0 ];
+	pod_kube_state_metrics_55b87f58f6_m42dz [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>kube-state-metrics-55b87f58f6-m42dz</TD></TR></TABLE>>, penwidth=0 ];
+	pod_node_exporter_77qs8 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>node-exporter-77qs8</TD></TR></TABLE>>, penwidth=0 ];
+	pod_node_exporter_99fqm [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>node-exporter-99fqm</TD></TR></TABLE>>, penwidth=0 ];
+	pod_node_exporter_bmchf [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>node-exporter-bmchf</TD></TR></TABLE>>, penwidth=0 ];
+	pod_node_exporter_ffcwn [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>node-exporter-ffcwn</TD></TR></TABLE>>, penwidth=0 ];
+	pod_node_exporter_h5rq5 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>node-exporter-h5rq5</TD></TR></TABLE>>, penwidth=0 ];
+	pod_node_exporter_nlsxx [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>node-exporter-nlsxx</TD></TR></TABLE>>, penwidth=0 ];
+	pod_node_exporter_rlhg7 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>node-exporter-rlhg7</TD></TR></TABLE>>, penwidth=0 ];
+	pod_prometheus_adapter_85455b9f55_cnhhc [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>prometheus-adapter-85455b9f55-cnhhc</TD></TR></TABLE>>, penwidth=0 ];
+	pod_prometheus_adapter_85455b9f55_mqldb [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>prometheus-adapter-85455b9f55-mqldb</TD></TR></TABLE>>, penwidth=0 ];
+	pod_prometheus_k8s_0 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>prometheus-k8s-0</TD></TR></TABLE>>, penwidth=0 ];
+	pod_prometheus_operator_65cdb77c59_mxnnj [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>prometheus-operator-65cdb77c59-mxnnj</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_4 {
+	rank=same;
+	style=invis;
+	4 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_5 {
+	rank=same;
+	style=invis;
+	5 [ height=0, margin=0, style=invis, width=0 ];
+	svc_alertmanager_main [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>alertmanager-main</TD></TR></TABLE>>, penwidth=0 ];
+	svc_alertmanager_operated [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>alertmanager-operated</TD></TR></TABLE>>, penwidth=0 ];
+	svc_blackbox_exporter [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>blackbox-exporter</TD></TR></TABLE>>, penwidth=0 ];
+	svc_grafana [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>grafana</TD></TR></TABLE>>, penwidth=0 ];
+	svc_kube_state_metrics [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>kube-state-metrics</TD></TR></TABLE>>, penwidth=0 ];
+	svc_node_exporter [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>node-exporter</TD></TR></TABLE>>, penwidth=0 ];
+	svc_prometheus_adapter [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>prometheus-adapter</TD></TR></TABLE>>, penwidth=0 ];
+	svc_prometheus_k8s [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>prometheus-k8s</TD></TR></TABLE>>, penwidth=0 ];
+	svc_prometheus_operated [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>prometheus-operated</TD></TR></TABLE>>, penwidth=0 ];
+	svc_prometheus_operator [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>prometheus-operator</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_6 {
+	rank=same;
+	style=invis;
+	6 [ height=0, margin=0, style=invis, width=0 ];
+	ing_grafana_ui [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/ing-128.png" /></TD></TR><TR><TD>grafana-ui</TD></TR></TABLE>>, penwidth=0 ];
+	ing_prometheus_ui [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/ing-128.png" /></TD></TR><TR><TD>prometheus-ui</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+
+}
+;
+
+}

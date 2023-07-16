@@ -1,0 +1,97 @@
+digraph G {
+	rankdir=TD;
+	0->1[ style=invis ];
+	1->2[ style=invis ];
+	2->3[ style=invis ];
+	3->4[ style=invis ];
+	4->5[ style=invis ];
+	5->6[ style=invis ];
+	rs_ml_pipeline_ui_artifact_5675b8f595->pod_ml_pipeline_ui_artifact_5675b8f595_npvfw[ style=dashed ];
+	rs_ml_pipeline_visualizationserver_5568776585->pod_ml_pipeline_visualizationserver_5568776585_cpvns[ style=dashed ];
+	deploy_ml_pipeline_ui_artifact->rs_ml_pipeline_ui_artifact_5675b8f595[ style=dashed ];
+	deploy_ml_pipeline_visualizationserver->rs_ml_pipeline_visualizationserver_5568776585[ style=dashed ];
+	pod_ml_pipeline_visualizationserver_5568776585_cpvns->svc_ml_pipeline_visualizationserver[ dir=back ];
+	pod_ml_pipeline_ui_artifact_5675b8f595_npvfw->svc_ml_pipeline_ui_artifact[ dir=back ];
+	subgraph cluster_admin {
+	label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/ns-128.png" /></TD></TR><TR><TD>admin</TD></TR></TABLE>>;
+	labeljust=l;
+	style=dotted;
+	subgraph rank_0 {
+	rank=same;
+	style=invis;
+	0 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_1 {
+	rank=same;
+	style=invis;
+	1 [ height=0, margin=0, style=invis, width=0 ];
+	deploy_ml_pipeline_ui_artifact [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/deploy-128.png" /></TD></TR><TR><TD>ml-pipeline-ui-artifact</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_ml_pipeline_visualizationserver [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/deploy-128.png" /></TD></TR><TR><TD>ml-pipeline-visualizationserver</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_2 {
+	rank=same;
+	style=invis;
+	2 [ height=0, margin=0, style=invis, width=0 ];
+	rs_ml_pipeline_ui_artifact_5675b8f595 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/rs-128.png" /></TD></TR><TR><TD>ml-pipeline-ui-artifact-5675b8f595</TD></TR></TABLE>>, penwidth=0 ];
+	rs_ml_pipeline_visualizationserver_5568776585 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/rs-128.png" /></TD></TR><TR><TD>ml-pipeline-visualizationserver-5568776585</TD></TR></TABLE>>, penwidth=0 ];
+	sts_llama [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/sts-128.png" /></TD></TR><TR><TD>llama</TD></TR></TABLE>>, penwidth=0 ];
+	sts_llama_pytorch [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/sts-128.png" /></TD></TR><TR><TD>llama-pytorch</TD></TR></TABLE>>, penwidth=0 ];
+	sts_rig2x [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/sts-128.png" /></TD></TR><TR><TD>rig2x</TD></TR></TABLE>>, penwidth=0 ];
+	sts_rig2x_proveit [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/sts-128.png" /></TD></TR><TR><TD>rig2x-proveit</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_3 {
+	rank=same;
+	style=invis;
+	3 [ height=0, margin=0, style=invis, width=0 ];
+	pod_ml_pipeline_ui_artifact_5675b8f595_npvfw [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/pod-128.png" /></TD></TR><TR><TD>ml-pipeline-ui-artifact-5675b8f595-npvfw</TD></TR></TABLE>>, penwidth=0 ];
+	pod_ml_pipeline_visualizationserver_5568776585_cpvns [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/pod-128.png" /></TD></TR><TR><TD>ml-pipeline-visualizationserver-5568776585-cpvns</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_4 {
+	rank=same;
+	style=invis;
+	4 [ height=0, margin=0, style=invis, width=0 ];
+	pvc_common [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/pvc-128.png" /></TD></TR><TR><TD>common</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_llama [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/pvc-128.png" /></TD></TR><TR><TD>llama</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_llama_pytorch_volume [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/pvc-128.png" /></TD></TR><TR><TD>llama-pytorch-volume</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_llama_volume [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/pvc-128.png" /></TD></TR><TR><TD>llama-volume</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_logs [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/pvc-128.png" /></TD></TR><TR><TD>logs</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_math [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/pvc-128.png" /></TD></TR><TR><TD>math</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_rig2x_logs [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/pvc-128.png" /></TD></TR><TR><TD>rig2x-logs</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_rig2x_proveit_volume [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/pvc-128.png" /></TD></TR><TR><TD>rig2x-proveit-volume</TD></TR></TABLE>>, penwidth=0 ];
+	pvc_rig2x_volume [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/pvc-128.png" /></TD></TR><TR><TD>rig2x-volume</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_5 {
+	rank=same;
+	style=invis;
+	5 [ height=0, margin=0, style=invis, width=0 ];
+	svc_llama [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/svc-128.png" /></TD></TR><TR><TD>llama</TD></TR></TABLE>>, penwidth=0 ];
+	svc_llama_pytorch [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/svc-128.png" /></TD></TR><TR><TD>llama-pytorch</TD></TR></TABLE>>, penwidth=0 ];
+	svc_ml_pipeline_ui_artifact [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/svc-128.png" /></TD></TR><TR><TD>ml-pipeline-ui-artifact</TD></TR></TABLE>>, penwidth=0 ];
+	svc_ml_pipeline_visualizationserver [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/svc-128.png" /></TD></TR><TR><TD>ml-pipeline-visualizationserver</TD></TR></TABLE>>, penwidth=0 ];
+	svc_rig2x [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/svc-128.png" /></TD></TR><TR><TD>rig2x</TD></TR></TABLE>>, penwidth=0 ];
+	svc_rig2x_proveit [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="./icons/svc-128.png" /></TD></TR><TR><TD>rig2x-proveit</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_6 {
+	rank=same;
+	style=invis;
+	6 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+
+}
+;
+
+}

@@ -1,0 +1,75 @@
+digraph G {
+	rankdir=TD;
+	0->1[ style=invis ];
+	1->2[ style=invis ];
+	2->3[ style=invis ];
+	3->4[ style=invis ];
+	4->5[ style=invis ];
+	5->6[ style=invis ];
+	rs_pgsql14_7449657995->pod_pgsql14_7449657995_nx8cw[ style=dashed ];
+	deploy_pgsql14->rs_pgsql14_7449657995[ style=dashed ];
+	pod_pgsql14_7449657995_nx8cw->pvc_pgsql14_volumeclaim[ dir=none ];
+	pod_pgsql14_7449657995_nx8cw->svc_pgsql14[ dir=back ];
+	subgraph cluster_pgsql {
+	label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/ns-128.png" /></TD></TR><TR><TD>pgsql</TD></TR></TABLE>>;
+	labeljust=l;
+	style=dotted;
+	subgraph rank_0 {
+	rank=same;
+	style=invis;
+	0 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_1 {
+	rank=same;
+	style=invis;
+	1 [ height=0, margin=0, style=invis, width=0 ];
+	deploy_pgsql14 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/deploy-128.png" /></TD></TR><TR><TD>pgsql14</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_2 {
+	rank=same;
+	style=invis;
+	2 [ height=0, margin=0, style=invis, width=0 ];
+	rs_pgsql14_7449657995 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/rs-128.png" /></TD></TR><TR><TD>pgsql14-7449657995</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_3 {
+	rank=same;
+	style=invis;
+	3 [ height=0, margin=0, style=invis, width=0 ];
+	pod_pgsql14_7449657995_nx8cw [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pod-128.png" /></TD></TR><TR><TD>pgsql14-7449657995-nx8cw</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_4 {
+	rank=same;
+	style=invis;
+	4 [ height=0, margin=0, style=invis, width=0 ];
+	pvc_pgsql14_volumeclaim [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pvc-128.png" /></TD></TR><TR><TD>pgsql14-volumeclaim</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_5 {
+	rank=same;
+	style=invis;
+	5 [ height=0, margin=0, style=invis, width=0 ];
+	svc_pgsql14 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/svc-128.png" /></TD></TR><TR><TD>pgsql14</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_6 {
+	rank=same;
+	style=invis;
+	6 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+
+}
+;
+
+}

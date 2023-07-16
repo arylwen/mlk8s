@@ -1,0 +1,122 @@
+digraph G {
+	rankdir=TD;
+	0->1[ style=invis ];
+	1->2[ style=invis ];
+	2->3[ style=invis ];
+	3->4[ style=invis ];
+	4->5[ style=invis ];
+	5->6[ style=invis ];
+	rs_dashboard_metrics_scraper_6b6f796c8d->pod_dashboard_metrics_scraper_6b6f796c8d_7qdff[ style=dashed ];
+	rs_kubernetes_dashboard_765646474b->pod_kubernetes_dashboard_765646474b_7f9c9[ style=dashed ];
+	rs_metrics_server_5f8f64cb86->pod_metrics_server_5f8f64cb86_gwth2[ style=dashed ];
+	ds_calico_node->pod_calico_node_vrnrm[ style=dashed ];
+	ds_calico_node->pod_calico_node_dxzrj[ style=dashed ];
+	ds_calico_node->pod_calico_node_gvsg6[ style=dashed ];
+	ds_calico_node->pod_calico_node_tdtc2[ style=dashed ];
+	rs_calico_kube_controllers_6777576dfd->pod_calico_kube_controllers_6777576dfd_rgzgv[ style=dashed ];
+	ds_calico_node->pod_calico_node_pt8z4[ style=dashed ];
+	ds_calico_node->pod_calico_node_dgkjg[ style=dashed ];
+	rs_coredns_66bcf65bb8->pod_coredns_66bcf65bb8_p55fx[ style=dashed ];
+	rs_hostpath_provisioner_78cb89d65b->pod_hostpath_provisioner_78cb89d65b_kjx2k[ style=dashed ];
+	ds_calico_node->pod_calico_node_lxljq[ style=dashed ];
+	deploy_dashboard_metrics_scraper->rs_dashboard_metrics_scraper_6b6f796c8d[ style=dashed ];
+	deploy_kubernetes_dashboard->rs_kubernetes_dashboard_765646474b[ style=dashed ];
+	deploy_metrics_server->rs_metrics_server_5f8f64cb86[ style=dashed ];
+	deploy_calico_kube_controllers->rs_calico_kube_controllers_6777576dfd[ style=dashed ];
+	deploy_coredns->rs_coredns_66bcf65bb8[ style=dashed ];
+	deploy_hostpath_provisioner->rs_hostpath_provisioner_78cb89d65b[ style=dashed ];
+	pod_coredns_66bcf65bb8_p55fx->svc_kube_dns[ dir=back ];
+	pod_metrics_server_5f8f64cb86_gwth2->svc_metrics_server[ dir=back ];
+	pod_kubernetes_dashboard_765646474b_7f9c9->svc_kubernetes_dashboard[ dir=back ];
+	pod_dashboard_metrics_scraper_6b6f796c8d_7qdff->svc_dashboard_metrics_scraper[ dir=back ];
+	svc_kubernetes_dashboard->ing_kubernetes_dashboard_ingress[ dir=back ];
+	subgraph cluster_kube_system {
+	label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/ns-128.png" /></TD></TR><TR><TD>kube-system</TD></TR></TABLE>>;
+	labeljust=l;
+	style=dotted;
+	subgraph rank_0 {
+	rank=same;
+	style=invis;
+	0 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_1 {
+	rank=same;
+	style=invis;
+	1 [ height=0, margin=0, style=invis, width=0 ];
+	deploy_calico_kube_controllers [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>calico-kube-controllers</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_coredns [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>coredns</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_dashboard_metrics_scraper [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>dashboard-metrics-scraper</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_hostpath_provisioner [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>hostpath-provisioner</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_kubernetes_dashboard [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>kubernetes-dashboard</TD></TR></TABLE>>, penwidth=0 ];
+	deploy_metrics_server [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/deploy-128.png" /></TD></TR><TR><TD>metrics-server</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_2 {
+	rank=same;
+	style=invis;
+	2 [ height=0, margin=0, style=invis, width=0 ];
+	ds_calico_node [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/ds-128.png" /></TD></TR><TR><TD>calico-node</TD></TR></TABLE>>, penwidth=0 ];
+	rs_calico_kube_controllers_6777576dfd [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>calico-kube-controllers-6777576dfd</TD></TR></TABLE>>, penwidth=0 ];
+	rs_coredns_66bcf65bb8 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>coredns-66bcf65bb8</TD></TR></TABLE>>, penwidth=0 ];
+	rs_dashboard_metrics_scraper_6b6f796c8d [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>dashboard-metrics-scraper-6b6f796c8d</TD></TR></TABLE>>, penwidth=0 ];
+	rs_hostpath_provisioner_78cb89d65b [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>hostpath-provisioner-78cb89d65b</TD></TR></TABLE>>, penwidth=0 ];
+	rs_kubernetes_dashboard_765646474b [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>kubernetes-dashboard-765646474b</TD></TR></TABLE>>, penwidth=0 ];
+	rs_metrics_server_5f8f64cb86 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/rs-128.png" /></TD></TR><TR><TD>metrics-server-5f8f64cb86</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_3 {
+	rank=same;
+	style=invis;
+	3 [ height=0, margin=0, style=invis, width=0 ];
+	pod_calico_kube_controllers_6777576dfd_rgzgv [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>calico-kube-controllers-6777576dfd-rgzgv</TD></TR></TABLE>>, penwidth=0 ];
+	pod_calico_node_dgkjg [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>calico-node-dgkjg</TD></TR></TABLE>>, penwidth=0 ];
+	pod_calico_node_dxzrj [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>calico-node-dxzrj</TD></TR></TABLE>>, penwidth=0 ];
+	pod_calico_node_gvsg6 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>calico-node-gvsg6</TD></TR></TABLE>>, penwidth=0 ];
+	pod_calico_node_lxljq [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>calico-node-lxljq</TD></TR></TABLE>>, penwidth=0 ];
+	pod_calico_node_pt8z4 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>calico-node-pt8z4</TD></TR></TABLE>>, penwidth=0 ];
+	pod_calico_node_tdtc2 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>calico-node-tdtc2</TD></TR></TABLE>>, penwidth=0 ];
+	pod_calico_node_vrnrm [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>calico-node-vrnrm</TD></TR></TABLE>>, penwidth=0 ];
+	pod_coredns_66bcf65bb8_p55fx [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>coredns-66bcf65bb8-p55fx</TD></TR></TABLE>>, penwidth=0 ];
+	pod_dashboard_metrics_scraper_6b6f796c8d_7qdff [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>dashboard-metrics-scraper-6b6f796c8d-7qdff</TD></TR></TABLE>>, penwidth=0 ];
+	pod_hostpath_provisioner_78cb89d65b_kjx2k [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>hostpath-provisioner-78cb89d65b-kjx2k</TD></TR></TABLE>>, penwidth=0 ];
+	pod_kubernetes_dashboard_765646474b_7f9c9 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>kubernetes-dashboard-765646474b-7f9c9</TD></TR></TABLE>>, penwidth=0 ];
+	pod_metrics_server_5f8f64cb86_gwth2 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/pod-128.png" /></TD></TR><TR><TD>metrics-server-5f8f64cb86-gwth2</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_4 {
+	rank=same;
+	style=invis;
+	4 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_5 {
+	rank=same;
+	style=invis;
+	5 [ height=0, margin=0, style=invis, width=0 ];
+	svc_dashboard_metrics_scraper [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>dashboard-metrics-scraper</TD></TR></TABLE>>, penwidth=0 ];
+	svc_kube_dns [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>kube-dns</TD></TR></TABLE>>, penwidth=0 ];
+	svc_kubelet [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>kubelet</TD></TR></TABLE>>, penwidth=0 ];
+	svc_kubernetes_dashboard [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>kubernetes-dashboard</TD></TR></TABLE>>, penwidth=0 ];
+	svc_metrics_server [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/svc-128.png" /></TD></TR><TR><TD>metrics-server</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_6 {
+	rank=same;
+	style=invis;
+	6 [ height=0, margin=0, style=invis, width=0 ];
+	ing_kubernetes_dashboard_ingress [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="/icons/ing-128.png" /></TD></TR><TR><TD>kubernetes-dashboard-ingress</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+
+}
+;
+
+}

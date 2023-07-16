@@ -1,0 +1,80 @@
+digraph G {
+	rankdir=TD;
+	0->1[ style=invis ];
+	1->2[ style=invis ];
+	2->3[ style=invis ];
+	3->4[ style=invis ];
+	4->5[ style=invis ];
+	5->6[ style=invis ];
+	rs_redis_commander_58998cf49->pod_redis_commander_58998cf49_s6p6t[ style=dashed ];
+	sts_redis->pod_redis_0[ style=dashed ];
+	deploy_redis_commander->rs_redis_commander_58998cf49[ style=dashed ];
+	pod_redis_0->svc_redis[ dir=back ];
+	pod_redis_commander_58998cf49_s6p6t->svc_redis_commander[ dir=back ];
+	svc_redis_commander->ing_redis_commander_ingress[ dir=back ];
+	subgraph cluster_redis {
+	label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/ns-128.png" /></TD></TR><TR><TD>redis</TD></TR></TABLE>>;
+	labeljust=l;
+	style=dotted;
+	subgraph rank_0 {
+	rank=same;
+	style=invis;
+	0 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_1 {
+	rank=same;
+	style=invis;
+	1 [ height=0, margin=0, style=invis, width=0 ];
+	deploy_redis_commander [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/deploy-128.png" /></TD></TR><TR><TD>redis-commander</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_2 {
+	rank=same;
+	style=invis;
+	2 [ height=0, margin=0, style=invis, width=0 ];
+	rs_redis_commander_58998cf49 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/rs-128.png" /></TD></TR><TR><TD>redis-commander-58998cf49</TD></TR></TABLE>>, penwidth=0 ];
+	sts_redis [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/sts-128.png" /></TD></TR><TR><TD>redis</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_3 {
+	rank=same;
+	style=invis;
+	3 [ height=0, margin=0, style=invis, width=0 ];
+	pod_redis_0 [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pod-128.png" /></TD></TR><TR><TD>redis-0</TD></TR></TABLE>>, penwidth=0 ];
+	pod_redis_commander_58998cf49_s6p6t [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/pod-128.png" /></TD></TR><TR><TD>redis-commander-58998cf49-s6p6t</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_4 {
+	rank=same;
+	style=invis;
+	4 [ height=0, margin=0, style=invis, width=0 ];
+
+}
+;
+	subgraph rank_5 {
+	rank=same;
+	style=invis;
+	5 [ height=0, margin=0, style=invis, width=0 ];
+	svc_redis [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/svc-128.png" /></TD></TR><TR><TD>redis</TD></TR></TABLE>>, penwidth=0 ];
+	svc_redis_commander [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/svc-128.png" /></TD></TR><TR><TD>redis-commander</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+	subgraph rank_6 {
+	rank=same;
+	style=invis;
+	6 [ height=0, margin=0, style=invis, width=0 ];
+	ing_redis_commander_ingress [ label=<<TABLE BORDER="0"><TR><TD><IMG SRC="icons/ing-128.png" /></TD></TR><TR><TD>redis-commander-ingress</TD></TR></TABLE>>, penwidth=0 ];
+
+}
+;
+
+}
+;
+
+}
