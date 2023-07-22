@@ -42,11 +42,14 @@ class KronKnowledgeGraphIndex(KnowledgeGraphIndex):
 
     @staticmethod
     def _kron_parse_triplet_response(response: str) -> List[Tuple[str, str, str]]:
+        print("_kron_parse_triplet_response")
         knowledge_strs = response.strip().split("\n")
         results = []
         for text in knowledge_strs:
             text = text.strip()   #triples might not start at the begining of the line
-            text = text.replace('<|endoftext|>', '')
+            #text = text.replace('<|endoftext|>', '')
+            #useful triplets are before <|endoftext|>
+            text = text.split("<|endoftext|>")[0]
             if text == "" or text[0] != "(":
                 # skip empty lines and non-triplets
                 continue
