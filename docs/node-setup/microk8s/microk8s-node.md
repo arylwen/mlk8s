@@ -1,5 +1,7 @@
 # microk8s node prep
 
+#### <div style="text-align: left"> <a href="node-setup.md"><b>back to k8s cluster setup</b></a> <br/></div>
+
 microk8s starts with one node. You can probably run the whole cluster on one machine, given enough hardware for your application. Ideally, set up a high availability (HA) cluster with 3 master nodes. Configure the ML nodes as worker nodes. ML processing is resource intensive and consumer hardware tends to crash under load. The HA mode would preserve the state of the cluster and help with its stability.
 
 ## data folder

@@ -62,6 +62,23 @@ mv OpenLens-6.5.2-366.x86_64.AppImage ~/.local/share/applications/
 ```
 
 ## create desktop shortcut
+```
+cd ~/.local/share/applications/
+nano OpenLens.desktop
+```
+
+Paste the contents below and save. You should be able to find OpenLens in "Show Applications" and add it to favorites/dock.
+```
+[Desktop Entry]
+Name=OpenLens
+Comment=Working with k8s has never been so easy and convenient.
+Exec="/home/mlk8s/.local/share/applications/OpenLens-6.5.2-366.x86_64.AppImage" %U
+Terminal=false
+Type=Application
+Icon=/home/mlk8s/.local/share/applications/lens-logo-icon.svg
+Categories=Development;
+TryExec=/home/mlk8s/.local/share/applications/OpenLens-6.5.2-366.x86_64.AppImage
+```
 
 ## node and pod menu
 
@@ -72,7 +89,7 @@ Navigate to hamburger menu->extensions. In the extensions box enter:
 
 https://github.com/alebcay/openlens-node-pod-menu
 
-## lens resource mape
+## lens resource map
 
 Navigate to hamburger menu->extensions. In the extensions box enter:
 ```
