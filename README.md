@@ -19,14 +19,16 @@ This is the difference between Writer/camel-5b-hf simple inference vs Writer/cam
 #### what would it take
 A knowledge graph helps considerably to make sense of content we would not have otherwise time to read. The knowledge graph guides a LLM to build answers around the triples in the graph. We could then probe with more questions. The KG itself is a good guide around the topics we could ask questions about and how they relate to each other. 
 
-The system is in essence an [OpenAI compatible adapter](/apps/llama-api/) on top of [RAY](/config/ray/). I chose RAY because it enables us multiple cpus for CPU inference. Other reasons I used RAY: transformers is leaky. If we switch between many models, the memory would eventually fill up. It is easier to only restart the specific RAY worker. RAY has an useful dashboard and monitoring integrations for insights into its working. [open-playground](/apps/open-playground/) is an opensource project I extended with a custom provider to support the local OpenAI compatible api.
+The system is in essence an [OpenAI compatible adapter](/apps/llama-api/) on top of [RAY](/config/ray/). I chose RAY because it enables the use of multiple cpus for CPU inference. Other reasons I used RAY: transformers is leaky. If we switch between many models, the memory would eventually fill up. It is easier to only restart the specific RAY worker. RAY has an useful dashboard and monitoring integrations for insights into its working. 
+
+[open-playground](/apps/open-playground/) is an open source project I extended with a custom provider to support the local OpenAI compatible api.
 
 | knowledge graph over 187 arxiv articles  | system architecture  |
 |---|---|
 | ![alt text](docs/images/187-medarxiv.png "Knowledge Graph over 187 articles")|![alt text](docs/diagrams/llama-compact-Page-2.drawio.png "system architecture") |
 
 #### promptnomics
-This is about what I would spend each week with OpenAI to index, reindex, query and keep the indexes up to date. One of the goals while building the system is to understand how much I am saving while still being able to navigate a large number of documents. I store both the request and the response together with other statisics, e.g. the response time for further analysis. I plan to analyze the prompts and their completions to improve the quality of the extracted triples and hopefully achieve a [data flywheel](https://fullstackdeeplearning.com/course/2022/lecture-1-course-vision-and-when-to-use-ml/)
+This is about what I would spend each week ,with OpenAI, to index, reindex, query and keep the indexes up to date. One of the goals while building the system is to understand how much I am saving while still being able to navigate a large number of documents. I store both the request and the response together with other statisics, e.g. the response time for further analysis. I plan to analyze the prompts and their completions to improve the quality of the extracted triples and hopefully achieve a [data flywheel](https://fullstackdeeplearning.com/course/2022/lecture-1-course-vision-and-when-to-use-ml/)
 
 ![alt text](docs/images/one-week.png)
 
