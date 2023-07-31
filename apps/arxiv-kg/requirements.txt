@@ -2,3 +2,6 @@ pymupdf
 arxiv
 llama_index
 google-cloud-storage
+pyppeteer
+deeplake
+fastcoref  #depends on spacy 3, cannot use along neuralcoref
