@@ -3,4 +3,4 @@
 *.json.lock
 storage/
 html/
-
+local-notebooks/
