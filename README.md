@@ -3,7 +3,7 @@ You could do this at home, [get started here](/docs/devbox/devbox.md).
 ## why mlk8s
 
 ### making sense of articles
-I wanted to make sense of my collection of articles: perhaps extract some triples, [build a knowledge graph](/docs/apps/llama-index.md). I used llama index with OpenAI ChatGPT and charged $10 between jesus h roosevelt christ and CTRL-C. 
+I wanted to make sense of my collection of articles: perhaps extract some triples, [build a knowledge graph](/apps/llama-index/README.md). I used llama index with OpenAI ChatGPT and charged $10 between jesus h roosevelt christ and CTRL-C. 
 
 It turns out I could use open source models from HuggingFace instead of OpenAI to ask questions across the documents. The examples below are over 187 arxiv articles I would never have the time to read.
 
