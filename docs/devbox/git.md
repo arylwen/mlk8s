@@ -1,5 +1,5 @@
 # git
-
+#### <div style="text-align: left"> <a href="devbox.md"><b>back to devbox</b></a> <br/></div>
 ## set-up
 ```
 type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)
@@ -26,4 +26,19 @@ git config --get user.name
 ```
 git config --global user.email "youremail@yourprovider.com" 
 git config --get user.email
+```
+
+# git lfs
+git lfs adds the ability to store large files. 
+
+# on each computer
+```
+sudo apt install git-lfs 
+```
+# once per repository
+```
+cd code/github/mlk8s/ 
+git lfs install 
+git lfs track "*.html" 
+git add .gitattributes 
 ```
