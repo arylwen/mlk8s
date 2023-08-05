@@ -31,6 +31,9 @@ mkdir /usr/share/icons/OneNote
 mv Microsoft_Office_OneNote_\(2019–present\).svg.png /usr/share/icons/OneNote/ 
 ``` 
 
+#### add OneNote application
+![alt text](/docs/devbox/images/onenote_configuration.png)
+
 ## set terminal title
 I found it useful to label different terminal tabs with their main function, e.g. LA-BLD, to indicate that is the window where the llama-api container image is built.
 
