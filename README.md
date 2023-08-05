@@ -3,18 +3,23 @@ You could do this at home, [get started here](/docs/devbox/devbox.md).
 ## why mlk8s
 
 ### making sense of articles
-I wanted to make sense of my collection of articles: perhaps extract some triples, [build a knowledge graph](/apps/llama-index/README.md). I used llama index with OpenAI ChatGPT and charged $10 between jesus h roosevelt christ and CTRL-C. 
+I wanted to make sense of my collection of articles and [build a knowledge graph](/apps/llama-index/README.md). I used [llama-index](https://www.llamaindex.ai/) with OpenAI [text-davinci-003](https://platform.openai.com/docs/models/gpt-3-5) and charged $10 between jesus h roosevelt christ and CTRL-C. 
 
-It turns out I could use open source models from HuggingFace instead of OpenAI to ask questions across the documents. The examples below are over 187 arxiv articles I would never have the time to read.
+|   |   | 
+|---|---|
+| ![alt text](/docs/images/buildkg.lg.gif)|Watching the construction of a Knowledge Graph is mesmerizing. <br/><br/> The concepts in the middle are what most are doing. Are we considering anything different? Why? Why not?<br/><br/>The concepts on the edge are what few are doing. Are we considering that? Why? Why not?
+|
+
+It turns out I could use open source models, e.g. from [HuggingFace](https://huggingface.co/models) instead of OpenAI to ask questions across the documents. The examples below are over 187 arxiv articles I would never have the time to read.
 
 This is the difference between Writer/camel-5b-hf simple inference vs Writer/camel-5b-hf guided retrieval. I used the same model for triples extraction. 
 
-| Writer/camel-5b-hf simple inference  | Writer/camel-5b-hf guided retrieval  |
+| Writer/camel-5b-hf direct inference  | Writer/camel-5b-hf guided retrieval  |
 |---|---|
 | ![alt text](docs/images/camel-5b-hf.png "Writer/camel-5b-hf simple inference")|![alt text](docs/images/camel-5b-hf-llama-index.png "writer/camel-5b-hf guided retrieval") |
 
 #### multiuser?
-[Building the knowledge graph](/apps/llama_index/) is a time consuming process. It takes about 6 hours with Writer/camel-5b-hf and about 36 hours with mosaicml/mpt-7b-instruct. In batch mode, this would hog the GPU and I could not explore any other prompts or query the articles. A web service would take completion requests from several clients, and I could run the indexing and query other indexes at the same time.
+[Building the knowledge graph](/apps/llama_index/) is a time consuming process. It takes about 8-11 hours with Writer/camel-5b-hf and about 36 hours with mosaicml/mpt-7b-instruct. In batch mode, this would monopolize the GPU, and I could not explore any other prompts or query the articles. A web service would take completion requests from several clients, and I could run the indexing and query other indexes at the same time.
 
 #### what would it take
 A knowledge graph helps considerably to make sense of content we would not have otherwise time to read. The knowledge graph guides a LLM to build answers around the triples in the graph. We could then probe with more questions. The KG itself is a good guide around the topics we could ask questions about and how they relate to each other. 
