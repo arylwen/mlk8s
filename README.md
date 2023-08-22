@@ -7,8 +7,7 @@ I wanted to make sense of my collection of articles and [build a knowledge graph
 
 |   |   | 
 |---|---|
-| ![alt text](/docs/images/buildkg.lg.gif)|Watching the construction of a Knowledge Graph is mesmerizing. <br/><br/> The concepts in the middle are what most are doing. Are we considering anything different? Why? Why not?<br/><br/>The concepts on the edge are what few are doing. Are we considering that? Why? Why not?
-|
+| ![alt text](/docs/images/buildkg.lg.gif)|Watching the construction of a Knowledge Graph is mesmerizing. <br/><br/> The concepts in the middle are what most are doing. Are we considering anything different? Why? Why not?<br/><br/>The concepts on the edge are what few are doing. Are we considering that? Why? Why not?|
 
 It turns out I could use open source models, e.g. from [HuggingFace](https://huggingface.co/models) instead of OpenAI to ask questions across the documents. The examples below are over 187 arxiv articles I would never have the time to read.
 
