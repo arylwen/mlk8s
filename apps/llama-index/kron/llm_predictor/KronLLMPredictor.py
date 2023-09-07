@@ -31,8 +31,9 @@ class KronLLMPredictor(LLMPredictor):
         callback_manager: Optional[CallbackManager] = None,
      ) -> None:
         """Initialize params."""
+        super().__init__(llm=llm, callback_manager=callback_manager)
         self._llm = kron_resolve_llm(llm)
-        self.callback_manager = callback_manager or CallbackManager([])
+        #self.callback_manager = callback_manager or CallbackManager([])
 
 
 

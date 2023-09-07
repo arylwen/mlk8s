@@ -6,3 +6,5 @@ pyppeteer
 deeplake
 fastcoref  #depends on spacy 3, cannot use along neuralcoref
 python-dotenv
+llama_hub
+s3fs
