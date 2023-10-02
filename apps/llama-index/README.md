@@ -1,7 +1,9 @@
 # llama index
+
 This is a thin extension to llama_index to support a custom OpenAI compatible API, without modifying the llama_index code.
 
 ## what
+
 I wanted to make sense of documents and discover useful information without reading 187 arXiv articles. For example, I wanted to know about benchmarks for Question Answering(QA), not Quality Assurance (QA)
 |<div style="width:200px"> Writer/camel-5b-hf inference </div> | Writer/camel-5b-hf guided retrieval  |
 |---|---|

@@ -18,7 +18,7 @@ This is the difference between Writer/camel-5b-hf simple inference vs Writer/cam
 | ![alt text](docs/images/camel-5b-hf.png "Writer/camel-5b-hf simple inference")|![alt text](docs/images/camel-5b-hf-llama-index.png "writer/camel-5b-hf guided retrieval") |
 
 #### multiuser?
-[Building the knowledge graph](/apps/llama_index/) is a time consuming process. It takes about 8-11 hours with Writer/camel-5b-hf and about 36 hours with mosaicml/mpt-7b-instruct. In batch mode, this would monopolize the GPU, and I could not explore any other prompts or query the articles. A web service would take completion requests from several clients, and I could run the indexing and query other indexes at the same time.
+[Building the knowledge graph](/apps/llama-index/) is a time consuming process. It takes about 8-11 hours with Writer/camel-5b-hf and about 36 hours with mosaicml/mpt-7b-instruct. In batch mode, this would monopolize the GPU, and I could not explore any other prompts or query the articles. A web service would take completion requests from several clients, and I could run the indexing and query other indexes at the same time.
 
 #### what would it take
 A knowledge graph helps considerably to make sense of content we would not have otherwise time to read. The knowledge graph guides a LLM to build answers around the triples in the graph. We could then probe with more questions. The KG itself is a good guide around the topics we could ask questions about and how they relate to each other. 
