@@ -1,0 +1,7 @@
+*.csv
+*.json
+*.json.lock
+storage/
+html/
+local-notebooks/
+.env
