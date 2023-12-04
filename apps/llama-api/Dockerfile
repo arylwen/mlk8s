@@ -1,4 +1,5 @@
-FROM rayproject/ray:2.5.0.142b46-py39-cu116
+#FROM rayproject/ray:2.5.0.142b46-py39-cu116
+FROM rayproject/ray:2.7.1.d7e0ac-py39-cu117
 
 WORKDIR /code
 

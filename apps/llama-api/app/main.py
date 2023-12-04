@@ -22,6 +22,8 @@ import uvicorn
 
 import ray
 import ray.data
+from requests.exceptions import ConnectionError
+
 import pandas as pd
 import numpy as np
 
@@ -86,21 +88,32 @@ print(f'Using RAY at: {RAY_CLIENT_URL}')
 #TODO add thread safety
 __IDLE_ACTOR_DICT__ = {}
 __BUSY_ACTOR_DICT__ = {}
-__GPU_MODEL_LIST__ = ["tiiuae/falcon-7b-instruct", "Writer/camel-5b-hf", "mosaicml/mpt-7b-instruct", "mosaicml/mpt-30b-instruct"]
+__GPU_MODEL_LIST__ = ["tiiuae/falcon-7b-instruct", 
+                      "Writer/camel-5b-hf", 
+                      "Writer/InstructPalmyra-20b", 
+                      "mosaicml/mpt-7b-instruct", 
+                      "mosaicml/mpt-30b-instruct",
+                      "Arylwen/instruct-palmyra-20b-gptq-8",
+                      "Arylwen/instruct-palmyra-20b-gptq-4",                      
+                      "Arylwen/instruct-palmyra-20b-gptq-2",
+                      ]
 
 def ray_init():
-    #python versions must match on client and server: 3.9.15
+    #python versions must match on client and server: 3.9
     ray.init(
         address=RAY_CLIENT_URL,
         namespace="kuberay",
         runtime_env={
             "pip": [
+                "torch==2.0.1", 
                 "accelerate>=0.16.0",
-                "transformers>=4.26.0",
+                "auto-gptq",  
+                #"transformers>=4.34.0",
+                "git+https://github.com/huggingface/transformers.git",
+                "git+https://github.com/huggingface/optimum.git",                
                 "numpy<1.24",  
                 "einops==0.6.1",
-                "torch", 
-                "importlib",           
+                "importlib",  
             ],
             "env_vars": {
                 "HF_HUB_DISABLE_PROGRESS_BARS": "1",
@@ -329,7 +342,7 @@ class PredictCallableGPU:
 
 '''
     Does not support int values or list of lists
-    TODO - raise exceptn
+    TODO - raise exception
 '''
 def process_input(model_name, input):
     if isinstance(input, str):
@@ -355,7 +368,7 @@ def toJSON(obj):
 #batch inference endpoint
 @app.post('/v1/completions')
 async def predict(request: CompletionRequest):
-    #TODO extract methos and put the database log in a try catch
+    #TODO extract method and put the database log in a try catch
     try: 
         start = time.time()
         response = await dispatch_request_to_model(request)
@@ -383,7 +396,7 @@ async def predict(request: CompletionRequest):
         )        
         return response
     #todo 
-    except [ConnectionError, grpc.RpcError] as ce:
+    except (ConnectionError, grpc.RpcError) as ce:
         # reinit RAY and retry; most probably stale connection
         ray_init()
         start = time.time()
@@ -397,6 +410,12 @@ async def predict(request: CompletionRequest):
             inference_time=end-start,
         )        
         return response
+    except Exception as unkex:
+        template = "*******************An exception of type {0} occurred in __call__. Arguments:\n{1!r}"
+        message = template.format(type(unkex).__name__, unkex.args)
+        print(message)
+        raise unkex
+
     
 '''
     temporary way to dispatch model to GPU; 
