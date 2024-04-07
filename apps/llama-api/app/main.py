@@ -1,3 +1,4 @@
+# Python's standard library imports
 import os
 import sys
 import json
@@ -5,58 +6,57 @@ import time
 import logging
 import grpc
 
-from pydantic import BaseModel
-from pydantic import BaseSettings
-from typing import Generator, Optional, Union, Dict, List, Any
-
-from fastapi import FastAPI
-from fastapi import Depends, HTTPException
+# FastAPI related imports
+from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse, JSONResponse
 from fastapi.security.http import HTTPAuthorizationCredentials, HTTPBearer
-#import httpx
 
-import shortuuid
-import tiktoken
-import uvicorn
+# Pydantic related imports
+from pydantic import BaseModel, BaseSettings
 
+# Typing related imports
+from typing import Generator, Optional, Union, Dict, List, Any
+
+# External libraries imports
 import ray
 import ray.data
-from requests.exceptions import ConnectionError
-
 import pandas as pd
 import numpy as np
+from requests.exceptions import ConnectionError
 
-from dotenv import load_dotenv
-
-from app.persistence.core import init_database
-#from app.persistence.core import LlmInferenceRecord
+# Modules from your application
+from app.persistence.core import init_database, LlmInferenceRecord
 from app.persistence.data_access import LlmInferencePersistence
-#from app.persistence.core import SQLALCHEMY_DATABASE_URI
 
+# Models and protocols related imports
 from app.protocol.openai_api_protocol import (
-#    ChatCompletionRequest,
-#    ChatCompletionResponse,
-#    ChatCompletionResponseStreamChoice,
-#    ChatCompletionStreamResponse,
-#    ChatMessage,
-#    ChatCompletionResponseChoice,
+    ChatCompletionRequest,
+    ChatCompletionResponse,
+    ChatCompletionResponseStreamChoice,
+    ChatCompletionStreamResponse,
+    ChatMessage,
+    ChatCompletionResponseChoice,
     CompletionRequest,
     CompletionResponse,
     CompletionResponseChoice,
-#    DeltaMessage,
-#    CompletionResponseStreamChoice,
-#    CompletionStreamResponse,
-#    EmbeddingsRequest,
-#    EmbeddingsResponse,
-#    ErrorResponse,
-#    ModelCard,
-#    ModelList,
-#    ModelPermission,
+    DeltaMessage,
+    CompletionResponseStreamChoice,
+    CompletionStreamResponse,
+    EmbeddingsRequest,
+    EmbeddingsResponse,
+    ErrorResponse,
+    ModelCard,
+    ModelList,
+    ModelPermission,
     UsageInfo,
 )
 
-
+# External libraries related to your application
+import shortuuid
+import tiktoken
+import uvicorn
+from dotenv import load_dotenv
 
 app = FastAPI()
 
@@ -96,6 +96,7 @@ __GPU_MODEL_LIST__ = ["tiiuae/falcon-7b-instruct",
                       "Arylwen/instruct-palmyra-20b-gptq-8",
                       "Arylwen/instruct-palmyra-20b-gptq-4",                      
                       "Arylwen/instruct-palmyra-20b-gptq-2",
+                      "deepseek-ai/deepseek-coder-6.7b-instruct",
                       ]
 
 def ray_init():
@@ -108,9 +109,11 @@ def ray_init():
                 "torch==2.0.1", 
                 "accelerate>=0.16.0",
                 "auto-gptq",  
-                #"transformers>=4.34.0",
-                "git+https://github.com/huggingface/transformers.git",
-                "git+https://github.com/huggingface/optimum.git",                
+                "transformers>=4.34.0",
+                #"git+https://github.com/huggingface/transformers.git",
+                #"git+https://github.com/huggingface/optimum.git",      
+                #"transformers",
+                "optimum",          
                 "numpy<1.24",  
                 "einops==0.6.1",
                 "importlib",  

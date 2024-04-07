@@ -25,7 +25,7 @@ class LlmInferenceRecord(Base):
     __tablename__ = "llm_inference_log"
     __table_args__ = {'extend_existing': True}
     id = Column(Integer, primary_key=True)
-    user_id = Column(String(36), nullable=False)
+    user_id = Column(String(80), nullable=False)
     datetime_captured = Column(
         DateTime(timezone=True), server_default=func.now(), index=True
     )
