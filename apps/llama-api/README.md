@@ -8,7 +8,7 @@ pyvis is not compatible with python 3.10 and above.
 
 ```bash
 conda create -n ray271 python=3.9 -y 
-conda actvate ray271 
+conda activate ray271 
 ```
 
 ## apply dev requirements

@@ -81,7 +81,7 @@ SQLALCHEMY_DATABASE_URI = (
 
 RAY_CLIENT_URL = os.getenv('RAY_CLIENT_URL')
 if(RAY_CLIENT_URL is None):
-    sys.exit('RAY_CLIENT_URL environement variable is not sert. Exiting.')
+    sys.exit('RAY_CLIENT_URL environement variable is not set. Exiting.')
 
 print(f'Using RAY at: {RAY_CLIENT_URL}')
 

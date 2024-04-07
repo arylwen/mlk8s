@@ -13,4 +13,6 @@ nltk==3.8.1
 pymupdf==1.22.5
 llama_index
 pyvis==0.3.2
-
+# for code completion, installed remotely by ray
+torch
+transformers
