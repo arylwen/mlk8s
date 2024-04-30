@@ -1,64 +1,57 @@
-# mlk8s - personal ml cluster
-You could do this at home, [get started here](/docs/devbox/devbox.md).
-## why mlk8s
+**Introducing mlk8s - A Personal ML Cluster for Knowledge Graph Construction and Semantic Search**
 
-### making sense of articles
-I wanted to make sense of my collection of articles and [build a knowledge graph](/apps/llama-index/README.md). I used [llama-index](https://www.llamaindex.ai/) with OpenAI [text-davinci-003](https://platform.openai.com/docs/models/gpt-3-5) and charged $10 between jesus h roosevelt christ and CTRL-C. 
+Welcome to mlk8s, a personal machine learning cluster designed for building knowledge graphs and conducting semantic searches. With this project, you can create a scalable and affordable infrastructure for processing large amounts of data and answering complex questions.
+
+**Why Build a Knowledge Graph?**
+
+In this section, we'll explore the benefits of constructing a knowledge graph using mlk8s. We'll also show how it can help us make sense of articles and build answers around triples in the graph.
 
 |   |   | 
 |---|---|
-| ![alt text](/docs/images/buildkg.lg.gif)|Watching the construction of a Knowledge Graph is mesmerizing. <br/><br/> The concepts in the middle are what most are doing. Are we considering anything different? Why? Why not?<br/><br/>The concepts on the edge are what few are doing. Are we considering that? Why? Why not?|
+| ![alt text](/docs/images/buildkg.lg.gif)|Watching the construction of a Knowledge Graph is mesmerizing. <br/> The concepts in the middle are what most are doing. Are we considering anything different? Why? Why not?<br/>The concepts on the edge are what few are doing. Are we considering that? Why? Why not?|
 
-It turns out I could use open source models, e.g. from [HuggingFace](https://huggingface.co/models) instead of OpenAI to ask questions across the documents. The examples below are over 187 arxiv articles I would never have the time to read.
+**Open-Source Models for Question Answering**
 
-This is the difference between Writer/camel-5b-hf simple inference vs Writer/camel-5b-hf guided retrieval. I used the same model for triples extraction. 
+We'll demonstrate how to use open-source models from HuggingFace instead of OpenAI's paid models to ask questions across documents.
 
 | Writer/camel-5b-hf direct inference  | Writer/camel-5b-hf guided retrieval  |
 |---|---|
 | ![alt text](docs/images/camel-5b-hf.png "Writer/camel-5b-hf simple inference")|![alt text](docs/images/camel-5b-hf-llama-index.png "writer/camel-5b-hf guided retrieval") |
 
-#### multiuser?
-[Building the knowledge graph](/apps/llama-index/) is a time consuming process. It takes about 8-11 hours with Writer/camel-5b-hf and about 36 hours with mosaicml/mpt-7b-instruct. In batch mode, this would monopolize the GPU, and I could not explore any other prompts or query the articles. A web service would take completion requests from several clients, and I could run the indexing and query other indexes at the same time.
+**Multi-User Support and Scalability**
 
-#### what would it take
-A knowledge graph helps considerably to make sense of content we would not have otherwise time to read. The knowledge graph guides a LLM to build answers around the triples in the graph. We could then probe with more questions. The KG itself is a good guide around the topics we could ask questions about and how they relate to each other. 
+To enable multi-user support, we've built a web service that can handle completion requests from multiple clients. This allows us to run indexing and query other indexes simultaneously.
 
-The system is in essence an [OpenAI compatible adapter](/apps/llama-api/) on top of [RAY](/config/ray/). I chose RAY because it enables the use of multiple cpus for CPU inference. Other reasons I used RAY: transformers is leaky. If we switch between many models, the memory would eventually fill up. It is easier to only restart the specific RAY worker. RAY has an useful dashboard and monitoring integrations for insights into its working. 
+[![alt text](/docs/diagrams/llama-compact-Page-2.drawio.png)](https://ray.io)
+System architecture: We chose RAY for its ability to utilize multiple CPUs for CPU inference and its user-friendly dashboard and monitoring integrations.
 
-[open-playground](/apps/open-playground/) is an open source project I extended with a custom provider to support the local OpenAI compatible api.
+**Promptnomics - Analyzing Queries and Responses**
 
-| knowledge graph over 187 arxiv articles  | system architecture  |
-|---|---|
-| ![alt text](docs/images/187-medarxiv.png "Knowledge Graph over 187 articles")|![alt text](docs/diagrams/llama-compact-Page-2.drawio.png "system architecture") |
+We'll store both the request and response together with other statistics, such as response time, for further analysis. This will help us improve the quality of extracted triples and potentially achieve a data flywheel.
 
-#### promptnomics
-This is about what I would spend each week ,with OpenAI, to index, reindex, query and keep the indexes up to date. One of the goals while building the system is to understand how much I am saving while still being able to navigate a large number of documents. I store both the request and the response together with other statisics, e.g. the response time for further analysis. I plan to analyze the prompts and their completions to improve the quality of the extracted triples and hopefully achieve a [data flywheel](https://fullstackdeeplearning.com/course/2022/lecture-1-course-vision-and-when-to-use-ml/)
+[![alt text](/docs/images/one-week.png)](https://fullstackdeeplearning.com/course/20/lecture-1-course-vision-and-when-to-use-ml)
 
-![alt text](docs/images/one-week.png)
+**Semantic Search and Cloud Costs**
 
-### semantic search and cloud costs
-I like to take classes. I think they provide a strucured approach to learn a topic. In one of the classes we built a [semantic search engine](/docs/apps/semsearch.md). GKE was easy to get up to speed with, however the projected cost was $600/month, on the low end.
-Can I build a mlk8s cluster to run a LLM, that I can afford?
+We'll explore the benefits of building a semantic search engine using mlk8s and discuss how to estimate costs using Kubecost.
 
-#### kubecost
-If I build mlk8s, how do I know I save money? This is what mlk8s would cost in the cloud, based on the [kubecost](docs/monitoring/kubecost.md) default resources values:
+[![alt text](/docs/images/kubecost.png)](https://www.kubecost.com)
 
-![alt text](docs/images/kubecost.png)
+### Additional Features
 
-### k-means on the GPU
-Can I run k-means on the GPU?
+* K-means clustering on the GPU
+* Embeddings for categorical data
 
-### embeddings for categorical data
-Clustering surveys and representation learning: how does one represent categorical data in a continuous space so we can use k-means. Embedding space could be as big a 40,000 dimensions. How can we scale this horizontally? 
+**Getting Started with mlk8s**
 
-This repo contains step-by-step instructions to build a microk8s ml cluster from scratch. It features kubeflow, monitoring, storage and application examples.
+To build a personal ML cluster from scratch, follow these step-by-step instructions:
 
-## step by step
-1. [k8s cluster setup](/docs/node-setup/node-setup.md)
-2. [k8s cluster monitoring](/docs/monitoring/monitoring.md)
-3. [storage](/docs/storage/storage.md)
-4. [kubeflow](/docs/kubeflow/kubeflow.md)
-5. [databases](/docs/databases/databases.md)
-5. [devbox](/docs/devbox/devbox.md)
-6. [apps](/docs/apps/apps.md)
+1. [K8s Cluster Setup](/docs/node-setup/node-setup.md)
+2. [K8s Cluster Monitoring](/docs/monitoring/monitoring.md)
+3. [Storage](/docs/storage/storage.md)
+4. [Kubeflow](/docs/kubeflow/kubeflow.md)
+5. [Databases](/docs/databases/databases.md)
+6. [Devbox](/docs/devbox/devbox.md)
+7. [Apps](/docs/apps/apps.md)
 
+Join us on this journey to build a personal ML cluster that can help you make sense of large amounts of data and answer complex questions!

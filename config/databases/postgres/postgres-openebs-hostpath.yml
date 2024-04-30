@@ -12,7 +12,7 @@ spec:
       storage: 1000Gi
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: pgsql14
   namespace: pgsql
@@ -21,8 +21,6 @@ spec:
   selector:
     matchLabels:
       app: pgsql14
-  strategy:
-    type: Recreate
   template:
     metadata:
       labels:
@@ -40,14 +38,14 @@ spec:
                       - rigr720xd
       containers:
         - name: postgres
-          image: arylwen/postgis:14-3.3-huge-pages 
+          image: arylwen/postgis:14-3.4-huge-pages 
           resources:
             requests:
-              memory: "1024Mi"
-              cpu: "250m"
+              memory: "1G"
+              cpu: "1"
             limits:
-              memory: "1024Mi"
-              cpu: "250m"
+              memory: "20G"
+              cpu: "5"
           imagePullPolicy: "IfNotPresent"
           ports:
             - containerPort: 5432
