@@ -8,7 +8,7 @@ In this section, we'll explore the benefits of constructing a knowledge graph us
 
 |   |   | 
 |---|---|
-| ![alt text](/docs/images/buildkg.lg.gif)|Watching the construction of a Knowledge Graph is mesmerizing. <br/> The concepts in the middle are what most are doing. Are we considering anything different? Why? Why not?<br/>The concepts on the edge are what few are doing. Are we considering that? Why? Why not?|
+| ![alt text](/docs/images/buildkg.lg.gif)|Watching the construction of a Knowledge Graph is mesmerizing. <br/><br/> The concepts in the middle are what most are doing. Are we considering anything different? Why? Why not?<br/><br/>The concepts on the edge are what few are doing. Are we considering that? Why? Why not?|
 
 **Open-Source Models for Question Answering**
 
@@ -22,8 +22,11 @@ We'll demonstrate how to use open-source models from HuggingFace instead of Open
 
 To enable multi-user support, we've built a web service that can handle completion requests from multiple clients. This allows us to run indexing and query other indexes simultaneously.
 
-[![alt text](/docs/diagrams/llama-compact-Page-2.drawio.png)](https://ray.io)
-System architecture: We chose RAY for its ability to utilize multiple CPUs for CPU inference and its user-friendly dashboard and monitoring integrations.
+| knowledge graph over 187 arxiv articles  | system architecture  |
+|---|---|
+| ![alt text](docs/images/187-medarxiv.png "Knowledge Graph over 187 articles")|![alt text](docs/diagrams/llama-compact-Page-2.drawio.png "system architecture") |
+
+System architecture: We chose [RAY](https://ray.io) for its ability to utilize multiple CPUs for CPU inference and its user-friendly dashboard and monitoring integrations.
 
 **Promptnomics - Analyzing Queries and Responses**
 
@@ -33,7 +36,7 @@ We'll store both the request and response together with other statistics, such a
 
 **Semantic Search and Cloud Costs**
 
-We'll explore the benefits of building a semantic search engine using mlk8s and discuss how to estimate costs using Kubecost.
+We'll explore the benefits of building a semantic search engine using mlk8s and discuss how to estimate equivalent costs using Kubecost.
 
 [![alt text](/docs/images/kubecost.png)](https://www.kubecost.com)
 
