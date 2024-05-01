@@ -1,4 +1,4 @@
-apiVersion: ray.io/v1
+apiVersion: ray.io/v1alpha1
 kind: RayCluster
 metadata:
   labels:
@@ -34,7 +34,7 @@ spec:
                 value: '0'
               - name: RAY_BACKEND_LOG_LEVEL
                 value: debug
-            image: rayproject/ray-ml:2.20.0.5708e7-py39-cu118
+            image: rayproject/ray:2.5.0.142b46-py39-cu116
             imagePullPolicy: IfNotPresent
             name: ray-head
             resources:
@@ -62,9 +62,8 @@ spec:
               claimName: ray-cluster-1000g-volumeclaim-90
   workerGroupSpecs:
     - groupName: workergroup
-      maxReplicas: 3
-      minReplicas: 1
-      numOfHosts: 1
+      maxReplicas: 2147483647
+      minReplicas: 4
       rayStartParams:
         block: 'true'
       replicas: 1
@@ -90,7 +89,7 @@ spec:
                   value: '0'
                 - name: RAY_BACKEND_LOG_LEVEL
                   value: debug
-              image: rayproject/ray-ml:2.20.0.5708e7-py39-cu118
+              image: rayproject/ray:2.5.0.142b46-py39-cu116
               imagePullPolicy: IfNotPresent
               name: ray-worker
               resources:
