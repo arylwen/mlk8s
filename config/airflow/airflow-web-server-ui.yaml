@@ -3,18 +3,18 @@ kind: Ingress
 metadata: 
   annotations: 
        nginx.ingress.kubernetes.io/rewrite-target: / 
-  name: grafana-ui 
-  namespace: observability 
+  name: airflow-ui 
+  namespace: airflow 
 spec: 
   ingressClassName: public 
   rules: 
-  - host: grafana-ui.local 
+  - host: airflow-ui.local 
     http: 
       paths: 
       - backend: 
           service: 
-            name: kube-prom-stack-grafana 
+            name: airflow-webserver 
             port: 
-              number: 3000 
+              number: 8080 
         path: / 
         pathType: Prefix 

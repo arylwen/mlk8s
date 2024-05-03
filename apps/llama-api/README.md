@@ -7,8 +7,8 @@ llama api is an openai compatible web service. It uses RAY to enable multi-cpu i
 pyvis is not compatible with python 3.10 and above.
 
 ```bash
-conda create -n ray271 python=3.9 -y 
-conda activate ray271 
+conda create -n ray2200 python=3.9 -y 
+conda activate ray2200 
 ```
 
 ## apply dev requirements
@@ -24,7 +24,7 @@ Start a new console tab.
 
 ```bash
 cd mlk8s/apps/llama-api 
-conda activate ray271
+conda activate ray2200
 
 set-title LA-RUN 
 uvicorn app.main:app --reload 

@@ -51,7 +51,7 @@ spec:
             - name: DB_HOST
               value: pgsql14.pgsql.svc.cluster.local
             - name: DB_NAME
-              value: 'llama-api'
+              value: 'llama_api'
             - name: MILVUS_HOST
               value: milvus.milvus.svc.cluster.local
             - name: MILVUS_PORT

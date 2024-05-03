@@ -4,7 +4,7 @@ metadata:
   annotations: 
        nginx.ingress.kubernetes.io/rewrite-target: / 
   name: prometheus-ui 
-  namespace: monitoring 
+  namespace: observability 
 spec: 
   ingressClassName: public 
   rules: 
@@ -13,7 +13,7 @@ spec:
       paths: 
       - backend: 
           service: 
-            name: prometheus-k8s 
+            name: kube-prom-stack-kube-prome-prometheus 
             port: 
               number: 9090 
         path: / 

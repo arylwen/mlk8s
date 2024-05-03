@@ -3,18 +3,18 @@ kind: Ingress
 metadata: 
   annotations: 
        nginx.ingress.kubernetes.io/rewrite-target: / 
-  name: grafana-ui 
-  namespace: observability 
+  name: llama-api 
+  namespace: llama-api 
 spec: 
   ingressClassName: public 
   rules: 
-  - host: grafana-ui.local 
+  - host: llama-api.local 
     http: 
       paths: 
       - backend: 
           service: 
-            name: kube-prom-stack-grafana 
+            name: llama-api 
             port: 
-              number: 3000 
+              number: 8080 
         path: / 
         pathType: Prefix 
