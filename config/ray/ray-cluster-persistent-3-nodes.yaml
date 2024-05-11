@@ -1,0 +1,304 @@
+apiVersion: ray.io/v1
+kind: RayCluster
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"ray.io/v1","kind":"RayCluster","metadata":{"annotations":{},"labels":{"app.kubernetes.io/instance":"raycluster","app.kubernetes.io/name":"kuberay"},"name":"raycluster-kuberay","namespace":"kuberay"},"spec":{"headGroupSpec":{"rayStartParams":{"block":"true","dashboard-host":"0.0.0.0"},"serviceType":"NodePort","template":{"metadata":{"annotations":{},"labels":{"app.kubernetes.io/instance":"raycluster","app.kubernetes.io/name":"kuberay"}},"spec":{"affinity":{"nodeAffinity":{"requiredDuringSchedulingIgnoredDuringExecution":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"kubernetes.io/hostname","operator":"In","values":["rig90"]}]}]}}},"containers":[{"env":[{"name":"RAY_DATA_STRICT_MODE","value":"0"},{"name":"RAY_BACKEND_LOG_LEVEL","value":"debug"}],"image":"rayproject/ray-ml:2.20.0.5708e7-py39-cu118","imagePullPolicy":"IfNotPresent","name":"ray-head","resources":{"limits":{"cpu":"14","memory":"96G"},"requests":{"cpu":"1","memory":"4G"}},"securityContext":{},"volumeMounts":[{"mountPath":"/tmp/ray","name":"log-volume"},{"mountPath":"/home/ray/.cache/huggingface","name":"model-persistence","subPath":"model-cache"}]}],"imagePullSecrets":[],"nodeSelector":{},"tolerations":[],"volumes":[{"emptyDir":{},"name":"log-volume"},{"name":"model-persistence","persistentVolumeClaim":{"claimName":"ray-cluster-1000g-volumeclaim-90"}}]}}},"workerGroupSpecs":[{"groupName":"workergroup","maxReplicas":3,"minReplicas":1,"numOfHosts":1,"rayStartParams":{"block":"true"},"replicas":1,"template":{"metadata":{"annotations":{},"labels":{"app.kubernetes.io/instance":"raycluster","app.kubernetes.io/name":"kuberay"}},"spec":{"affinity":{"nodeAffinity":{"requiredDuringSchedulingIgnoredDuringExecution":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"kubernetes.io/hostname","operator":"In","values":["rigr720xd"]}]}]}}},"containers":[{"env":[{"name":"RAY_DATA_STRICT_MODE","value":"0"},{"name":"RAY_BACKEND_LOG_LEVEL","value":"debug"}],"image":"rayproject/ray-ml:2.20.0.5708e7-py39-cu118","imagePullPolicy":"IfNotPresent","name":"ray-worker","resources":{"limits":{"cpu":"30","memory":"180G"},"requests":{"cpu":"10","memory":"96G"}},"securityContext":{},"volumeMounts":[{"mountPath":"/tmp/ray","name":"log-volume"},{"mountPath":"/home/ray/.cache/huggingface","name":"model-persistence","subPath":"model-cache"}]}],"imagePullSecrets":[],"initContainers":[{"command":["sh","-c","until
+      nslookup $FQ_RAY_IP; do echo waiting for K8s Service $FQ_RAY_IP; sleep 2;
+      done"],"image":"busybox:1.28","name":"init","securityContext":{}}],"nodeSelector":{},"tolerations":[],"volumes":[{"emptyDir":{},"name":"log-volume"},{"name":"model-persistence","persistentVolumeClaim":{"claimName":"ray-cluster-1000g-volumeclaim-720"}}]}}}]}}
+  creationTimestamp: '2024-05-01T17:17:25Z'
+  generation: 2
+  labels:
+    app.kubernetes.io/instance: raycluster
+    app.kubernetes.io/name: kuberay
+    k8slens-edit-resource-version: v1
+  managedFields:
+    - apiVersion: ray.io/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:kubectl.kubernetes.io/last-applied-configuration: {}
+          f:labels:
+            .: {}
+            f:app.kubernetes.io/instance: {}
+            f:app.kubernetes.io/name: {}
+        f:spec:
+          .: {}
+          f:headGroupSpec:
+            .: {}
+            f:rayStartParams:
+              .: {}
+              f:block: {}
+              f:dashboard-host: {}
+            f:serviceType: {}
+            f:template:
+              .: {}
+              f:metadata:
+                .: {}
+                f:annotations: {}
+                f:labels:
+                  .: {}
+                  f:app.kubernetes.io/instance: {}
+                  f:app.kubernetes.io/name: {}
+              f:spec:
+                .: {}
+                f:affinity:
+                  .: {}
+                  f:nodeAffinity:
+                    .: {}
+                    f:requiredDuringSchedulingIgnoredDuringExecution: {}
+                f:containers: {}
+                f:imagePullSecrets: {}
+                f:nodeSelector: {}
+                f:tolerations: {}
+                f:volumes: {}
+      manager: kubectl-client-side-apply
+      operation: Update
+      time: '2024-05-01T17:17:25Z'
+    - apiVersion: ray.io/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:labels:
+            f:k8slens-edit-resource-version: {}
+      manager: node-fetch
+      operation: Update
+      time: '2024-05-10T22:01:53Z'
+    - apiVersion: ray.io/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:status:
+          .: {}
+          f:desiredCPU: {}
+          f:desiredGPU: {}
+          f:desiredMemory: {}
+          f:desiredTPU: {}
+          f:endpoints:
+            .: {}
+            f:client: {}
+            f:dashboard: {}
+            f:metrics: {}
+            f:redis: {}
+            f:serve: {}
+          f:head:
+            .: {}
+            f:podIP: {}
+            f:serviceIP: {}
+          f:lastUpdateTime: {}
+          f:observedGeneration: {}
+          f:state: {}
+      manager: kuberay-operator
+      operation: Update
+      subresource: status
+      time: '2024-05-10T22:02:58Z'
+  name: raycluster-kuberay
+  namespace: kuberay
+  resourceVersion: '5732543'
+  uid: 720f2f83-362b-4a81-bd30-bd4664b5ddd5
+  selfLink: /apis/ray.io/v1/namespaces/kuberay/rayclusters/raycluster-kuberay
+status:
+  desiredCPU: '1'
+  desiredGPU: '0'
+  desiredMemory: 4G
+  desiredTPU: '0'
+  endpoints:
+    client: '30663'
+    dashboard: '30411'
+    metrics: '31377'
+    redis: '30732'
+    serve: '32475'
+  head:
+    podIP: 10.1.64.59
+    serviceIP: 10.152.183.19
+  lastUpdateTime: '2024-05-10T22:02:58Z'
+  observedGeneration: 2
+  state: ready
+spec:
+  headGroupSpec:
+    rayStartParams:
+      block: 'true'
+      dashboard-host: 0.0.0.0
+    serviceType: NodePort
+    template:
+      metadata:
+        annotations: {}
+        labels:
+          app.kubernetes.io/instance: raycluster
+          app.kubernetes.io/name: kuberay
+      spec:
+        affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+                - matchExpressions:
+                    - key: kubernetes.io/hostname
+                      operator: In
+                      values:
+                        - rig90
+        containers:
+          - env:
+              - name: RAY_DATA_STRICT_MODE
+                value: '0'
+              - name: RAY_BACKEND_LOG_LEVEL
+                value: debug
+            image: rayproject/ray-ml:2.20.0.5708e7-py39-cu118
+            imagePullPolicy: IfNotPresent
+            name: ray-head
+            resources:
+              limits:
+                cpu: '14'
+                memory: 96G
+              requests:
+                cpu: '1'
+                memory: 4G
+            securityContext: {}
+            volumeMounts:
+              - mountPath: /tmp/ray
+                name: log-volume
+              - mountPath: /home/ray/.cache/huggingface
+                name: model-persistence
+                subPath: model-cache
+        imagePullSecrets: []
+        nodeSelector: {}
+        tolerations: []
+        volumes:
+          - emptyDir: {}
+            name: log-volume
+          - name: model-persistence
+            persistentVolumeClaim:
+              claimName: ray-cluster-1000g-volumeclaim-90
+  workerGroupSpecs:
+    - groupName: workergroup720
+      maxReplicas: 3
+      minReplicas: 1
+      numOfHosts: 1
+      rayStartParams:
+        block: 'true'
+      replicas: 1
+      template:
+        metadata:
+          annotations: {}
+          labels:
+            app.kubernetes.io/instance: raycluster
+            app.kubernetes.io/name: kuberay
+        spec:
+          affinity:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                  - matchExpressions:
+                      - key: kubernetes.io/hostname
+                        operator: In
+                        values:
+                          - rigr720xd
+          containers:
+            - env:
+                - name: RAY_DATA_STRICT_MODE
+                  value: '0'
+                - name: RAY_BACKEND_LOG_LEVEL
+                  value: debug
+              image: rayproject/ray-ml:2.20.0.5708e7-py39-cu118
+              imagePullPolicy: IfNotPresent
+              name: ray-worker
+              resources:
+                limits:
+                  cpu: '30'
+                  memory: 180G
+                requests:
+                  cpu: '10'
+                  memory: 96G
+              securityContext: {}
+              volumeMounts:
+                - mountPath: /tmp/ray
+                  name: log-volume
+                - mountPath: /home/ray/.cache/huggingface
+                  name: model-persistence
+                  subPath: model-cache
+          imagePullSecrets: []
+          initContainers:
+            - command:
+                - sh
+                - '-c'
+                - >-
+                  until nslookup $FQ_RAY_IP; do echo waiting for K8s Service
+                  $FQ_RAY_IP; sleep 2; done
+              image: busybox:1.28
+              name: init
+              securityContext: {}
+          nodeSelector: {}
+          tolerations: []
+          volumes:
+            - emptyDir: {}
+              name: log-volume
+            - name: model-persistence
+              persistentVolumeClaim:
+                claimName: ray-cluster-1000g-volumeclaim-720
+    - groupName: workergroup2x
+      maxReplicas: 3
+      minReplicas: 1
+      numOfHosts: 1
+      rayStartParams:
+        block: 'true'
+      replicas: 1
+      template:
+        metadata:
+          annotations: {}
+          labels:
+            app.kubernetes.io/instance: raycluster
+            app.kubernetes.io/name: kuberay
+        spec:
+          affinity:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                  - matchExpressions:
+                      - key: kubernetes.io/hostname
+                        operator: In
+                        values:
+                          - rig2x
+          containers:
+            - env:
+                - name: RAY_DATA_STRICT_MODE
+                  value: '0'
+                - name: RAY_BACKEND_LOG_LEVEL
+                  value: debug
+              image: rayproject/ray-ml:2.20.0.5708e7-py39-cu118
+              imagePullPolicy: IfNotPresent
+              name: ray-worker
+              resources:
+                limits:
+                  cpu: '4'
+                  memory: 24G
+                requests:
+                  cpu: '4'
+                  memory: 16G
+              securityContext: {}
+              volumeMounts:
+                - mountPath: /tmp/ray
+                  name: log-volume
+                - mountPath: /home/ray/.cache/huggingface
+                  name: model-persistence
+                  subPath: model-cache
+          imagePullSecrets: []
+          initContainers:
+            - command:
+                - sh
+                - '-c'
+                - >-
+                  until nslookup $FQ_RAY_IP; do echo waiting for K8s Service
+                  $FQ_RAY_IP; sleep 2; done
+              image: busybox:1.28
+              name: init
+              securityContext: {}
+          nodeSelector: {}
+          tolerations: []
+          volumes:
+            - emptyDir: {}
+              name: log-volume
+            - name: model-persistence
+              persistentVolumeClaim:
+                claimName: ray-cluster-100g-volumeclaim-2x
+
+ 
